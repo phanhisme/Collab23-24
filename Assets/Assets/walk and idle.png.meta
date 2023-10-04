@@ -80,10 +80,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -93,8 +95,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -122,6 +124,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -592,9 +595,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      walk and idle_5: -6439471259157115369
+      walk and idle_13: -7037650129288350417
+      walk and idle_15: -8497508071880925989
+      walk and idle_3: 2589492550832670464
+      walk and idle_18: 6158482838562942929
+      walk and idle_6: -3276861232412707276
+      walk and idle_4: -2803649036733296061
+      walk and idle_17: 1887480084010099569
+      walk and idle_12: -2193215749780897835
+      walk and idle_0: 6701976620726949782
+      walk and idle_7: -2121842417774576500
+      walk and idle_14: -4286462141399480608
+      walk and idle_19: -3143334862177301296
+      walk and idle_11: -4479482354138549827
+      walk and idle_1: 5826384306279062945
+      walk and idle_16: -259757158487725873
+      walk and idle_2: 478741594795794516
+      walk and idle_9: -2075839574807891480
+      walk and idle_8: 5753600170836332131
+      walk and idle_10: -570236513362320467
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
