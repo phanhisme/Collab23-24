@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class AutoAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector2 PointerPosition { get; set; }
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.right = (PointerPosition = (Vector2)transform.position).normalized;
     }
 }
