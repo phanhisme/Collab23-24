@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Weapon : MonoBehaviour
+public class Player : MonoBehaviour
 {
     
     [SerializeField]
     private InputActionReference attack, pointerPosition;
-    private Weapon weapon;
     private Vector2 pointerInput;
     private WeaponHolder weaponHolder;
+    
 
     private void Awake()
     {
@@ -32,12 +32,7 @@ public class Weapon : MonoBehaviour
 
     private void PerformAttack(InputAction.CallbackContext context)
     {
-        if(weapon == null)
-        {
-            Debug.LogError("Weapon null", gameObject);
-            return;
-        }
-        weapon.DoAttack();
+        weaponHolder.Attack();
     }
 
     private void OnEnable()
@@ -54,14 +49,5 @@ public class Weapon : MonoBehaviour
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
-    public void DoAttack()
-    {
-        if(weapon == null )
-        {
-            Debug.LogError("Weapon is null", gameObject);
-            return;
-        }
-        //weapon.use;
-        //WeaponRotationStopped = true;
-    }
+    
 }
