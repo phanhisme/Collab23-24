@@ -8,22 +8,36 @@ public class WeaponHolder : MonoBehaviour
     public Animator animator;
     public float delay = 0.3f;
     private bool attackBlocked;
-    public Vector2 PointerPosition { get; set; }
     public bool IsAttacking { get; private set; }
     public Transform circle;
     public float radius;
+    private Camera mainCam;
+    private Vector2 mousePos;
+    public WeaponHolder weaponHolder;
+
+    private void Start()
+    {
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
     public void ResetAttack()
     {
         IsAttacking = false;
 
     }
+    private void FixedUpdate()
+    {
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = rotation;
+    }
     private void Update()
     {
-        if(IsAttacking)
+        if (IsAttacking)
         {
             return;
         }
-        Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
+        Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
         transform.right = direction;
         Vector2 scale = transform.localScale;
         if(direction.x < 0)
