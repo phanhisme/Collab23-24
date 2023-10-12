@@ -534,6 +534,8 @@ MonoBehaviour:
   heal1: {fileID: 1086968054}
   cd1: 30
   ab1: 282
+  player: {fileID: 1776689148}
+  healAmount: 10
 --- !u!114 &1014452288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: {fileID: -8999837517858874305, guid: 2c5d069ebcc68c74d8de9ecfb060f7f1, type: 3}
   pointer: {fileID: 2923184162369203802, guid: 2c5d069ebcc68c74d8de9ecfb060f7f1, type: 3}
+  playerHealth: 70
 --- !u!1 &1855248241
 GameObject:
   m_ObjectHideFlags: 0
