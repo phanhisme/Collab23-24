@@ -20,12 +20,14 @@ public class Room : MonoBehaviour
             Debug.Log("You pressed play in the wrong scene!");
             return;
         }
+
+        RoomController.instance.RegisterRoom(this);
     }
 
     private void OnDrawGizmos()
     {
         //draw gizmos for the rooms
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, new Vector3(Width, Height, 0));
     }
 
