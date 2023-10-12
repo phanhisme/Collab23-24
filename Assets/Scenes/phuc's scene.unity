@@ -161,7 +161,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &400020247
 SpriteRenderer:
@@ -242,14 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06efef251a7b7f04daa12afe43fd13ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 7.6
   rb: {fileID: 400020246}
-  dashSpeed: 6
-  dashDuration: 1
-  dashCooldown: 1
-  isDashing: 0
-  canDash: 0
-  particles: {fileID: 0}
+  dashAmount: 3
 --- !u!1 &2071833766
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +298,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 13.438124
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
