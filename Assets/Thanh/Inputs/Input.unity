@@ -221,8 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e333330353ef941ad0b951f7cebb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: -6858251465897456495, guid: bd84378b78763224c955b68dc4563ab8, type: 3}
-  pointerPosition: {fileID: 1147904795862909587, guid: bd84378b78763224c955b68dc4563ab8, type: 3}
+  pointerInput: {x: 0, y: 0}
 --- !u!1 &1071454800
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1314048734}
   - component: {fileID: 1314048735}
+  - component: {fileID: 1314048736}
   m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -305,6 +305,18 @@ MonoBehaviour:
   delay: 0.3
   circle: {fileID: 1071454801}
   radius: 0.6
+--- !u!114 &1314048736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314048733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0c580f541c24c4e89ebca7244488bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1439683550
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,24 +430,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: bd84378b78763224c955b68dc4563ab8, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayerInput
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!4 &1737438817
 Transform:
   m_ObjectHideFlags: 0
