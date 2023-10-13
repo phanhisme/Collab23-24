@@ -5,36 +5,32 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Variables")]
-    public float moveSpeed;
+    public float moveSpeed = 50f;
     public Rigidbody2D rb;
-    Vector2 movement;
+    Vector3 movement;
+    Vector3 DiagonalMove;
 
     [Header("Dashing Stuff")]
-    public float dashSpeed = 10f;
-    public float dashDuration = 1f;
-    public float dashCooldown = 1f;
-    public bool isDashing = false;
-    public bool canDash;
-    public ParticleSystem particles;
+    private bool isDashButtonDown;
+    public float dashAmount = 6f;
+   
     private void Start()
     {
-        canDash = true;
+        rb = GetComponent<Rigidbody2D>();   
     }
     // Update is called once per frame
     void Update()
     {
-        //Can't do anything while dashing
-        if (isDashing)
-        {
-            return;
-        }
+        
         //Handle inputs
         GetInput();
     }
     void FixedUpdate()
     {
         //Handle movements stuff 
-        GetMovement();
+        rb.velocity = movement * moveSpeed;
+
+        Dash();
     }
 
 
@@ -44,25 +40,24 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        //Prevent the player move faster when going diagonally
+        DiagonalMove = new Vector3(movement.x, movement.y).normalized;
+
+        //When the player presses SPACE
+        //Set the boolean to true
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(Dash());
+            isDashButtonDown = true;
         }
     }
-    void GetMovement()
+    void Dash()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        //If SPACE is pressed
+        //Move the player to the target then set the boolean to false
+        if (isDashButtonDown)
+        {
+            rb.MovePosition(transform.position + movement * dashAmount);
+            isDashButtonDown = false;
+        }
     }
-    IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        rb.velocity = new Vector2(movement.x * dashSpeed, movement.y * dashSpeed);
-        
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
-        canDash = true;
-    }
-
-
 }

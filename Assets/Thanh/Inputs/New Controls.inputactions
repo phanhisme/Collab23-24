@@ -1,0 +1,54 @@
+{
+    "name": "New Controls",
+    "maps": [
+        {
+            "name": "PlayerInput",
+            "id": "9b7380cf-bb08-4789-8178-c8a7562ab4ea",
+            "actions": [
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "0f958e38-ad18-44f8-89cb-e2923c43d3c3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePos",
+                    "type": "Value",
+                    "id": "5cc1eb06-7ce7-4feb-9e53-8ad3ee6b79f5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dfdcd415-d09f-4431-bc45-535707d953e1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c42c0ad-f010-41ca-a399-12a24416f5ae",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
