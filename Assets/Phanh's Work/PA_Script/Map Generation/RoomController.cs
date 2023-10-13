@@ -23,6 +23,8 @@ public class RoomController : MonoBehaviour
     
     RoomInfo currentLoadRoomData;
 
+    Room currRoom;
+
     //always load rooms in order
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
 
@@ -105,12 +107,17 @@ public class RoomController : MonoBehaviour
 
         room.X = currentLoadRoomData.X;
         room.Y = currentLoadRoomData.Y;
-        room.name = currentLoadRoomData.name + " - " + room.X + ", " + room.Y; //display name and coordinates
+        room.name = currentLoadRoomData.name + " _ " + room.X + ", " + room.Y; //display name and coordinates
 
         room.transform.parent = transform;
 
         isLoadingRoom = false;
 
+        if (loadRooms.Count == 0) //if there is no room loaded
+        {
+            CameraController.instance.currentRoom = room; //set current room to this room
+        }
+        
         loadRooms.Add(room);
     }
 
@@ -118,5 +125,12 @@ public class RoomController : MonoBehaviour
     public bool DoesRoomExist(int X, int Y)
     {
         return loadRooms.Find(item => item.X == X && item.Y == Y) != null;
+    }
+
+    public void OnPlayerEnterRoom(Room room)
+    {
+        //get the current room -> set the camera to that room
+        CameraController.instance.currentRoom = room;
+        currRoom = room;
     }
 }

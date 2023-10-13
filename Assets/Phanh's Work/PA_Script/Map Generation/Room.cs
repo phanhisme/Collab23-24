@@ -36,4 +36,14 @@ public class Room : MonoBehaviour
         //calculates the center of the room
         return new Vector3(X * Width, Y * Height);
     }
+
+    //when the player enter a new room
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            //call room controller to call for the camera
+            RoomController.instance.OnPlayerEnterRoom(this);
+        }
+    }
 }
