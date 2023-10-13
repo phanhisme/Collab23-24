@@ -14,7 +14,7 @@ public class Heal : MonoBehaviour
 
     private void Awake()
     {
-        player = GetComponent<Player>();
+        //player = GetComponent<Player>();
     }
     // Start is called before the first frame update
     void Start()
