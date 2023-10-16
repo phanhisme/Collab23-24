@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = movement * moveSpeed;
 
         Dash();
+        Sprint();
     }
 
 
@@ -58,6 +59,21 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.MovePosition(transform.position + movement * dashAmount);
             isDashButtonDown = false;
+        }
+    }
+
+
+    void Sprint()
+    {
+        //If Left SHIFT is held down and the energy bar has energy
+        //The movespeed of the player will be set to 10 
+        if(Input.GetKey(KeyCode.LeftShift)) 
+        {
+            moveSpeed = 10f;
+        }
+        else
+        {
+            moveSpeed = 6f;
         }
     }
 }
