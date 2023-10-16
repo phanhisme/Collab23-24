@@ -5,6 +5,9 @@ using UnityEngine;
 public class WeaponHolder : MonoBehaviour
 {
     public SpriteRenderer characterRenderer, weaponRenderer;
+    public Enemy enemy;
+    private bool attackHit = false;
+    public float weaponDamage;
     public Animator animator;
     public float delay = 0.3f;
     private bool attackBlocked;
@@ -43,6 +46,17 @@ public class WeaponHolder : MonoBehaviour
             weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            attackHit = true;
+        }
+        if(attackHit == true)
+        {
+            //enemy = collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+        }
+    }
 
     public void Attack()
     {
@@ -50,6 +64,8 @@ public class WeaponHolder : MonoBehaviour
         {
             return;
         }
+        //OnCollisionEnter2D();
+        //enemy.TakeDamage(damage);
         animator.SetTrigger("Attack");
         attackBlocked = true;
         isAttacking = true;
