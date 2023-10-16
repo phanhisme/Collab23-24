@@ -54,7 +54,8 @@ public class WeaponHolder : MonoBehaviour
         }
         if(attackHit == true)
         {
-            //enemy = collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            enemy = collision.gameObject.GetComponent<Enemy>();
+            //enemy.TakeDamage();
         }
     }
 
