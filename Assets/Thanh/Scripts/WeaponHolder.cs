@@ -7,15 +7,21 @@ public class WeaponHolder : MonoBehaviour
     public SpriteRenderer characterRenderer, weaponRenderer;
     public Enemy enemy;
     private bool attackHit = false;
-    public float weaponDamage;
+    //public float weaponDamage;
     public Animator animator;
     public float delay = 0.3f;
     private bool attackBlocked;
     public Vector2 PointerPosition {  get; set; }
     public bool isAttacking { get; private set; }
+    public Transform circle;
+    public float radius;
     public void ResetAttack()
     {
         isAttacking = false;
+    }
+    private void Start()
+    {
+       enemy = gameObject.GetComponent<Enemy>();
     }
 
     public void Update()
@@ -46,18 +52,10 @@ public class WeaponHolder : MonoBehaviour
             weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            attackHit = true;
-        }
-        if(attackHit == true)
-        {
-            enemy = collision.gameObject.GetComponent<Enemy>();
-            //enemy.TakeDamage();
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    
+    //}
 
     public void Attack()
     {
@@ -65,8 +63,6 @@ public class WeaponHolder : MonoBehaviour
         {
             return;
         }
-        //OnCollisionEnter2D();
-        //enemy.TakeDamage(damage);
         animator.SetTrigger("Attack");
         attackBlocked = true;
         isAttacking = true;
@@ -76,5 +72,27 @@ public class WeaponHolder : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Vector3 position = circle == null ? Vector3.zero : circle.position;
+        Gizmos.DrawWireSphere(position, radius);
+    }
+    public void DetectCol()
+    {
+        foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
+        {
+            Debug.Log(col.name);
+            if (col.gameObject.tag == "Enemy")
+            {
+                attackHit = true;
+                Debug.Log("hit");
+            }
+            if (attackHit == true)
+            {
+                enemy.TakeDamage(10);
+            }
+        }
     }
 }
