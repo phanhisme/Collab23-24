@@ -7,16 +7,16 @@ public class EnemyPatrol : MonoBehaviour
 {
 
     public GameObject player;
+
+
     public float speed;
-
     private float distance;
-
     public float detectionDistance; 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,8 +33,8 @@ public class EnemyPatrol : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
 
-        //If the player is in range of detection of the enemy
-        //then the enemy will move towards the player
+        /*If the player is in range of detection of the enemy
+        then the enemy will move towards the player */
         if (distance < detectionDistance)
         {
             //Moving towards the player
@@ -42,8 +42,4 @@ public class EnemyPatrol : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);     //Returns a rotation on the z axis
         }
     }
-    
-
-    
-    
 }

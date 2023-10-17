@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dashing Stuff")]
     private bool isDashButtonDown;
-    public float dashAmount = 6f;
-   
+    public float dashPower = 2f;    //min dash power is 2 and max is 6
+    public float maxDashPower = 6f; //max dash power
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();   
@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         //Handle inputs
         GetInput();
     }
@@ -29,44 +28,56 @@ public class PlayerMovement : MonoBehaviour
     {
         //Handle movements stuff 
         rb.velocity = movement * moveSpeed;
-
         Dash();
         Sprint();
     }
 
 
-    //FUNCTIONS
+    //HANDLING FUNCTIONS
     void GetInput()
     {
+        //Player movement inputs
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         //Prevent the player move faster when going diagonally
         DiagonalMove = new Vector3(movement.x, movement.y).normalized;
 
-        //When the player presses SPACE
-        //Set the boolean to true
-        if (Input.GetKeyDown(KeyCode.Space))
+        //When the Space key is held down and the current dash power is smaller than the dash power
+        if (Input.GetKey(KeyCode.Space) && dashPower < maxDashPower)
+        {
+            dashPower = dashPower + 0.5f;
+            Debug.Log(dashPower);
+        }
+        
+        //When the SPACE key is released, set isDashButtonDown to true
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             isDashButtonDown = true;
+        }
+
+        /* If the current dash power is bigger or equal to the max dash power
+        then set the isDashButtonDown boolean to false and set the power back to 2 */
+        if (dashPower >= maxDashPower)
+        {
+            isDashButtonDown = false;
+            dashPower = 2f;
         }
     }
     void Dash()
     {
-        //If SPACE is pressed
-        //Move the player to the target then set the boolean to false
+        /* If SPACE is released
+        Move the player to the target then set the isDashButtonDown boolean to false */
         if (isDashButtonDown)
         {
-            rb.MovePosition(transform.position + movement * dashAmount);
+            rb.MovePosition(transform.position + movement * dashPower);
             isDashButtonDown = false;
         }
     }
-
-
     void Sprint()
     {
-        //If Left SHIFT is held down and the energy bar has energy
-        //The movespeed of the player will be set to 10 
+        /*If Left SHIFT is held down and the energy bar has energy
+        The movespeed of the player will be set to 10 */
         if(Input.GetKey(KeyCode.LeftShift)) 
         {
             moveSpeed = 10f;
