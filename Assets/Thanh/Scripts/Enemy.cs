@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float enemyHealth = 100f;
-    public float enemyCurrentHealth;
-    private Rigidbody rb;
-    [SerializeField] EnemyHealthbar healthBar;
+    public Transform circle;
+    public float radius;
     // Start is called before the first frame update
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        healthBar = GetComponentInChildren<EnemyHealthbar>();
-    }
     void Start()
     {
-        healthBar.UpdateHealthBar(enemyCurrentHealth, enemyHealth);
+        
     }
 
     // Update is called once per frame
@@ -25,18 +17,20 @@ public class Enemy : MonoBehaviour
     {
         
     }
-    public void TakeDamage(float damage)
+    private void OnDrawGizmosSelected()
     {
-        enemyCurrentHealth -= damage;
-        healthBar.UpdateHealthBar(enemyCurrentHealth, enemyHealth);
-        if(enemyCurrentHealth < 0 )
-        {
-            Die();
-        }
+        Gizmos.color = Color.green;
+        Vector3 position = circle == null ? Vector3.zero : circle.position;
+        Gizmos.DrawWireSphere(position, radius);
     }
-    
-    public void Die()
+    private void DetectPlayer()
     {
-        Destroy(gameObject);
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
+        {
+            if(col.gameObject.tag == "Player")
+            {
+
+            }
+        }
     }
 }

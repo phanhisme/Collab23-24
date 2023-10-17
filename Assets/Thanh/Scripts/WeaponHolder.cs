@@ -5,7 +5,6 @@ using UnityEngine;
 public class WeaponHolder : MonoBehaviour
 {
     public SpriteRenderer characterRenderer, weaponRenderer;
-    public Enemy enemy;
     private bool attackHit = false;
     //public float weaponDamage;
     public Animator animator;
@@ -21,7 +20,7 @@ public class WeaponHolder : MonoBehaviour
     }
     private void Start()
     {
-       enemy = gameObject.GetComponent<Enemy>();
+       
     }
 
     public void Update()
@@ -52,10 +51,6 @@ public class WeaponHolder : MonoBehaviour
             weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
         }
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    
-    //}
 
     public void Attack()
     {
@@ -84,14 +79,10 @@ public class WeaponHolder : MonoBehaviour
         foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
             Debug.Log(col.name);
-            if (col.gameObject.tag == "Enemy")
+            Health health;
+            if(health = col.GetComponent<Health>())
             {
-                attackHit = true;
-                Debug.Log("hit");
-            }
-            if (attackHit == true)
-            {
-                enemy.TakeDamage(10);
+                health.Hit(1, transform.parent.gameObject);
             }
         }
     }
