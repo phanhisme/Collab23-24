@@ -12,21 +12,24 @@ public class EnemyHealthbar : MonoBehaviour
     [SerializeField] private Vector3 offset;
     public Health health;
 
+    void Start()
+    {
+        //health = GetComponent<Health>();
+    }
     public void UpdateHealthBar() //to get the value from any object, not restricting from only the player or enemy
     {
 
-        slider.value = health.currentHealth / health.maxHealth;
+        slider.value = health.currentHealth;
+        slider.maxValue = health.maxHealth;
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        health = GetComponent<Health>();
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
         transform.position = camera.transform.position; //so that the healthbar wont rotate around the enemy
         transform.position = target.position + offset;
+        UpdateHealthBar();
     }
 }
