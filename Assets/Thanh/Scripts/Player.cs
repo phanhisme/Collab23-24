@@ -12,10 +12,10 @@ public class Player : MonoBehaviour
     private WeaponHolder weaponHolder;
     private Vector2 pointerInput;
     public Vector2 PointerInput => pointerInput;
-    public float playerHealth;
+    //public float playerHealth;
     private void Start()
     {
-        playerHealth = 70;
+        //playerHealth = 70;
     }
     private void Awake()
     {

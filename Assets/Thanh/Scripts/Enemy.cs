@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform circle;
-    public float radius;
+    public Health health;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,20 +17,20 @@ public class Enemy : MonoBehaviour
     {
         
     }
-    private void OnDrawGizmosSelected()
+    
+    public void DetectPlayer()
     {
-        Gizmos.color = Color.green;
-        Vector3 position = circle == null ? Vector3.zero : circle.position;
-        Gizmos.DrawWireSphere(position, radius);
-    }
-    private void DetectPlayer()
-    {
-        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
-        {
-            if(col.gameObject.tag == "Player")
-            {
 
-            }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            health.ColDamage();
+        }
+        if(health.currentHealth <= 0)
+        {
+            health.Dead();
         }
     }
 }

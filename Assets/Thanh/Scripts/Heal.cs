@@ -9,8 +9,9 @@ public class Heal : MonoBehaviour
     public float cd1 = 30f;
     bool isCD = false;
     public KeyCode ab1;
-    public Player player;
-    public float healAmount;
+    //public Player player;
+    public Health playerHealth;
+    public int healAmount;
 
     private void Awake()
     {
@@ -34,9 +35,9 @@ public class Heal : MonoBehaviour
         {
             isCD = true;
             heal1.fillAmount = 1;
-            //player.playerHealth += healAmount;
-            player.playerHealth = player.playerHealth + healAmount;
-            Debug.Log(player.playerHealth);
+            playerHealth.currentHealth = playerHealth.currentHealth + healAmount;
+            //player.playerHealth = player.playerHealth + healAmount;
+            Debug.Log(playerHealth.currentHealth);
 
         }
         if(isCD)

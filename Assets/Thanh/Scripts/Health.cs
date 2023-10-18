@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField]
     public int currentHealth, maxHealth;
+    public int collideDamage;
+    private bool delayDamage;
     //public int damage;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
@@ -23,6 +25,10 @@ public class Health : MonoBehaviour
     public void TestHit(int damage)
     {
         currentHealth -= damage;
+    }
+    public void ColDamage()
+    {
+        currentHealth -= collideDamage;
     }
     public void Dead()
     {
