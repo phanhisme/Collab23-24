@@ -277,7 +277,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1502822656}
-  - {fileID: 699980008}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -358,11 +357,22 @@ MonoBehaviour:
   maxHealth: 2
   OnHitWithReference:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 449916997}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
-  isDead: 1
 --- !u!114 &449917004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081329c93f9b8c84fa14e42ba087bcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circle: {fileID: 699980008}
+  circle: {fileID: 0}
   radius: 2.75
 --- !u!20 &513878657 stripped
 Camera:
@@ -387,37 +397,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7850534598557255403, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
   m_PrefabInstance: {fileID: 7850534600060146073}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &699980007
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 699980008}
-  m_Layer: 0
-  m_Name: Circle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &699980008
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699980007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 449916999}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &756030811
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +687,6 @@ MonoBehaviour:
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
-  isDead: 0
 --- !u!1 &1959031289
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +743,7 @@ MonoBehaviour:
   camera: {fileID: 513878657}
   target: {fileID: 449916999}
   offset: {x: 0, y: 1, z: 0}
-  health: {fileID: 0}
+  health: {fileID: 449917003}
 --- !u!114 &1959031292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,9 +789,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
