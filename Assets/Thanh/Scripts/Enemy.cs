@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Health health;
+    public Transform circle;
+    public float radius;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,23 @@ public class Enemy : MonoBehaviour
     
     public void DetectPlayer()
     {
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
+        {
+            if(col.gameObject.tag == "Player")
+            {
+                AttackPlayer();
+            }
+        }
+    }
+    public void AttackPlayer()
+    {
 
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Vector3 position = circle == null ? Vector3.zero : circle.position;
+        Gizmos.DrawWireSphere(position, radius);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
