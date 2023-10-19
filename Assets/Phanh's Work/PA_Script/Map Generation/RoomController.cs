@@ -121,6 +121,9 @@ public class RoomController : MonoBehaviour
             }
 
             loadRooms.Add(room);
+
+            //remove doors (disable game object)
+            room.RemoveUnconnectedDoor();
         }
         else
         {
@@ -133,6 +136,11 @@ public class RoomController : MonoBehaviour
     public bool DoesRoomExist(int X, int Y)
     {
         return loadRooms.Find(item => item.X == X && item.Y == Y) != null;
+    }
+    
+    public Room FindRoom(int X, int Y)
+    {
+        return loadRooms.Find(item => item.X == X && item.Y == Y);
     }
 
     public void OnPlayerEnterRoom(Room room)

@@ -19,8 +19,20 @@ public class DungeonGenerator : MonoBehaviour
 
         foreach(Vector2Int roomLocation in rooms)
         {
-            //set location of the spawn room
-            RoomController.instance.LoadRoom("Empty", roomLocation.x, roomLocation.y);
+            //the room is the last to spawn and not at the start location (avoid overlapping with the start room)
+            if (roomLocation == dungeonRooms[dungeonRooms.Count - 1] && !(roomLocation == Vector2Int.zero))
+            {
+                //load end room (not effective for the last room (sometimes it spawns next to the start room)
+                //child the sprite of the room to the room object to make the mark (the mark default (outside of the parents) will have the centre as 0,0 -> start room location)
+                //results in overlapping with the start room
+
+                RoomController.instance.LoadRoom("End", roomLocation.x, roomLocation.y);
+            }
+            else
+            {
+                //set location of the spawn room (random coordinates)
+                RoomController.instance.LoadRoom("Empty", roomLocation.x, roomLocation.y);
+            }    
         }
     }
 }

@@ -23,7 +23,7 @@ public class Room : MonoBehaviour
 
     void Start()
     {
-        //if pressed play in the wrong scene, return
+        //if there is no room controller in the scene -> pressed play in the wrong scene, return
         if (RoomController.instance == null)
         {
             Debug.Log("You pressed play in the wrong scene!");
@@ -68,19 +68,23 @@ public class Room : MonoBehaviour
             switch (door.doorType)
             {
                 case Door.DoorType.right:
-                    GetRight();
+                    if (GetRight() == null)
+                        door.gameObject.SetActive(false);
                     break;
 
                 case Door.DoorType.left:
-                    GetLeft();
+                    if (GetLeft() == null)
+                        door.gameObject.SetActive(false);
                     break;
 
                 case Door.DoorType.top:
-                    GetTop();
+                    if (GetTop() == null)
+                        door.gameObject.SetActive(false);
                     break;
 
                 case Door.DoorType.bottom:
-                    GetBottom();
+                    if (GetBottom() == null)
+                        door.gameObject.SetActive(false);
                     break;
             }
         }
@@ -98,17 +102,32 @@ public class Room : MonoBehaviour
     
     public Room GetLeft()
     {
+        if (RoomController.instance.DoesRoomExist(X - 1, Y))
+        {
+            return RoomController.instance.FindRoom(X - 1, Y);
+        }
 
+        return null;
     }
     
     public Room GetTop()
     {
+        if (RoomController.instance.DoesRoomExist(X, Y + 1))
+        {
+            return RoomController.instance.FindRoom(X, Y + 1);
+        }
 
+        return null;
     }
     
     public Room GetBottom()
     {
+        if (RoomController.instance.DoesRoomExist(X, Y - 1))
+        {
+            return RoomController.instance.FindRoom(X, Y - 1);
+        }
 
+        return null;
     }
 
     private void OnDrawGizmos()
