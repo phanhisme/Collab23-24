@@ -174,6 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1466477855}
   - component: {fileID: 1466477856}
+  - component: {fileID: 1466477857}
   m_Layer: 0
   m_Name: EnemyWeapon
   m_TagString: Untagged
@@ -188,15 +189,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466477854}
-  m_LocalRotation: {x: -0, y: -0, z: 0.3893586, w: 0.92108625}
-  m_LocalPosition: {x: 0.76, y: -0.12, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.3519495, w: 0.93601906}
+  m_LocalPosition: {x: 0.76, y: -0.120000005, z: 0}
   m_LocalScale: {x: 3.2748575, y: 3.2748575, z: 3.2748575}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 16089810}
   m_Father: {fileID: 1942405515}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.829}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 41.213}
 --- !u!212 &1466477856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -249,6 +250,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1466477857
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466477854}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5107c56f73eb1849931817ca49131bc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1776689151 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6594575936720292982, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
@@ -316,6 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1942405515}
+  - component: {fileID: 1942405516}
   m_Layer: 0
   m_Name: HoldWeapon
   m_TagString: Untagged
@@ -339,6 +361,24 @@ Transform:
   m_Father: {fileID: 360471853406619873}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1942405516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942405514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c8eddf1d6daf64bb1131f36abc7bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAnimationEventTriggered:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackPerformed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &360471853406619872
 PrefabInstance:
   m_ObjectHideFlags: 0
