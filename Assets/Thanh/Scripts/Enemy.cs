@@ -7,33 +7,21 @@ public class Enemy : MonoBehaviour
     public Health health;
     public Transform circle;
     public float radius;
-    public Animator anim;
+    public EnemyWeaponHolder holder;
 
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    private void Awake()
+    {
+        //holder = GetComponentInChildren<EnemyWeaponHolder>;
+    }
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    
-    public void DetectPlayer()
-    {
-        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
-        {
-            if(col.gameObject.tag == "Player")
-            {
-                AttackPlayer();
-            }
-        }
-    }
-    public void AttackPlayer()
-    {
-
+        DetectPlayer();
     }
     private void OnDrawGizmosSelected()
     {
@@ -41,6 +29,20 @@ public class Enemy : MonoBehaviour
         Vector3 position = circle == null ? Vector3.zero : circle.position;
         Gizmos.DrawWireSphere(position, radius);
     }
+    public void DetectPlayer()
+    {
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
+        {
+            //Debug.Log("a");
+            if (col.gameObject.tag == "Player")
+            {
+                //holder = GetComponent<EnemyWeaponHolder>();
+                holder.AttackPlayer();
+                Debug.Log(".");
+            }
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
