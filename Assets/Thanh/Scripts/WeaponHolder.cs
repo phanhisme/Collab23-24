@@ -14,6 +14,7 @@ public class WeaponHolder : MonoBehaviour
     public bool isAttacking { get; private set; }
     public Transform circle;
     public float radius;
+    public Health health;
     public void ResetAttack()
     {
         isAttacking = false;
@@ -79,6 +80,7 @@ public class WeaponHolder : MonoBehaviour
         foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
             col.GetComponent<Health>().TestHit(1);
+            Debug.Log(col.name);
         }
     }
 }

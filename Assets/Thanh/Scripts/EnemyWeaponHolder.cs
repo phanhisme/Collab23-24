@@ -10,6 +10,7 @@ public class EnemyWeaponHolder : MonoBehaviour
     private bool noAttack;
     public float delayAttack = 0.5f;
     public bool enemyAttacking { get; private set; }
+    public Health health;
     public void ResetAttackForEnemy()
     {
         enemyAttacking = false;
@@ -65,6 +66,7 @@ public class EnemyWeaponHolder : MonoBehaviour
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
             col.GetComponent<Health>().TestHit(1);
+            Debug.Log(col.name);
         }
     }
 }
