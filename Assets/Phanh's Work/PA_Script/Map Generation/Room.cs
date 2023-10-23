@@ -12,6 +12,16 @@ public class Room : MonoBehaviour
     public int X;
     public int Y;
 
+    //update doors
+    private bool updatedDoors = false;
+
+    //override value for Room Controllers
+    public Room(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+
     //doors
     public Door leftDoor;
     public Door righttDoor;
@@ -23,7 +33,7 @@ public class Room : MonoBehaviour
 
     void Start()
     {
-        //if there is no room controller in the scene -> pressed play in the wrong scene, return
+        //if there is no room controller gameobject in the scene -> pressed play in the wrong scene, return
         if (RoomController.instance == null)
         {
             Debug.Log("You pressed play in the wrong scene!");
@@ -61,6 +71,18 @@ public class Room : MonoBehaviour
         RoomController.instance.RegisterRoom(this);
     }
 
+    private void Update()
+    {
+        //if name of this object = "End" 
+        if (name.Contains("End") && !updatedDoors)
+        {
+            //only remove the doors once!
+            RemoveUnconnectedDoor();
+            updatedDoors = true;
+        }
+
+    }
+
     public void RemoveUnconnectedDoor()
     {
         foreach (Door door in doors)
@@ -90,6 +112,7 @@ public class Room : MonoBehaviour
         }
     }
 
+    //check if room exist, if not => delete the door
     public Room GetRight()
     {
         if (RoomController.instance.DoesRoomExist(X + 1, Y))

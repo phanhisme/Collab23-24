@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class RoomInfo
 {
@@ -33,19 +34,13 @@ public class RoomController : MonoBehaviour
     //check if all the rooms are loaded
     bool isLoadingRoom = false;
 
+    bool spawnedBossRoom = false;
+    bool updatedRooms = false;
+
     private void Awake()
     {
+        //keep 1 instance of obj
         instance = this;
-    }
-
-    private void Start()
-    {
-        //Load room 4 sides
-        //LoadRoom("Start", 0, 0);
-        //LoadRoom("Empty", 1, 0);
-        //LoadRoom("Empty", -1, 0);
-        //LoadRoom("Empty", 0, 1);
-        //LoadRoom("Empty", 0, -1);
     }
 
     private void Update()
@@ -61,6 +56,20 @@ public class RoomController : MonoBehaviour
         }
         if (loadRoomQueue.Count == 0)
         {
+            if (!spawnedBossRoom)
+            {
+                StartCoroutine(SpawnBossRoom());
+            }
+            else if (spawnedBossRoom && !updatedRooms)
+            {
+                foreach(Room room in loadRooms)
+                {
+                    //once the boss room has spawned -> remove door
+                    room.RemoveUnconnectedDoor();
+                }
+
+                updatedRooms = true;
+            }
             return; //there is nothing in the queue
         }
 
@@ -68,6 +77,33 @@ public class RoomController : MonoBehaviour
         isLoadingRoom = true;
 
         StartCoroutine(LoadRoomRoutine(currentLoadRoomData));
+    }
+
+    IEnumerator SpawnBossRoom()
+    {
+        //call this once!
+        spawnedBossRoom = true;
+        yield return new WaitForSeconds(0.5f);
+
+        if (loadRoomQueue.Count == 0)
+        {
+            //final room that spawns
+            Room bossRoom = loadRooms[loadRooms.Count - 1];
+            Room tempRoom = new Room(bossRoom.X, bossRoom.Y); //using override value in Rooms
+            
+            //remove blank room
+            Destroy(bossRoom.gameObject);
+
+            //var can be used for local item inside a method
+            //access singular item within a list
+
+            //get the location of the room
+            var roomToRemove = loadRooms.Single(r => r.X == tempRoom.X && r.Y == tempRoom.Y);
+            loadRooms.Remove(roomToRemove);
+
+            //replace the room with End Boss Room
+            LoadRoom("End", tempRoom.X, tempRoom.Y);
+        }
     }
 
     //loding scenes
@@ -123,7 +159,7 @@ public class RoomController : MonoBehaviour
             loadRooms.Add(room);
 
             //remove doors (disable game object)
-            room.RemoveUnconnectedDoor();
+            //room.RemoveUnconnectedDoor();
         }
         else
         {
