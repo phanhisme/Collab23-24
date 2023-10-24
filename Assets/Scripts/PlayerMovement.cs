@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashButtonDown;
     public float dashPower = 2f;    //min dash power is 2 and max is 6
     public float maxDashPower = 6f; //max dash power
+    public GameObject dashFX;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();   
@@ -54,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             isDashButtonDown = true;
+            DashEffect();
         }
 
         /* If the current dash power is bigger or equal to the max dash power
@@ -86,5 +89,9 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = 6f;
         }
+    }
+    void DashEffect()
+    {
+        Instantiate(dashFX, Vector3.zero, Quaternion.identity);
     }
 }
