@@ -14,11 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashButtonDown;
     public float dashPower = 2f;    //min dash power is 2 and max is 6
     public float maxDashPower = 6f; //max dash power
-    public GameObject dashFX;
+    public ParticleSystem dashFX;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
+        dashFX.Stop();
     }
     // Update is called once per frame
     void Update()
@@ -33,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
         Dash();
         Sprint();
     }
-
+    private void LateUpdate()
+    {
+        MakeDashEffect();
+    }
 
     //HANDLING FUNCTIONS
     void GetInput()
@@ -50,13 +54,14 @@ public class PlayerMovement : MonoBehaviour
         {
             dashPower = dashPower + 0.5f;
             Debug.Log(dashPower);
+           // DashEffect();
         }
         
         //When the SPACE key is released, set isDashButtonDown to true
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             isDashButtonDown = true;
-            DashEffect();
+            dashFX.Stop();
         }
 
         /* If the current dash power is bigger or equal to the max dash power
@@ -67,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
             dashPower = 2f;
         }
     }
+
+
     void Dash()
     {
         /* If SPACE is released
@@ -92,6 +99,16 @@ public class PlayerMovement : MonoBehaviour
     }
     void DashEffect()
     {
-        Instantiate(dashFX, Vector3.zero, Quaternion.identity);
+        Instantiate(dashFX, this.transform.position, Quaternion.identity);
+        dashFX.Play();
     }
+
+    void MakeDashEffect()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            dashFX.Play();
+        }
+    }
+
 }
