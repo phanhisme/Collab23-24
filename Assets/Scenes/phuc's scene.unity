@@ -223,7 +223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 400020245}
   speed: 3
-  detectionDistance: 7
+  distance: 4
+  detectionDistance: 6
+  hasDetectPlayer: 0
 --- !u!135 &68402545
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -249,6 +251,7 @@ GameObject:
   - component: {fileID: 400020247}
   - component: {fileID: 400020246}
   - component: {fileID: 400020249}
+  - component: {fileID: 400020251}
   - component: {fileID: 400020250}
   m_Layer: 0
   m_Name: Player
@@ -389,6 +392,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &400020251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400020245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37094db54d7c494f9efa763396722fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invisDuration: 4
+  invisCooldown: 6
 --- !u!1 &1264962362
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,8 +10,10 @@ public class EnemyPatrol : MonoBehaviour
 
 
     public float speed;
-    private float distance;
-    public float detectionDistance; 
+    public float distance;
+    public float detectionDistance;
+
+    public bool hasDetectPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +39,20 @@ public class EnemyPatrol : MonoBehaviour
         then the enemy will move towards the player */
         if (distance < detectionDistance)
         {
-            //Moving towards the player
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(Vector3.forward * angle);     //Returns a rotation on the z axis
+            //If the enemy has detected the player then move 
+            //towards the player
+            hasDetectPlayer = true;
+            if(hasDetectPlayer)
+            {
+                //Moving towards the player
+                transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+                transform.rotation = Quaternion.Euler(Vector3.forward * angle);     //Returns a rotation on the z axis
+            }
+        }
+        else
+        {
+            //The enemy cannot detect the player outside range
+            hasDetectPlayer = false;
         }
     }
 }
