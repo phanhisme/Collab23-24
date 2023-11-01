@@ -29,18 +29,7 @@ public class EnemyWeaponHolder : MonoBehaviour
             return;
         }
     }
-    //public void DetectPlayer()
-    //{
-    //    foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
-    //    {
-    //        //Debug.Log("a");
-    //        if (col.gameObject.tag == "Player")
-    //        {
-    //            AttackPlayer();
-    //            Debug.Log(".");
-    //        }
-    //    }
-    //}
+   
     public void AttackPlayer()
     {
         if (noAttack)
