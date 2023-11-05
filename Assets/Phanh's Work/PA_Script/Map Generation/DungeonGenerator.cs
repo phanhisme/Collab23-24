@@ -19,6 +19,7 @@ public class DungeonGenerator : MonoBehaviour
         //keep outside to avoid spawning more than 1 start room
         RoomController.instance.LoadRoom("Start", 0, 0);
 
+
         foreach (Vector2Int roomLocation in rooms)
         {
             //spawn the start room at the first room to spawn
