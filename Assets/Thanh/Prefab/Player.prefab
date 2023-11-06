@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6594575935042052246}
   - component: {fileID: 6594575935042052247}
   - component: {fileID: 6594575935042052265}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,9 @@ GameObject:
   - component: {fileID: 6594575936720302984}
   - component: {fileID: 6594575936720292981}
   - component: {fileID: 6594575936720292982}
-  m_Layer: 0
+  - component: {fileID: 1776689154}
+  - component: {fileID: 1776689155}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -264,12 +266,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 70
   maxHealth: 100
+  collideDamage: 1
   OnHitWithReference:
     m_PersistentCalls:
       m_Calls: []
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
+--- !u!50 &1776689154
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594575935857515302}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &1776689155
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594575935857515302}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6594575936101772038
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,9 +329,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6594575935608457124}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Child
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6594575936476928707}
   - component: {fileID: 6594575936476928706}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -352,3 +402,4 @@ MonoBehaviour:
   delay: 0.3
   circle: {fileID: 6594575935608457124}
   radius: 0.82
+  health: {fileID: 0}

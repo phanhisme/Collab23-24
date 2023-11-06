@@ -13,18 +13,23 @@ public class Health : MonoBehaviour
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
     [SerializeField]
-    //private bool isDead = false;
+    private bool isDead = false;
 
     public void InitializeHealth(int healthValue)
     {
         currentHealth = healthValue;
         maxHealth = healthValue;
-        //isDead = false;
+        isDead = false;
     }
 
-    public void TestHit(int damage)
+    public void TestHit(int damage, GameObject sender)
     {
         currentHealth -= damage;
+        if (isDead)
+            return;
+        if (sender.layer == gameObject.layer)
+            return;
+        
     }
     public void ColDamage()
     {
@@ -45,23 +50,10 @@ public class Health : MonoBehaviour
     //public void Hit(int amount, GameObject sender)
     //{
     //    currentHealth = currentHealth - amount;
-    //    if (isDead)
-    //        return;
-    //    if (sender.layer == gameObject.layer)
-    //        return;
+    //    
 
 
 
-    //    if (currentHealth > 0)
-    //    {
-    //        OnHitWithReference?.Invoke(sender);
-
-    //    }
-    //    else
-    //    {
-    //        OnDeathWithReference?.Invoke(sender);
-    //        isDead = true;
-    //        Destroy(gameObject);
-    //    }
+    //    
     //}
 }
