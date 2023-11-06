@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         //When the Space key is held down and the current dash power is smaller than the dash power
         if (Input.GetKey(KeyCode.Space) && dashPower < maxDashPower)
         {
-            dashPower = dashPower + 0.5f;
+            dashPower = dashPower += Time.deltaTime;
             Debug.Log(dashPower);
            // DashEffect();
         }

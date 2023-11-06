@@ -4,70 +4,49 @@ using UnityEngine;
 
 public class Invisibility : MonoBehaviour
 {
-
-    private bool isInInvis = false, canInvis = true, isInvisButtonPressed = false;
-
-
-    //Invisibility duration = 4
-    //Invisibility CD = 6
-    public float invisDuration, invisCooldown;
-
-
-    EnemyPatrol enemyPatrolScript;
+    private SpriteRenderer character;
+    private Color charColor;
+    public float activateDuration;
+    public bool isActivated = false;
     
     // Start is called before the first frame update
     void Start()
     {
-         
+        character = GetComponent<SpriteRenderer>();
+        
+        activateDuration = 0;
+        charColor = character.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        activateDuration += Time.deltaTime;
+        //When presses F, set the isActivated bool to true
+        //Reset the duration and set the transparency of the player to a blurry state
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            isInvisButtonPressed = true;
+            isActivated = true;
+            activateDuration = 0;
+            charColor.a = 0.2f;
+            charColor = character.color;
+        }
+        EndofDuration();
+    }
+    //When the duration ended, set the isActivated bool to false
+    //Set the transparency to opaque
+    void EndofDuration()
+    {
+        if (isActivated && activateDuration >= 5)
+        {
+            isActivated = false;
+            charColor.a = 1;
+            charColor = character.color;
         }
     }
-    private void FixedUpdate()
-    {
-        InvisibilitySkill();
-    }
+    
 
-    void InvisibilitySkill()
-    {
-        GetInvisInput();
-        PlayerInInvis();
-        OutofInvisDuration();
-    }
-    void PlayerInInvis()
-    {
-        //If the bool is true, the enemy cannot detect 
-        if (isInInvis)
-        {             
-            invisDuration -= 0.5f;    //decrease the duration   
-        }
-    }
-    void GetInvisInput()
-    {
-        if (isInvisButtonPressed && canInvis)
-        {
-            //If the invis button "F" is pressed, and the player can go invis
-            //Set the is in invisibility bool to true
-            isInInvis = true;
-            
-        }
-    }
-    void OutofInvisDuration()
-    {
-        if (invisDuration <= 0)  //if the duration gone out, the invis starts CD
-        {
-            isInInvis = false;
-            invisCooldown = 6f;
-            invisCooldown = invisCooldown - 0.5f;
-            
-        }
-    }
+
 
 }
 

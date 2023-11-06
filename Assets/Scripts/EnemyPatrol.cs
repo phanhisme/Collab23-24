@@ -7,7 +7,7 @@ public class EnemyPatrol : MonoBehaviour
 {
 
     public GameObject player;
-
+        
 
     public float speed;
     public float distance;
