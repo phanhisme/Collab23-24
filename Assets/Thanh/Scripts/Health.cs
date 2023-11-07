@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
 
     [SerializeField]
     private bool isDead = false;
-    public GameObject sender;
+    //public GameObject sender;
 
     public void InitializeHealth(int healthValue)
     {
@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
         isDead = false;
     }
 
-    public void TestHit(int damage)
+    public void TestHit(int damage, GameObject sender)
     {
         if (isDead)
         {

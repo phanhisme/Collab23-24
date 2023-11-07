@@ -30,6 +30,7 @@ public class EnemyHealthbar : MonoBehaviour
     {
         transform.position = camera.transform.position; //so that the healthbar wont rotate around the enemy
         transform.position = target.position + offset;
+        transform.rotation = camera.transform.rotation;
         UpdateHealthBar();
     }
 }

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public Transform circle;
     public float radius;
     public EnemyWeaponHolder holder;
+    [SerializeField] Transform player;
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +37,11 @@ public class Enemy : MonoBehaviour
             //Debug.Log("a");
             if (col.gameObject.tag == "Player")
             {
+                Vector2 direction = player.position - transform.position;
+                transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
                 //holder = GetComponent<EnemyWeaponHolder>();
                 holder.AttackPlayer();
-                Debug.Log(".");
+                //Debug.Log(".");
             }
         }
     }

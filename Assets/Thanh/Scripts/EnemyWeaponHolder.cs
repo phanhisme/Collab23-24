@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class EnemyWeaponHolder : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class EnemyWeaponHolder : MonoBehaviour
     public float delayAttack = 0.5f;
     public bool enemyAttacking { get; private set; }
     public Health health;
+    
+    
     public void ResetAttackForEnemy()
     {
         enemyAttacking = false;
@@ -24,6 +27,7 @@ public class EnemyWeaponHolder : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        
         if(enemyAttacking)
         {
             return;
@@ -54,8 +58,8 @@ public class EnemyWeaponHolder : MonoBehaviour
     {
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
-            col.GetComponent<Health>().TestHit(1);
-            Debug.Log(col.name);
+            col.GetComponent<Health>().TestHit(1, transform.parent.gameObject);
+            //Debug.Log(col.name);
         }
     }
 }

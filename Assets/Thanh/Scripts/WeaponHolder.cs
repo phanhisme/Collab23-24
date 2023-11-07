@@ -79,8 +79,8 @@ public class WeaponHolder : MonoBehaviour
     {
         foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
-            col.GetComponent<Health>().TestHit(1);
-            Debug.Log(col.name);
+            col.GetComponent<Health>().TestHit(1, transform.parent.gameObject);
+            //Debug.Log(col.name);
         }
     }
     
