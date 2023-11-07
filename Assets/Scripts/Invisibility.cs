@@ -4,49 +4,61 @@ using UnityEngine;
 
 public class Invisibility : MonoBehaviour
 {
-    private SpriteRenderer character;
+    private SpriteRenderer srCharacter;
     private Color charColor;
     public float activateDuration;
     public bool isActivated = false;
-    
+    private float colorDuration;
+
+
+    EnemyPatrol enemyPatrolScript;
     // Start is called before the first frame update
     void Start()
     {
-        character = GetComponent<SpriteRenderer>();
-        
-        activateDuration = 0;
-        charColor = character.color;
+        srCharacter = GetComponent<SpriteRenderer>();
+        activateDuration = 5;
+        charColor = srCharacter.color;
+        enemyPatrolScript = FindObjectOfType<EnemyPatrol>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        activateDuration += Time.deltaTime;
+
+        //The duration decreases over time
+        activateDuration -= Time.deltaTime;
+
+
         //When presses F, set the isActivated bool to true
-        //Reset the duration and set the transparency of the player to a blurry state
-        if(Input.GetKeyDown(KeyCode.F))
+        //Reset the duration and set the color of the player to green
+        if (Input.GetKeyDown(KeyCode.F))
         {
+            StartCoroutine(SwitchColor());
             isActivated = true;
-            activateDuration = 0;
-            charColor.a = 0.2f;
-            charColor = character.color;
+            activateDuration = 5;
+            charColor = srCharacter.color;
+
         }
-        EndofDuration();
-    }
-    //When the duration ended, set the isActivated bool to false
-    //Set the transparency to opaque
-    void EndofDuration()
-    {
-        if (isActivated && activateDuration >= 5)
+
+
+        //If the duration reaches 0, the player returns to red color
+        //And the enemy can detect the player again
+        if (activateDuration <= 0)
         {
-            isActivated = false;
-            charColor.a = 1;
-            charColor = character.color;
+            srCharacter.color = new Color(1f, 0f, 0f);      //red color
+            enemyPatrolScript.detectionDistance = 6f;
         }
     }
-    
 
-
-
+    //Switch the color of the player function
+    //Deactivate the detection circle of the enemy
+    IEnumerator SwitchColor()
+    {
+        srCharacter.color = new Color(0f, 1f, 0f);
+        yield return new WaitForSeconds(colorDuration);
+        srCharacter.color = charColor;
+        enemyPatrolScript.detectionDistance = 0f;
+    }
 }
+
 

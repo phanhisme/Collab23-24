@@ -24,6 +24,14 @@ public class EnemyPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //The enemy cannot detect the player outside range
+        hasDetectPlayer = false;
+
+        EnemyMovement();
+    }
+
+    void EnemyMovement()
+    {
         //The distance between the enemy's pos to the player pos
         distance = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = player.transform.position - transform.position;
@@ -42,17 +50,12 @@ public class EnemyPatrol : MonoBehaviour
             //If the enemy has detected the player then move 
             //towards the player
             hasDetectPlayer = true;
-            if(hasDetectPlayer)
+            if (hasDetectPlayer)
             {
                 //Moving towards the player
                 transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(Vector3.forward * angle);     //Returns a rotation on the z axis
             }
-        }
-        else
-        {
-            //The enemy cannot detect the player outside range
-            hasDetectPlayer = false;
         }
     }
 }

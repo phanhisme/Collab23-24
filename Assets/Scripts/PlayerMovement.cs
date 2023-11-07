@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    HermesBoots hermesBootsScript;
     [Header("Movement Variables")]
     public float moveSpeed = 50f;
     public Rigidbody2D rb;
     Vector3 movement;
     Vector3 DiagonalMove;
+    public bool canSprint;
 
     [Header("Dashing Stuff")]
     private bool isDashButtonDown;
@@ -18,14 +20,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        hermesBootsScript = FindObjectOfType<HermesBoots>();
         rb = GetComponent<Rigidbody2D>();
         dashFX.Stop();
+        canSprint = true;
     }
     // Update is called once per frame
     void Update()
     {
         //Handle inputs
         GetInput();
+
+        //Player's speed after picking up the hermes boots
+        HermesBootsPicking();
+
+       
     }
     void FixedUpdate()
     {
@@ -64,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             dashFX.Stop();
         }
 
+
         /* If the current dash power is bigger or equal to the max dash power
         then set the isDashButtonDown boolean to false and set the power back to 2 */
         if (dashPower >= maxDashPower)
@@ -76,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
+
         /* If SPACE is released
         Move the player to the target then set the isDashButtonDown boolean to false */
         if (isDashButtonDown)
@@ -86,9 +97,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Sprint()
     {
+
         /*If Left SHIFT is held down and the energy bar has energy
         The movespeed of the player will be set to 10 */
-        if(Input.GetKey(KeyCode.LeftShift)) 
+        if(Input.GetKey(KeyCode.LeftShift) && canSprint) 
         {
             moveSpeed = 10f;
         }
@@ -111,4 +123,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void HermesBootsPicking()
+    {
+        if(hermesBootsScript.HermesBootsPickedUp)
+        {
+            moveSpeed = hermesBootsScript.currentSpeed;
+            canSprint = false;
+        }
+    }
 }
