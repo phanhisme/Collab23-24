@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
 
     [SerializeField]
     private bool isDead = false;
+    public GameObject sender;
 
     public void InitializeHealth(int healthValue)
     {
@@ -22,14 +23,19 @@ public class Health : MonoBehaviour
         isDead = false;
     }
 
-    public void TestHit(int damage, GameObject sender)
+    public void TestHit(int damage)
     {
-        currentHealth -= damage;
         if (isDead)
+        {
             return;
+        }
         if (sender.layer == gameObject.layer)
+        {
             return;
-        
+        }
+
+        currentHealth -= damage;
+
     }
     public void ColDamage()
     {
@@ -47,6 +53,11 @@ public class Health : MonoBehaviour
         Dead();
     }
 
+    public void AvoidCol()
+    {
+        
+            
+    }
     //public void Hit(int amount, GameObject sender)
     //{
     //    currentHealth = currentHealth - amount;
