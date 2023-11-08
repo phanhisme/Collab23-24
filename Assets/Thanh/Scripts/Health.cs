@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public int currentHealth, maxHealth;
     public int collideDamage;
     private bool delayDamage;
+    Player player;
     //public int damage;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
@@ -16,6 +17,10 @@ public class Health : MonoBehaviour
     private bool isDead = false;
     //public GameObject sender;
 
+    private void Start()
+    {
+        player = GetComponent<Player>();
+    }
     public void InitializeHealth(int healthValue)
     {
         currentHealth = healthValue;
@@ -33,13 +38,26 @@ public class Health : MonoBehaviour
         {
             return;
         }
-
-        currentHealth -= damage;
-
+        if (!player.shielded)
+        {
+            currentHealth -= damage;
+        }
+        if (player.HasShield())
+        {
+            player.shieldHealth--;
+            
+        }
+        if(player.shieldHealth <= 0) 
+        {
+            player.DeActivateShield();
+        }
     }
     public void ColDamage()
     {
-        currentHealth -= collideDamage;
+        if(!player.shielded)
+        {
+            currentHealth -= collideDamage;
+        }
     }
     public void Dead()
     {
@@ -52,19 +70,4 @@ public class Health : MonoBehaviour
     {
         Dead();
     }
-
-    public void AvoidCol()
-    {
-        
-            
-    }
-    //public void Hit(int amount, GameObject sender)
-    //{
-    //    currentHealth = currentHealth - amount;
-    //    
-
-
-
-    //    
-    //}
 }
