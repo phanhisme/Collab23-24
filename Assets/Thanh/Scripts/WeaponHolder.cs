@@ -15,13 +15,14 @@ public class WeaponHolder : MonoBehaviour
     public Transform circle;
     public float radius;
     public Health health;
+    Player player;
     public void ResetAttack()
     {
         isAttacking = false;
     }
     private void Start()
     {
-       
+       player = GetComponent<Player>();
     }
 
     public void Update()
@@ -63,6 +64,10 @@ public class WeaponHolder : MonoBehaviour
         attackBlocked = true;
         isAttacking = true;
         StartCoroutine(DelayAttack());
+        if(player.boostAttackSpeed == true)
+        {
+            StartCoroutine(BoostingAttack());
+        }
     }
     private IEnumerator DelayAttack()
     {
@@ -82,6 +87,15 @@ public class WeaponHolder : MonoBehaviour
             col.GetComponent<Health>().TestHit(1, transform.parent.gameObject);
             //Debug.Log(col.name);
         }
+    }
+    private IEnumerator BoostingAttack()
+    {
+        delay = 0.2f;
+        yield return new WaitForSeconds(3f);
+        delay = 0.3f;
+        player.boostAttackSpeed = false;
+        player.DeActivateTitanGlove();
+        StartCoroutine(DelayAttack());
     }
     
 }

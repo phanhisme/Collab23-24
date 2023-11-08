@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     private WeaponHolder weaponHolder;
     private Vector2 pointerInput;
     GameObject shield;
+    GameObject titanGlove;
     public float shieldHealth = 2;
     public Vector2 PointerInput => pointerInput;
     public bool shielded;
+    public bool boostAttackSpeed = false;
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;
@@ -65,6 +67,15 @@ public class Player : MonoBehaviour
         return shield.activeSelf;
     }
 
+    public void ActivateTitanGlove()
+    {
+        boostAttackSpeed = true;
+    }
+    public void DeActivateTitanGlove()
+    {
+        boostAttackSpeed = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
@@ -74,7 +85,11 @@ public class Player : MonoBehaviour
             {
                 ActivateShield();
             }
-            Destroy(powerUp.gameObject); 
+            if(powerUp.activeTitanGlove)
+            {
+                ActivateTitanGlove();
+            }
+            Destroy(powerUp.gameObject);
         }
     }
 }
