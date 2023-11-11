@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     public int currentHealth, maxHealth;
     public int collideDamage;
-    private bool delayDamage;
+    private bool delayShieldDamage;
     Player player;
     //public int damage;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
@@ -41,15 +42,20 @@ public class Health : MonoBehaviour
         if (!player.shielded)
         {
             currentHealth -= damage;
+            //delayShieldDamage = false;
+            //StartCoroutine(Timer());
         }
-        if (player.HasShield())
+        if (player.HasShield() && delayShieldDamage == true)
         {
             player.shieldHealth--;
-            
+            delayShieldDamage = false;
+            StartCoroutine(DelayDestroyShield());
+            Debug.Log(player.shieldHealth);
         }
         if(player.shieldHealth <= 0) 
         {
             player.DeActivateShield();
+            StartCoroutine(HealShield());
         }
     }
     public void ColDamage()
@@ -69,5 +75,15 @@ public class Health : MonoBehaviour
     public void Update()
     {
         Dead();
+    }
+    IEnumerator HealShield()
+    {
+        yield return new WaitForSeconds(8);
+        player.ActivateShield();
+    }
+    IEnumerator DelayDestroyShield()
+    {
+        yield return new WaitForSeconds(2);
+        delayShieldDamage = true;
     }
 }

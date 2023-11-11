@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     {
         shield = transform.Find("Shield").gameObject;
         DeActivateShield();
+        Debug.Log(shieldHealth);
         //playerHealth = 70;
     }
     private void Awake()
