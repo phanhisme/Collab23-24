@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     GameObject shield;
     GameObject titanGlove;
     public float shieldHealth = 2;
+    //public float shieldTimer = 2;
     public Vector2 PointerInput => pointerInput;
     public bool shielded;
     public bool boostAttackSpeed = false;

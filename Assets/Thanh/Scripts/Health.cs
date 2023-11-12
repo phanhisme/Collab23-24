@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
 
     [SerializeField]
     private bool isDead = false;
+    public float shieldTimer = 2;
     //public GameObject sender;
 
     private void Start()
@@ -45,14 +46,11 @@ public class Health : MonoBehaviour
             //delayShieldDamage = false;
             //StartCoroutine(Timer());
         }
-        if (player.HasShield() && delayShieldDamage == true)
+        if (player.HasShield())
         {
-            player.shieldHealth--;
-            delayShieldDamage = false;
-            StartCoroutine(DelayDestroyShield());
-            Debug.Log(player.shieldHealth);
+            Timer();
         }
-        if(player.shieldHealth <= 0) 
+        if (player.shieldHealth <= 0) 
         {
             player.DeActivateShield();
             StartCoroutine(HealShield());
@@ -75,15 +73,31 @@ public class Health : MonoBehaviour
     public void Update()
     {
         Dead();
+        //Debug.Log(shieldTimer);
+        //Timer();
     }
     IEnumerator HealShield()
     {
         yield return new WaitForSeconds(8);
         player.ActivateShield();
     }
-    IEnumerator DelayDestroyShield()
+
+    public void Timer()
     {
-        yield return new WaitForSeconds(2);
-        delayShieldDamage = true;
+        if(shieldTimer > 0)
+        {
+            shieldTimer -= Time.deltaTime;
+            Debug.Log("a");
+            
+        }
+        if (shieldTimer < 0)
+        {
+            player.shieldHealth--;
+            Debug.Log(player.shieldHealth);
+            Debug.Log(shieldTimer);
+            shieldTimer = 2;
+        }
+        int minutes = Mathf.FloorToInt(shieldTimer / 60);
+        int seconds = Mathf.FloorToInt(shieldTimer % 60);
     }
 }
