@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     private bool isDead = false;
     public float shieldTimer = 2;
+    private bool startTime;
     //public GameObject sender;
 
     private void Start()
@@ -46,10 +47,7 @@ public class Health : MonoBehaviour
             //delayShieldDamage = false;
             //StartCoroutine(Timer());
         }
-        if (player.HasShield())
-        {
-            Timer();
-        }
+        checkHasShield();
         if (player.shieldHealth <= 0) 
         {
             player.DeActivateShield();
@@ -93,11 +91,27 @@ public class Health : MonoBehaviour
         if (shieldTimer < 0)
         {
             player.shieldHealth--;
+            startTime = false;
             Debug.Log(player.shieldHealth);
             Debug.Log(shieldTimer);
             shieldTimer = 2;
         }
         int minutes = Mathf.FloorToInt(shieldTimer / 60);
         int seconds = Mathf.FloorToInt(shieldTimer % 60);
+        if(startTime == false)
+        {
+            checkHasShield();
+        }
+    }
+    public void checkHasShield()
+    {
+        if (player.HasShield())
+        {
+            startTime = true;
+            if (startTime == true)
+            {
+                Timer();
+            }
+        }
     }
 }
