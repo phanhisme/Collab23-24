@@ -7,7 +7,7 @@ public class Invisibility : MonoBehaviour
     private SpriteRenderer srCharacter;
     private Color charColor;
     public float activateDuration;
-    public bool isActivated = false;
+    public bool isActivated = false, canButtonPressed;
     private float colorDuration;
 
 
@@ -15,6 +15,7 @@ public class Invisibility : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canButtonPressed = true;
         srCharacter = GetComponent<SpriteRenderer>();
         activateDuration = 5;
         charColor = srCharacter.color;
@@ -31,14 +32,23 @@ public class Invisibility : MonoBehaviour
 
         //When presses F, set the isActivated bool to true
         //Reset the duration and set the color of the player to green
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && canButtonPressed)
         {
             StartCoroutine(SwitchColor());
+            canButtonPressed = false;
             isActivated = true;
             activateDuration = 5;
             charColor = srCharacter.color;
-
+            if(isActivated)
+            {
+                canButtonPressed = false;
+            }
+            else if(!isActivated)
+            {
+                canButtonPressed = true;
+            }
         }
+        
 
 
         //If the duration reaches 0, the player returns to red color
@@ -47,6 +57,7 @@ public class Invisibility : MonoBehaviour
         {
             srCharacter.color = new Color(1f, 0f, 0f);      //red color
             enemyPatrolScript.detectionDistance = 6f;
+            canButtonPressed = true;
         }
     }
 
@@ -58,6 +69,7 @@ public class Invisibility : MonoBehaviour
         yield return new WaitForSeconds(colorDuration);
         srCharacter.color = charColor;
         enemyPatrolScript.detectionDistance = 0f;
+        isActivated = false;
     }
 }
 

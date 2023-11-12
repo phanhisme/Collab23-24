@@ -5,24 +5,28 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     HermesBoots hermesBootsScript;
-    [Header("Movement Variables")]
-    public float moveSpeed = 50f;
+
+    public float moveSpeed, dashBoostSpeed;
     public Rigidbody2D rb;
     Vector3 movement;
     Vector3 DiagonalMove;
     public bool canSprint;
 
-    [Header("Dashing Stuff")]
-    private bool isDashButtonDown;
+    public bool isDashButtonDown, isReleasedDash;
     public float dashPower = 2f;    //min dash power is 2 and max is 6
     public float maxDashPower = 6f; //max dash power
-    public ParticleSystem dashFX;
+
+    [SerializeField] private float dashBoostSpeedDuration;
+
+    
 
     private void Start()
     {
         hermesBootsScript = FindObjectOfType<HermesBoots>();
+
+
         rb = GetComponent<Rigidbody2D>();
-        dashFX.Stop();
+ 
         canSprint = true;
     }
     // Update is called once per frame
@@ -42,11 +46,9 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = movement * moveSpeed;
         Dash();
         Sprint();
+        BoostSpeedAfterDashing();
     }
-    private void LateUpdate()
-    {
-        MakeDashEffect();
-    }
+  
 
     //HANDLING FUNCTIONS
     void GetInput()
@@ -61,24 +63,27 @@ public class PlayerMovement : MonoBehaviour
         //When the Space key is held down and the current dash power is smaller than the dash power
         if (Input.GetKey(KeyCode.Space) && dashPower < maxDashPower)
         {
+           
+            moveSpeed = 6f;
+            isDashButtonDown = true;
+            isReleasedDash = false;
             dashPower = dashPower += Time.deltaTime;
-            Debug.Log(dashPower);
-           // DashEffect();
         }
         
-        //When the SPACE key is released, set isDashButtonDown to true
+        //When the SPACE key is released, set isDashButtonDown to false
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            isDashButtonDown = true;
-            dashFX.Stop();
+            isDashButtonDown = false;
+            isReleasedDash = true;
+           
         }
+       
 
 
         /* If the current dash power is bigger or equal to the max dash power
         then set the isDashButtonDown boolean to false and set the power back to 2 */
         if (dashPower >= maxDashPower)
         {
-            isDashButtonDown = false;
             dashPower = 2f;
         }
     }
@@ -86,13 +91,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-
         /* If SPACE is released
-        Move the player to the target then set the isDashButtonDown boolean to false */
+        Move the player to the target */
         if (isDashButtonDown)
         {
-            rb.MovePosition(transform.position + movement * dashPower);
-            isDashButtonDown = false;
+           // rb.MovePosition(transform.position + movement * dashPower);
         }
     }
     void Sprint()
@@ -109,26 +112,27 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = 6f;
         }
     }
-    void DashEffect()
-    {
-        Instantiate(dashFX, this.transform.position, Quaternion.identity);
-        dashFX.Play();
-    }
-
-    void MakeDashEffect()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            dashFX.Play();
-        }
-    }
-
     void HermesBootsPicking()
     {
         if(hermesBootsScript.HermesBootsPickedUp)
         {
             moveSpeed = hermesBootsScript.currentSpeed;
             canSprint = false;
+        }
+    }
+    void BoostSpeedAfterDashing()
+    {
+        if(!isDashButtonDown && isReleasedDash)
+        {
+            var speedAfterDash = moveSpeed += dashBoostSpeed;
+            dashBoostSpeedDuration = dashBoostSpeedDuration -= Time.deltaTime;
+
+            if (dashBoostSpeedDuration <= 0)
+            {
+                isReleasedDash = false;
+                speedAfterDash = moveSpeed;
+                dashBoostSpeedDuration = 3f;
+            }
         }
     }
 }
