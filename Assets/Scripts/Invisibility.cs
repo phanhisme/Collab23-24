@@ -7,10 +7,10 @@ public class Invisibility : MonoBehaviour
     private SpriteRenderer srCharacter;
     private Color charColor;
     public float activateDuration;
-    public bool isActivated = false, canButtonPressed;
+    public bool isActivated = false, canButtonPressed, isPressed = false;
     private float colorDuration;
 
-
+    StackSkills stackskillsScript;
     EnemyPatrol enemyPatrolScript;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,7 @@ public class Invisibility : MonoBehaviour
         activateDuration = 5;
         charColor = srCharacter.color;
         enemyPatrolScript = FindObjectOfType<EnemyPatrol>();
+        stackskillsScript = FindObjectOfType<StackSkills>();
     }
 
     // Update is called once per frame
@@ -34,6 +35,8 @@ public class Invisibility : MonoBehaviour
         //Reset the duration and set the color of the player to green
         if (Input.GetKeyDown(KeyCode.F) && canButtonPressed)
         {
+            
+            stackskillsScript.InvisButtonPress = true;
             StartCoroutine(SwitchColor());
             canButtonPressed = false;
             isActivated = true;
@@ -58,6 +61,8 @@ public class Invisibility : MonoBehaviour
             srCharacter.color = new Color(1f, 0f, 0f);      //red color
             enemyPatrolScript.detectionDistance = 6f;
             canButtonPressed = true;
+            isActivated = false;
+            stackskillsScript.InvisButtonPress = false;
         }
     }
 
@@ -69,7 +74,8 @@ public class Invisibility : MonoBehaviour
         yield return new WaitForSeconds(colorDuration);
         srCharacter.color = charColor;
         enemyPatrolScript.detectionDistance = 0f;
-        isActivated = false;
+        isActivated = true;
+        
     }
 }
 

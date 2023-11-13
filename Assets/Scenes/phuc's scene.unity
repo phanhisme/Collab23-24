@@ -425,6 +425,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invisMaxStack: 2
   invisStackCooldown: 8
+  InvisButtonPress: 0
+  invisStackSubtract: 1
+  invisStackCount: 2
 --- !u!1 &2071833766
 GameObject:
   m_ObjectHideFlags: 0

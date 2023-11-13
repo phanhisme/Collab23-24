@@ -23,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         hermesBootsScript = FindObjectOfType<HermesBoots>();
-
-
         rb = GetComponent<Rigidbody2D>();
  
         canSprint = true;
@@ -34,11 +32,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //Handle inputs
         GetInput();
-
         //Player's speed after picking up the hermes boots
         HermesBootsPicking();
-
-       
     }
     void FixedUpdate()
     {
@@ -63,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
         //When the Space key is held down and the current dash power is smaller than the dash power
         if (Input.GetKey(KeyCode.Space) && dashPower < maxDashPower)
         {
-           
             moveSpeed = 6f;
             isDashButtonDown = true;
             isReleasedDash = false;
@@ -74,12 +68,8 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             isDashButtonDown = false;
-            isReleasedDash = true;
-           
+            isReleasedDash = true;  
         }
-       
-
-
         /* If the current dash power is bigger or equal to the max dash power
         then set the isDashButtonDown boolean to false and set the power back to 2 */
         if (dashPower >= maxDashPower)
@@ -95,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         Move the player to the target */
         if (isDashButtonDown)
         {
-           // rb.MovePosition(transform.position + movement * dashPower);
+            rb.MovePosition(transform.position + movement * dashPower);
         }
     }
     void Sprint()
@@ -131,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isReleasedDash = false;
                 speedAfterDash = moveSpeed;
-                dashBoostSpeedDuration = 3f;
+                dashBoostSpeedDuration = 2.5f;
             }
         }
     }
