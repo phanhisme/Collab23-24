@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     HermesBoots hermesBootsScript;
+    DashStamina dashStaminaScript;
 
     public float moveSpeed, dashBoostSpeed;
     public Rigidbody2D rb;
     Vector3 movement;
+    Vector2 targetPos;
     Vector3 DiagonalMove;
     public bool canSprint;
 
     public bool isDashButtonDown, isReleasedDash;
+    public bool hasFinishedDashing;
     public float dashPower = 2f;    //min dash power is 2 and max is 6
     public float maxDashPower = 6f; //max dash power
 
@@ -23,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         hermesBootsScript = FindObjectOfType<HermesBoots>();
+        dashStaminaScript = FindObjectOfType<DashStamina>();
         rb = GetComponent<Rigidbody2D>();
  
         canSprint = true;
@@ -32,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Handle inputs
         GetInput();
+
         //Player's speed after picking up the hermes boots
         HermesBootsPicking();
     }
@@ -62,13 +67,17 @@ public class PlayerMovement : MonoBehaviour
             isDashButtonDown = true;
             isReleasedDash = false;
             dashPower = dashPower += Time.deltaTime;
+            hasFinishedDashing = false;
         }
         
         //When the SPACE key is released, set isDashButtonDown to false
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             isDashButtonDown = false;
-            isReleasedDash = true;  
+            isReleasedDash = true;
+            hasFinishedDashing = true;
+            dashStaminaScript.startSubtractingStamina = true;
+
         }
         /* If the current dash power is bigger or equal to the max dash power
         then set the isDashButtonDown boolean to false and set the power back to 2 */
@@ -83,9 +92,10 @@ public class PlayerMovement : MonoBehaviour
     {
         /* If SPACE is released
         Move the player to the target */
-        if (isDashButtonDown)
+        if (!isDashButtonDown && isReleasedDash)
         {
-            rb.MovePosition(transform.position + movement * dashPower);
+            //rb.MovePosition(transform.position + movement * dashPower);   
+            this.transform.position = Vector2.MoveTowards(this.transform.position, targetPos, dashPower );
         }
     }
     void Sprint()
@@ -112,15 +122,16 @@ public class PlayerMovement : MonoBehaviour
     }
     void BoostSpeedAfterDashing()
     {
-        if(!isDashButtonDown && isReleasedDash)
+        //When the player is not holding down 
+        //and released the dash button
+        if (hasFinishedDashing)
         {
-            var speedAfterDash = moveSpeed += dashBoostSpeed;
+            moveSpeed += dashBoostSpeed;
             dashBoostSpeedDuration = dashBoostSpeedDuration -= Time.deltaTime;
 
             if (dashBoostSpeedDuration <= 0)
             {
-                isReleasedDash = false;
-                speedAfterDash = moveSpeed;
+                hasFinishedDashing = false;
                 dashBoostSpeedDuration = 2.5f;
             }
         }
