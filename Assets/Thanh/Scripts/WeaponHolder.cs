@@ -64,10 +64,6 @@ public class WeaponHolder : MonoBehaviour
         attackBlocked = true;
         isAttacking = true;
         StartCoroutine(DelayAttack());
-        if(player.boostAttackSpeed == true)
-        {
-            StartCoroutine(BoostingAttack());
-        }
     }
     private IEnumerator DelayAttack()
     {
@@ -88,6 +84,21 @@ public class WeaponHolder : MonoBehaviour
             //Debug.Log(col.name);
         }
     }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "TitanGlove")
+        {
+            TitanGlove();
+        }
+    }
+
+    public void TitanGlove()
+    {
+        if (player.boostAttackSpeed == true)
+        {
+            StartCoroutine(BoostingAttack());
+        }
+    }
     private IEnumerator BoostingAttack()
     {
         delay = 0.2f;
@@ -97,5 +108,4 @@ public class WeaponHolder : MonoBehaviour
         player.DeActivateTitanGlove();
         StartCoroutine(DelayAttack());
     }
-    
 }

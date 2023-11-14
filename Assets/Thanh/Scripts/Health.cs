@@ -18,11 +18,13 @@ public class Health : MonoBehaviour
     private bool isDead = false;
     public float shieldTimer = 2;
     private bool startTime;
+    WeaponHolder weaponHolder;
     //public GameObject sender;
 
     private void Start()
     {
         player = GetComponent<Player>();
+        weaponHolder = GetComponent<WeaponHolder>();
     }
     public void InitializeHealth(int healthValue)
     {
@@ -30,7 +32,6 @@ public class Health : MonoBehaviour
         maxHealth = healthValue;
         isDead = false;
     }
-
     public void TestHit(int damage, GameObject sender)
     {
         if (isDead)
@@ -44,15 +45,8 @@ public class Health : MonoBehaviour
         if (!player.shielded)
         {
             currentHealth -= damage;
-            //delayShieldDamage = false;
-            //StartCoroutine(Timer());
         }
         checkHasShield();
-        if (player.shieldHealth <= 0) 
-        {
-            player.DeActivateShield();
-            StartCoroutine(HealShield());
-        }
     }
     public void ColDamage()
     {
@@ -71,47 +65,46 @@ public class Health : MonoBehaviour
     public void Update()
     {
         Dead();
-        //Debug.Log(shieldTimer);
-        //Timer();
+        if (startTime == true)
+        {
+            Timer();
+        }
     }
     IEnumerator HealShield()
     {
         yield return new WaitForSeconds(8);
         player.ActivateShield();
+        player.shieldHealth = 2;
     }
-
     public void Timer()
     {
         if(shieldTimer > 0)
         {
             shieldTimer -= Time.deltaTime;
-            Debug.Log("a");
-            
+            //Debug.Log("a"); 
         }
         if (shieldTimer < 0)
         {
             player.shieldHealth--;
             startTime = false;
             Debug.Log(player.shieldHealth);
-            Debug.Log(shieldTimer);
+            //Debug.Log(shieldTimer);
             shieldTimer = 2;
+        }
+        if (player.shieldHealth <= 0)
+        {
+            player.DeActivateShield();
+            StartCoroutine(HealShield());
         }
         int minutes = Mathf.FloorToInt(shieldTimer / 60);
         int seconds = Mathf.FloorToInt(shieldTimer % 60);
-        if(startTime == false)
-        {
-            checkHasShield();
-        }
     }
     public void checkHasShield()
     {
         if (player.HasShield())
         {
             startTime = true;
-            if (startTime == true)
-            {
-                Timer();
-            }
         }
     }
+
 }
