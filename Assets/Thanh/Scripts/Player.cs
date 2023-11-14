@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private WeaponHolder weaponHolder;
     private Vector2 pointerInput;
     GameObject shield;
-    GameObject titanGlove;
+    //GameObject titanGlove;
     public float shieldHealth = 2;
     //public float shieldTimer = 2;
     public Vector2 PointerInput => pointerInput;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;
+        //titanGlove = transform.Find("")
         DeActivateShield();
         Debug.Log(shieldHealth);
         //playerHealth = 70;
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour
     public void ActivateTitanGlove()
     {
         boostAttackSpeed = true;
+        Debug.Log("b");
     }
     public void DeActivateTitanGlove()
     {
@@ -87,7 +89,7 @@ public class Player : MonoBehaviour
             {
                 ActivateShield();
             }
-            if(powerUp.activeTitanGlove)
+            if (powerUp.activeTitanGlove)
             {
                 ActivateTitanGlove();
             }

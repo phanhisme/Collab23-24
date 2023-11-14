@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     public int currentHealth, maxHealth;
     public int collideDamage;
-    private bool delayShieldDamage;
+    //private bool delayShieldDamage;
     Player player;
     //public int damage;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
@@ -18,13 +18,13 @@ public class Health : MonoBehaviour
     private bool isDead = false;
     public float shieldTimer = 2;
     private bool startTime;
-    WeaponHolder weaponHolder;
+    //WeaponHolder weaponHolder;
     //public GameObject sender;
 
     private void Start()
     {
         player = GetComponent<Player>();
-        weaponHolder = GetComponent<WeaponHolder>();
+        //weaponHolder = GetComponent<WeaponHolder>();
     }
     public void InitializeHealth(int healthValue)
     {
@@ -80,15 +80,13 @@ public class Health : MonoBehaviour
     {
         if(shieldTimer > 0)
         {
-            shieldTimer -= Time.deltaTime;
-            //Debug.Log("a"); 
+            shieldTimer -= Time.deltaTime; // run the countdown
         }
         if (shieldTimer < 0)
         {
             player.shieldHealth--;
             startTime = false;
             Debug.Log(player.shieldHealth);
-            //Debug.Log(shieldTimer);
             shieldTimer = 2;
         }
         if (player.shieldHealth <= 0)

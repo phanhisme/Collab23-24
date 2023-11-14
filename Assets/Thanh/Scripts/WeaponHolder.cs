@@ -16,6 +16,7 @@ public class WeaponHolder : MonoBehaviour
     public float radius;
     public Health health;
     Player player;
+    [SerializeField] private Animator attackAnimSpeed;
     public void ResetAttack()
     {
         isAttacking = false;
@@ -64,6 +65,12 @@ public class WeaponHolder : MonoBehaviour
         attackBlocked = true;
         isAttacking = true;
         StartCoroutine(DelayAttack());
+        Debug.Log("attack");
+        if (player.boostAttackSpeed == true)
+        {
+            StartCoroutine(BoostingAttack());
+            Debug.Log("start boosting");
+        }
     }
     private IEnumerator DelayAttack()
     {
@@ -84,28 +91,22 @@ public class WeaponHolder : MonoBehaviour
             //Debug.Log(col.name);
         }
     }
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.gameObject.tag == "TitanGlove")
-        {
-            TitanGlove();
-        }
-    }
-
-    public void TitanGlove()
-    {
-        if (player.boostAttackSpeed == true)
-        {
-            StartCoroutine(BoostingAttack());
-        }
-    }
     private IEnumerator BoostingAttack()
     {
-        delay = 0.2f;
-        yield return new WaitForSeconds(3f);
+        Debug.Log("boosting");
+        delay = 0.1f;
+        yield return new WaitForSeconds(20f);
         delay = 0.3f;
-        player.boostAttackSpeed = false;
+        //player.boostAttackSpeed = false;
         player.DeActivateTitanGlove();
         StartCoroutine(DelayAttack());
+        if (player.boostAttackSpeed == true)
+        {
+            attackAnimSpeed.speed = 2;
+        }
+        else
+        {
+            attackAnimSpeed.speed = 1;
+        }
     }
 }
