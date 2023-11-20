@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 400020249}
   - component: {fileID: 400020252}
   - component: {fileID: 400020251}
+  - component: {fileID: 400020253}
   - component: {fileID: 400020250}
   m_Layer: 0
   m_Name: Player
@@ -364,13 +365,14 @@ MonoBehaviour:
   moveSpeed: 6
   dashBoostSpeed: 8
   rb: {fileID: 400020246}
-  canSprint: 0
   isDashButtonDown: 0
   isReleasedDash: 0
   hasFinishedDashing: 0
   dashPower: 2
   maxDashPower: 6
   dashBoostSpeedDuration: 2.5
+  dashBoostSpeedDurationSubtract: 0.2
+  canDash: 0
 --- !u!61 &400020250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -429,6 +431,23 @@ MonoBehaviour:
   invisStackCooldown: 8
   InvisButtonPress: 0
   invisStackSubtract: 1
+--- !u!114 &400020253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400020245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e906c01e8dc4c74ab34d96709e17ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDashStamina: 80
+  StaminaSubtraction: 20
+  ifOutOfStamina: 0
+  startSubtractingStamina: 0
+  DashStaminaCooldown: 3
 --- !u!1 &2071833766
 GameObject:
   m_ObjectHideFlags: 0

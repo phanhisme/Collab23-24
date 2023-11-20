@@ -37,6 +37,7 @@ public class DashStamina : MonoBehaviour
             {
                 ifOutOfStamina = true;
                 pmScript.isReleasedDash = false;
+                pmScript.canDash = false;
 
             }
         }
@@ -52,11 +53,12 @@ public class DashStamina : MonoBehaviour
         }
 
         //If the cooldown is finished, set the stamina back to 80
-        if (DashStaminaCooldown <= 0)
+        if (DashStaminaCooldown < 0)
         {
             ifOutOfStamina = false;
             maxDashStamina = 80;
             DashStaminaCooldown = 3;
+            pmScript.canDash = true;
         }
     }
 }

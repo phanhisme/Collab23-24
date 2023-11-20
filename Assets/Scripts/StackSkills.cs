@@ -80,6 +80,7 @@ public class StackSkills : MonoBehaviour
             invisMaxStack = 2;
             ifThereIsStack = true;
             invisStackCooldown = 8;
+            pmScript.canDash = true;
         }
     }
 }
