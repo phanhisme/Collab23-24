@@ -43,6 +43,10 @@ public class Health : MonoBehaviour
         {
             currentHealth -= damage;
         }
+        else if (player.shielded)
+        {
+            player.shieldHealth--;
+        }
         
     }
     public void ColDamage()
@@ -50,6 +54,10 @@ public class Health : MonoBehaviour
         if(!player.shielded)
         {
             currentHealth -= collideDamage;
+        }
+        else
+        {
+            player.shieldHealth--;
         }
     }
     public void Dead()
