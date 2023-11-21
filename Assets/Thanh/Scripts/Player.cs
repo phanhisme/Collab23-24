@@ -25,10 +25,11 @@ public class Player : MonoBehaviour
         DeActivateShield();
         Debug.Log(shieldHealth);
         //playerHealth = 70;
+        weaponHolder = GetComponentInChildren<WeaponHolder>();
     }
     private void Awake()
     {
-        weaponHolder = GetComponentInChildren<WeaponHolder>();
+        
     }
     private void Update()
     {

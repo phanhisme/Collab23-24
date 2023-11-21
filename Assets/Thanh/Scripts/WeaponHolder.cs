@@ -23,7 +23,7 @@ public class WeaponHolder : MonoBehaviour
     }
     private void Start()
     {
-       player = GetComponent<Player>();
+       player = FindObjectOfType<Player>();
     }
 
     public void Update()
@@ -56,20 +56,29 @@ public class WeaponHolder : MonoBehaviour
     }
 
     public void Attack()
-    {
+    { 
         if(attackBlocked)
         {
             return;
         }
+
         animator.SetTrigger("Attack");
+
         attackBlocked = true;
         isAttacking = true;
+
         StartCoroutine(DelayAttack());
         Debug.Log("attack");
+
         if (player.boostAttackSpeed == true)
         {
-            StartCoroutine(BoostingAttack());
+           
+           StartCoroutine(BoostingAttack());
             Debug.Log("start boosting");
+        }
+        else
+        {
+            player.DeActivateTitanGlove();
         }
     }
     private IEnumerator DelayAttack()
@@ -97,9 +106,8 @@ public class WeaponHolder : MonoBehaviour
         delay = 0.1f;
         yield return new WaitForSeconds(20f);
         delay = 0.3f;
-        //player.boostAttackSpeed = false;
-        player.DeActivateTitanGlove();
-        StartCoroutine(DelayAttack());
+        player.boostAttackSpeed = false;
+        //StartCoroutine(DelayAttack());
         if (player.boostAttackSpeed == true)
         {
             attackAnimSpeed.speed = 2;
