@@ -17,13 +17,10 @@ public class Health : MonoBehaviour
     [SerializeField]
     private bool isDead = false;
     public float shieldTimer = 2;
-    private bool startTime;
-    //WeaponHolder weaponHolder;
-    //public GameObject sender;
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        player = FindObjectOfType<Player>();
         //weaponHolder = GetComponent<WeaponHolder>();
     }
     public void InitializeHealth(int healthValue)
@@ -46,7 +43,7 @@ public class Health : MonoBehaviour
         {
             currentHealth -= damage;
         }
-        checkHasShield();
+        
     }
     public void ColDamage()
     {
@@ -65,10 +62,7 @@ public class Health : MonoBehaviour
     public void Update()
     {
         Dead();
-        if (startTime == true)
-        {
-            Timer();
-        }
+        checkHasShield();
     }
     IEnumerator HealShield()
     {
@@ -85,7 +79,7 @@ public class Health : MonoBehaviour
         if (shieldTimer < 0)
         {
             player.shieldHealth--;
-            startTime = false;
+            //startTime = false;
             Debug.Log(player.shieldHealth);
             shieldTimer = 2;
         }
@@ -101,7 +95,7 @@ public class Health : MonoBehaviour
     {
         if (player.HasShield())
         {
-            startTime = true;
+            Timer();
         }
     }
 

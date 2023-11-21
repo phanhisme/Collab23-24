@@ -68,13 +68,12 @@ public class WeaponHolder : MonoBehaviour
         isAttacking = true;
 
         StartCoroutine(DelayAttack());
-        Debug.Log("attack");
+        //Debug.Log("attack");
 
         if (player.boostAttackSpeed == true)
         {
-           
            StartCoroutine(BoostingAttack());
-            Debug.Log("start boosting");
+           //Debug.Log("start boosting");
         }
         else
         {
@@ -102,12 +101,11 @@ public class WeaponHolder : MonoBehaviour
     }
     private IEnumerator BoostingAttack()
     {
-        Debug.Log("boosting");
+        //Debug.Log("boosting");
         delay = 0.1f;
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(10f);
         delay = 0.3f;
         player.boostAttackSpeed = false;
-        //StartCoroutine(DelayAttack());
         if (player.boostAttackSpeed == true)
         {
             attackAnimSpeed.speed = 2;

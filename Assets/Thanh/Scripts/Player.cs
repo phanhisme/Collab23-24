@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
     public void ActivateTitanGlove()
     {
         boostAttackSpeed = true;
-        Debug.Log("b");
+        //Debug.Log("b");
     }
     public void DeActivateTitanGlove()
     {
