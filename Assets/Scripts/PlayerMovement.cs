@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxDashPower = 6f; //max dash power
 
     [SerializeField] private float dashBoostSpeedDuration, dashBoostSpeedDurationSubtract;
+    [Space]
+    [SerializeField] private float _currentBoostSpeedDuration;
 
     public bool canDash, canAddSpeed;
 
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         dashStaminaScript = FindObjectOfType<DashStamina>();
         rb = GetComponent<Rigidbody2D>();
         canDash = true;
+        canAddSpeed = true;
 
         //canSprint = true;
 
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         //Player's speed after picking up the hermes boots
         HermesBootsPicking();
         StartDashBoostCooldown();
+        
     }
     void FixedUpdate()
     {
@@ -70,19 +74,19 @@ public class PlayerMovement : MonoBehaviour
             isReleasedDash = false;
             dashPower = dashPower += Time.deltaTime;
             hasFinishedDashing = false;
-
         }
 
         //When the SPACE key is released, set isDashButtonDown to false
         if (Input.GetKeyUp(KeyCode.Space))
         {
-
             isDashButtonDown = false;
             isReleasedDash = true;
-            
+            hasFinishedDashing = true;
 
             //subtracting dash stamina by 20
             dashStaminaScript.startSubtractingStamina = true;
+
+            _currentBoostSpeedDuration = dashBoostSpeedDuration;
 
         }
         /* If the current dash power is bigger or equal to the max dash power
@@ -98,12 +102,10 @@ public class PlayerMovement : MonoBehaviour
     {
         /* If SPACE is released 
         Move the player to the target */
-        if (!isDashButtonDown && isReleasedDash && canDash)
+        if (isDashButtonDown && !isReleasedDash && canDash)
         {
             rb.MovePosition(transform.position + movement * dashPower);
-            
             BoostSpeedAfterDashing();
-           
         }
     }
     
@@ -119,32 +121,34 @@ public class PlayerMovement : MonoBehaviour
     {
         //When the player is not holding down 
         //and released the dash button
-        if (isReleasedDash)
+        if (!isReleasedDash)
         {
             //Adding speed to the player
             
-            hasFinishedDashing = true;
-            canAddSpeed = true;
             
             //When the player released the dash button, it counts as the player has finished the dashing input
-            if (hasFinishedDashing && canAddSpeed)  
+            if (canAddSpeed)  
             {
-                
-                moveSpeed += dashBoostSpeed;
-                canAddSpeed = false;
+                moveSpeed += dashBoostSpeed ;
+                if (moveSpeed > 20)
+                {
+                    canAddSpeed = false;
+                }
                 isReleasedDash = false;
             }
         }
     }
     void StartDashBoostCooldown()
     {
-        if (!canAddSpeed && hasFinishedDashing)
+        
+        if (_currentBoostSpeedDuration > 0f)
         {
-            dashBoostSpeedDuration -= Time.deltaTime;
+            _currentBoostSpeedDuration -= Time.deltaTime;
             
         }
-        if (dashBoostSpeedDuration <= 0)
+        else if (_currentBoostSpeedDuration <= 0)
         {
+            _currentBoostSpeedDuration = 0f;
             canAddSpeed = true;
             hasFinishedDashing = false;
             dashBoostSpeedDuration = 2.5f;
