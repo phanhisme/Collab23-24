@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveData 
+public class SaveDataG 
 {
     private static SaveData _current;
     public static SaveData saveData
