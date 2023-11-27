@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isDashButtonDown, isReleasedDash;
     public bool hasFinishedDashing;
-    public float dashPower = 2f;    //min dash power is 2 and max is 6
-    public float maxDashPower = 6f; //max dash power
+    public float dashPower = 6f;    //min dash power is 6 and max is 10
+    public float maxDashPower = 10f; //max dash power
 
     [SerializeField] private float dashBoostSpeedDuration, dashBoostSpeedDurationSubtract;
     [Space]
@@ -72,8 +72,9 @@ public class PlayerMovement : MonoBehaviour
         {
             isDashButtonDown = true;
             isReleasedDash = false;
-            dashPower = dashPower += Time.deltaTime;
             hasFinishedDashing = false;
+            dashPower = dashPower += Time.deltaTime;
+            
         }
 
         //When the SPACE key is released, set isDashButtonDown to false
@@ -82,18 +83,19 @@ public class PlayerMovement : MonoBehaviour
             isDashButtonDown = false;
             isReleasedDash = true;
             hasFinishedDashing = true;
-
             //subtracting dash stamina by 20
             dashStaminaScript.startSubtractingStamina = true;
 
             _currentBoostSpeedDuration = dashBoostSpeedDuration;
 
         }
+        
+
         /* If the current dash power is bigger or equal to the max dash power
-        then set the isDashButtonDown boolean to false and set the power back to 2 */
+        then set the isDashButtonDown boolean to false and set the power back to 6 */
         if (dashPower >= maxDashPower)
         {
-            dashPower = 2f;
+            dashPower = 6f;
         }
     }
 
@@ -102,10 +104,11 @@ public class PlayerMovement : MonoBehaviour
     {
         /* If SPACE is released 
         Move the player to the target */
-        if (isDashButtonDown && !isReleasedDash && canDash)
+        if (!isDashButtonDown && isReleasedDash && canDash)
         {
             rb.MovePosition(transform.position + movement * dashPower);
             BoostSpeedAfterDashing();
+            isReleasedDash = false;
         }
     }
     
@@ -121,20 +124,17 @@ public class PlayerMovement : MonoBehaviour
     {
         //When the player is not holding down 
         //and released the dash button
-        if (!isReleasedDash)
+        if (isReleasedDash)
         {
             //Adding speed to the player
-            
-            
             //When the player released the dash button, it counts as the player has finished the dashing input
             if (canAddSpeed)  
             {
-                moveSpeed += dashBoostSpeed ;
+                moveSpeed += dashBoostSpeed;
                 if (moveSpeed > 20)
                 {
                     canAddSpeed = false;
                 }
-                isReleasedDash = false;
             }
         }
     }
@@ -154,7 +154,6 @@ public class PlayerMovement : MonoBehaviour
             dashBoostSpeedDuration = 2.5f;
             moveSpeed = 6f;
         }
-
     }
 }
 

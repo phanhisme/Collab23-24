@@ -32,8 +32,9 @@ public class DashStamina : MonoBehaviour
             maxDashStamina -= StaminaSubtraction;
             pmScript.hasFinishedDashing = false;
             startSubtractingStamina = false;
-            //If the stamina = 0, the boolean will be set to true
-            if (maxDashStamina <= 0)
+            //If the stamina = -20, the boolean will be set to true
+            //Set the min stamina to -20 because if set it to 0, the player can not dash when the stamina at 20.
+            if (maxDashStamina <= -20)
             {
                 ifOutOfStamina = true;
                 pmScript.isReleasedDash = false;
@@ -53,7 +54,7 @@ public class DashStamina : MonoBehaviour
         }
 
         //If the cooldown is finished, set the stamina back to 80
-        if (DashStaminaCooldown < 0)
+        if (DashStaminaCooldown <= 0)
         {
             ifOutOfStamina = false;
             maxDashStamina = 80;
