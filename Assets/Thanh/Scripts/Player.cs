@@ -11,15 +11,25 @@ public class Player : MonoBehaviour
     private InputActionReference attack, pointer;
     private WeaponHolder weaponHolder;
     private Vector2 pointerInput;
+    GameObject shield;
+    //GameObject titanGlove;
+    public float shieldHealth = 2;
+    //public float shieldTimer = 2;
     public Vector2 PointerInput => pointerInput;
-    public float playerHealth;
+    public bool shielded;
+    public bool boostAttackSpeed = false;
     private void Start()
     {
-        playerHealth = 70;
+        shield = transform.Find("Shield").gameObject;
+        //titanGlove = transform.Find("")
+        DeActivateShield();
+        Debug.Log(shieldHealth);
+        //playerHealth = 70;
+        weaponHolder = GetComponentInChildren<WeaponHolder>();
     }
     private void Awake()
     {
-        weaponHolder = GetComponentInChildren<WeaponHolder>();
+        
     }
     private void Update()
     {
@@ -45,5 +55,46 @@ public class Player : MonoBehaviour
         Vector3 mousePos = pointer.action.ReadValue<Vector2>();
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
+    }
+    public void ActivateShield()
+    {
+        shield.SetActive(true);
+        shielded = true;
+    }
+    public void DeActivateShield()
+    {
+        shield.SetActive(false);
+        shielded = false;
+    }
+    public bool HasShield()
+    {
+        return shield.activeSelf;
+    }
+
+    public void ActivateTitanGlove()
+    {
+        boostAttackSpeed = true;
+        //Debug.Log("b");
+    }
+    public void DeActivateTitanGlove()
+    {
+        boostAttackSpeed = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
+        if(powerUp)
+        {
+            if(powerUp.activeShield)
+            {
+                ActivateShield();
+            }
+            if (powerUp.activeTitanGlove)
+            {
+                ActivateTitanGlove();
+            }
+            Destroy(powerUp.gameObject);
+        }
     }
 }
