@@ -6,7 +6,7 @@ public class DashStamina : MonoBehaviour
 {
     PlayerMovement pmScript;
     [SerializeField] private int maxDashStamina = 80;
-    [SerializeField] private int StaminaSubtraction = 20;
+    [SerializeField] public int StaminaSubtraction = 20;
     public bool ifOutOfStamina, startSubtractingStamina;
     [SerializeField] private float DashStaminaCooldown = 3f;
     // Start is called before the first frame update

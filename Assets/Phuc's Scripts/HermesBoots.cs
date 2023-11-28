@@ -6,7 +6,6 @@ public class HermesBoots : MonoBehaviour
 {
 
     PlayerMovement playermovementScript;
-    public GameObject HermesBootsObj;
     public float currentSpeed;
     public bool HermesBootsPickedUp;
     [SerializeField]
@@ -24,11 +23,13 @@ public class HermesBoots : MonoBehaviour
     {
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(HermesBootsObj);
+        Destroy(gameObject);
         PickUpBoots();
     }
+
     void PickUpBoots()
     {
         currentSpeed = playermovementScript.moveSpeed += boostSpeed;
