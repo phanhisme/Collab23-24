@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     private bool isDead = false;
     public float shieldTimer = 2;
+    private bool check;
 
     private void Start()
     {
@@ -47,15 +48,15 @@ public class Health : MonoBehaviour
         {
             player.shieldHealth--;
         }
-        
+
     }
     public void ColDamage()
     {
-        if(!player.shielded)
+        if (!player.shielded)
         {
             currentHealth -= collideDamage;
         }
-        else
+        else if (player.shielded)
         {
             player.shieldHealth--;
         }
@@ -77,6 +78,7 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(8);
         player.ActivateShield();
         player.shieldHealth = 2;
+        shieldTimer = 2;
     }
     public void Timer()
     {
@@ -84,12 +86,17 @@ public class Health : MonoBehaviour
         {
             shieldTimer -= Time.deltaTime; // run the countdown
         }
-        if (shieldTimer < 0)
+        else if (shieldTimer <= 0)
         {
-            player.shieldHealth--;
-            //startTime = false;
-            Debug.Log(player.shieldHealth);
+            Debug.Log(this.gameObject.name);
+            shieldTimer = 0;  
+        }
+        if(shieldTimer == 0)
+        {
+            Debug.Log("asdasd");
             shieldTimer = 2;
+            player.shieldHealth -= 1;
+            Debug.Log(player.shieldHealth);
         }
         if (player.shieldHealth <= 0)
         {
@@ -101,10 +108,16 @@ public class Health : MonoBehaviour
     }
     public void checkHasShield()
     {
+        if(gameObject.tag == "Player")
+        {
+
+        //Debug.Log("1");
         if (player.HasShield())
         {
+            //Debug.Log("2");
             Timer();
+            
+        }
         }
     }
-
 }
