@@ -25,7 +25,7 @@ public class DungeonCrawlerController : MonoBehaviour
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
 
-        for(int i = 0; i < dungeonData.numberOfCrawlers; i++)
+        for (int i = 0; i < dungeonData.numberOfCrawlers; i++)
         {
             dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
         }
@@ -34,11 +34,25 @@ public class DungeonCrawlerController : MonoBehaviour
 
         for(int i = 0; i < interation; i++)
         {
-            foreach(DungeonCrawler dungeonCrawler in dungeonCrawlers)
+            foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
             {
                 Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
                 positionsVisited.Add(newPos);
             }
+
+            //if (dungeonCrawlers.Count == 0)
+            //{
+            //    Vector2Int newPos = dungeonCrawlers[0].Move(directionMovementMap);
+            //    positionsVisited.Add(newPos);
+            //}
+            //else
+            //{
+            //    foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
+            //    {
+            //        Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
+            //        positionsVisited.Add(newPos);
+            //    }
+            //}
         }
 
         return positionsVisited;
