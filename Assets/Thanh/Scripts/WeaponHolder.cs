@@ -97,6 +97,7 @@ public class WeaponHolder : MonoBehaviour
         {
             col.GetComponent<Health>().TestHit(1, transform.parent.gameObject);
             //Debug.Log(col.name);
+
         }
     }
     private IEnumerator BoostingAttack()

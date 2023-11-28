@@ -11,6 +11,8 @@ public class Health : MonoBehaviour
     public int collideDamage;
     //private bool delayShieldDamage;
     Player player;
+    GameObject mainCharacter;
+    GameObject enemy;
     //public int damage;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
@@ -88,12 +90,12 @@ public class Health : MonoBehaviour
         }
         else if (shieldTimer <= 0)
         {
-            Debug.Log(this.gameObject.name);
+            //Debug.Log(this.gameObject.name);
             shieldTimer = 0;  
         }
         if(shieldTimer == 0)
         {
-            Debug.Log("asdasd");
+            //Debug.Log("asdasd");
             shieldTimer = 2;
             player.shieldHealth -= 1;
             Debug.Log(player.shieldHealth);
@@ -110,14 +112,28 @@ public class Health : MonoBehaviour
     {
         if(gameObject.tag == "Player")
         {
-
-        //Debug.Log("1");
-        if (player.HasShield())
-        {
-            //Debug.Log("2");
-            Timer();
-            
+            //Debug.Log("1");
+            if (player.HasShield())
+            {
+                //Debug.Log("2");
+                Timer();
+            }
         }
+    }
+
+    public void reduceDamage()
+    {
+        if (gameObject.tag == "Player")
+        {
+            currentHealth = TestHit(5 * 80/100, mainCharacter) ;
+        }
+    }
+
+    public void reflectDamage()
+    {
+        if(gameObject.tag == "Enemy")
+        {
+            currentHealth = TestHit(5 * 20/100 - currentHealth, enemy);
         }
     }
 }
