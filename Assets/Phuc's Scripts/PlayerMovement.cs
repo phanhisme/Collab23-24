@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 DiagonalMove;
     // public bool canSprint;
     public bool isDashButtonDown, isReleasedDash;
-    public bool hasFinishedDashing;
+    public bool hasFinishedDashing, checkOnce;
     public float dashPower = 6f;    //min dash power is 6 and max is 10
     public float maxDashPower = 10f; //max dash power
     
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Handle movements stuff 
-        rb.velocity = movement * moveSpeed;
+        rb.velocity = movement * _currentMoveSpeed;
         Dash();
         //Sprint();
         
@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (hermesBootsScript.HermesBootsPickedUp)
         {
-            moveSpeed = hermesBootsScript.currentSpeed;
+            _currentMoveSpeed = hermesBootsScript.currentSpeed;
             //canSprint = false;
         }
     }
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             //When the player released the dash button, it counts as the player has finished the dashing input
             if (canAddSpeed)  
             {
-                _currentMoveSpeed = moveSpeed += dashBoostSpeed;
+                _currentMoveSpeed = moveSpeed + dashBoostSpeed;
 
                 //Player's speed cap
                 if (moveSpeed > 20)
@@ -144,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
         if (_currentBoostSpeedDuration > 0f)
         {
             _currentBoostSpeedDuration -= Time.deltaTime;
+            checkOnce = false;
 
         }
 
@@ -153,10 +154,17 @@ public class PlayerMovement : MonoBehaviour
             canAddSpeed = true;
             hasFinishedDashing = false;
             dashBoostSpeedDuration = 2.5f;
-            moveSpeed = 6f;
+            if(!checkOnce)
+            {
+                CheckForSpeed();
+            }
         }
     }
-    
+    void CheckForSpeed()
+    {
+        _currentMoveSpeed = moveSpeed;
+        checkOnce = true;
+    }
 }
 
     
