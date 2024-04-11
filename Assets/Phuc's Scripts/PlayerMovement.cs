@@ -13,16 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 DiagonalMove;
     // public bool canSprint;
-
     public bool isDashButtonDown, isReleasedDash;
-    public bool hasFinishedDashing;
+    public bool hasFinishedDashing, checkOnce;
     public float dashPower = 6f;    //min dash power is 6 and max is 10
     public float maxDashPower = 10f; //max dash power
-
+    
     [SerializeField] private float dashBoostSpeedDuration, dashBoostSpeedDurationSubtract;
     [Space]
-    [SerializeField] private float _currentBoostSpeedDuration;
-
+    [SerializeField] private float _currentBoostSpeedDuration, _currentMoveSpeed;
     public bool canDash, canAddSpeed;
 
     private void Start()
@@ -50,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Handle movements stuff 
-        rb.velocity = movement * moveSpeed;
+        rb.velocity = movement * _currentMoveSpeed;
         Dash();
         //Sprint();
         
@@ -116,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (hermesBootsScript.HermesBootsPickedUp)
         {
-            moveSpeed = hermesBootsScript.currentSpeed;
+            _currentMoveSpeed = hermesBootsScript.currentSpeed;
             //canSprint = false;
         }
     }
@@ -130,7 +128,9 @@ public class PlayerMovement : MonoBehaviour
             //When the player released the dash button, it counts as the player has finished the dashing input
             if (canAddSpeed)  
             {
-                moveSpeed += dashBoostSpeed;
+                _currentMoveSpeed = moveSpeed + dashBoostSpeed;
+
+                //Player's speed cap
                 if (moveSpeed > 20)
                 {
                     canAddSpeed = false;
@@ -138,22 +138,32 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    
     void StartDashBoostCooldown()
     {
-        
         if (_currentBoostSpeedDuration > 0f)
         {
             _currentBoostSpeedDuration -= Time.deltaTime;
-            
+            checkOnce = false;
+
         }
+
         else if (_currentBoostSpeedDuration <= 0)
         {
             _currentBoostSpeedDuration = 0f;
             canAddSpeed = true;
             hasFinishedDashing = false;
             dashBoostSpeedDuration = 2.5f;
-            moveSpeed = 6f;
+            if(!checkOnce)
+            {
+                CheckForSpeed();
+            }
         }
+    }
+    void CheckForSpeed()
+    {
+        _currentMoveSpeed = moveSpeed;
+        checkOnce = true;
     }
 }
 
