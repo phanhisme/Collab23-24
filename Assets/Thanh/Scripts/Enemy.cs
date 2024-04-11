@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Health health;
+    public Health playerHealth;
     public Transform circle;
     public float radius;
     public EnemyWeaponHolder holder;
     [SerializeField] Transform player;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +50,11 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            health.ColDamage();
+            playerHealth.ColDamage();
         }
-        if(health.currentHealth <= 0)
+        if(playerHealth.currentHealth <= 0)
         {
-            health.Dead();
+            playerHealth.Dead();
         }
     }
 }
