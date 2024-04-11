@@ -42,9 +42,9 @@ public class DashStamina : MonoBehaviour
 
             }
         }
-        DashStaminaCooldownCounts();
+        DashStaminaCooldownCounter();
     }
-    void DashStaminaCooldownCounts()
+    void DashStaminaCooldownCounter()
     {
         //If the player has no stamina left, the cooldown starts
         if(ifOutOfStamina)

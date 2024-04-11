@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthyCharm : MonoBehaviour
+public class EnergyDrink : MonoBehaviour
 {
     PlayerMovement pmScript;
     DashStamina dashStaminaScript;
@@ -32,6 +32,7 @@ public class HealthyCharm : MonoBehaviour
             {
                 dashStaminaScript.StaminaSubtraction = 15;
                 Destroy(gameObject);
+
             }
         }
     }

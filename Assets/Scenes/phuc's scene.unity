@@ -368,11 +368,13 @@ MonoBehaviour:
   isDashButtonDown: 0
   isReleasedDash: 0
   hasFinishedDashing: 0
+  checkOnce: 0
   dashPower: 6
   maxDashPower: 10
   dashBoostSpeedDuration: 2.5
   dashBoostSpeedDurationSubtract: 0.2
   _currentBoostSpeedDuration: 0
+  _currentMoveSpeed: 0
   canDash: 0
   canAddSpeed: 0
 --- !u!61 &400020250
@@ -463,7 +465,7 @@ GameObject:
   - component: {fileID: 616080039}
   - component: {fileID: 616080040}
   m_Layer: 0
-  m_Name: Healthy Charm
+  m_Name: Energy Drink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
