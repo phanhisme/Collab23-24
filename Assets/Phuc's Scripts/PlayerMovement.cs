@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     HermesBoots hermesBootsScript;
     DashStamina dashStaminaScript;
 
+    //For reference with the prefabs
+    public Transform childPrefab;
+
     public float moveSpeed = 6f, dashBoostSpeed;
     public Rigidbody2D rb;
     Vector3 movement;
