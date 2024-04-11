@@ -121,19 +121,5 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void reduceDamage()
-    {
-        if (gameObject.tag == "Player")
-        {
-            currentHealth = TestHit(5 * 80/100, mainCharacter) ;
-        }
-    }
-
-    public void reflectDamage()
-    {
-        if(gameObject.tag == "Enemy")
-        {
-            currentHealth = TestHit(5 * 20/100 - currentHealth, enemy);
-        }
-    }
+    
 }
