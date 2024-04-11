@@ -5,14 +5,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 [System.Serializable]
-public class SaveData {
+public class SaveSystemData {
 
 	public string Key {get;set;}
 	public string Value {get;set;}
 
-	public SaveData(){}
+	public SaveSystemData(){}
 
-	public SaveData(string key, string value)
+	public SaveSystemData(string key, string value)
 	{
 		this.Key = key;
 		this.Value = value;
