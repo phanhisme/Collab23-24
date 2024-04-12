@@ -753,6 +753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hermes Boots
       objectReference: {fileID: 0}
+    - target: {fileID: 6779738509073136836, guid: b884d133333fbcb48ad52be3f624c850, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6779738509073136838, guid: b884d133333fbcb48ad52be3f624c850, type: 3}
       propertyPath: m_RootOrder
       value: 1

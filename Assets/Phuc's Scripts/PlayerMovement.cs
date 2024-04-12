@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private float dashBoostSpeedDuration, dashBoostSpeedDurationSubtract;
     [Space]
-    [SerializeField] private float _currentBoostSpeedDuration, _currentMoveSpeed;
+    public float _currentBoostSpeedDuration, _currentMoveSpeed;
     public bool canDash, canAddSpeed;
 
     private void Start()
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         GetInput();
 
         //Player's speed after picking up the hermes boots
-        HermesBootsPicking();
+        //HermesBootsPicking();
         StartDashBoostCooldown();
         
     }
@@ -113,14 +113,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    void HermesBootsPicking()
+    /*void HermesBootsPicking()
     {
         if (hermesBootsScript.HermesBootsPickedUp)
         {
             _currentMoveSpeed = hermesBootsScript.currentSpeed;
             //canSprint = false;
         }
-    }
+    }*/
     void BoostSpeedAfterDashing()
     {
         //When the player is not holding down 
