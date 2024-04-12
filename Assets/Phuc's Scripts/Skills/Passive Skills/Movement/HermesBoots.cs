@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*This skill is to boost the player's movement speed*/
 
 public class HermesBoots : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class HermesBoots : MonoBehaviour
     {
         currentSpeed = playermovementScript.moveSpeed += boostSpeed;
         HermesBootsPickedUp = true;
+        playermovementScript._currentMoveSpeed = currentSpeed;
         Debug.Log(playermovementScript.moveSpeed);
     }
 }

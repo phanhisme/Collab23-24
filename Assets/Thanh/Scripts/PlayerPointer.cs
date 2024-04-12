@@ -18,6 +18,9 @@ public class PlayerPointer : MonoBehaviour
     public Vector2 PointerInput => pointerInput;
     public bool shielded;
     public bool boostAttackSpeed = false;
+
+
+
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;
