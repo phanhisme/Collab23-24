@@ -259,7 +259,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   target: {fileID: 6851891554381255628}
   offset: {x: 0, y: 1.3, z: 0}
-  health: {fileID: 0}
+  health: {fileID: 598192872}
 --- !u!1 &6491490455971283378
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +529,7 @@ GameObject:
   - component: {fileID: 6851891554381255630}
   - component: {fileID: 6851891554381255631}
   - component: {fileID: 6851891554381255624}
+  - component: {fileID: 598192872}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -543,7 +544,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6491490456295070503}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.12, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -618,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081329c93f9b8c84fa14e42ba087bcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  playerHealth: {fileID: 0}
   circle: {fileID: 6491490455971283377}
   radius: 2.03
   holder: {fileID: 6491490455753061650}
@@ -670,6 +671,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &598192872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491490456295070503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2166c0529f64fbc4abcd0b0377c09e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 2
+  maxHealth: 2
+  collideDamage: 1
+  OnHitWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  isDead: 0
+  shieldTimer: 2
 --- !u!1 &6491490457109044942
 GameObject:
   m_ObjectHideFlags: 0

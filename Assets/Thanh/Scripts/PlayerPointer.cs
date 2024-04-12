@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class PlayerPointer : MonoBehaviour
 {
     [SerializeField]
     private InputActionReference attack, pointer;

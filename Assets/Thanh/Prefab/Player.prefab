@@ -362,6 +362,7 @@ MonoBehaviour:
   circle: {fileID: 952145366670910812}
   radius: 0.82
   health: {fileID: 0}
+  attackAnimSpeed: {fileID: 0}
 --- !u!1 &952145368204048661
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +377,10 @@ GameObject:
   - component: {fileID: 952145366647937095}
   - component: {fileID: 952145366647941055}
   - component: {fileID: 952145366647941054}
+  - component: {fileID: 4895732594375993718}
+  - component: {fileID: 1784939003106687421}
+  - component: {fileID: 3730383062444816950}
+  - component: {fileID: 3586149524454123783}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -468,6 +473,7 @@ MonoBehaviour:
   pointer: {fileID: 2923184162369203802, guid: 2c5d069ebcc68c74d8de9ecfb060f7f1, type: 3}
   shieldHealth: 2
   shielded: 0
+  boostAttackSpeed: 0
 --- !u!114 &952145366647937095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +496,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isDead: 0
+  shieldTimer: 2
 --- !u!50 &952145366647941055
 Rigidbody2D:
   serializedVersion: 4
@@ -537,3 +544,79 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4895732594375993718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e906c01e8dc4c74ab34d96709e17ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDashStamina: 80
+  StaminaSubtraction: 20
+  ifOutOfStamina: 0
+  startSubtractingStamina: 0
+  DashStaminaCooldown: 3
+--- !u!114 &1784939003106687421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df9378af9e78c44f91877063803dbbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invisMaxStack: 2
+  invisStackCooldown: 8
+  InvisButtonPress: 0
+  invisStackSubtract: 1
+--- !u!114 &3730383062444816950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37094db54d7c494f9efa763396722fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateDuration: 5
+  isActivated: 0
+  canButtonPressed: 0
+  isPressed: 0
+--- !u!114 &3586149524454123783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06efef251a7b7f04daa12afe43fd13ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 6
+  dashBoostSpeed: 8
+  rb: {fileID: 952145366647941055}
+  isDashButtonDown: 0
+  isReleasedDash: 0
+  hasFinishedDashing: 0
+  checkOnce: 0
+  dashPower: 6
+  maxDashPower: 10
+  dashBoostSpeedDuration: 0
+  dashBoostSpeedDurationSubtract: 0
+  _currentBoostSpeedDuration: 0
+  _currentMoveSpeed: 0
+  canDash: 0
+  canAddSpeed: 0

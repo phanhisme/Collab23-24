@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public int currentHealth, maxHealth;
     public int collideDamage;
     //private bool delayShieldDamage;
-    Player player;
+    PlayerPointer player;
     GameObject mainCharacter;
     GameObject enemy;
     //public int damage;
@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerPointer>();
         //weaponHolder = GetComponent<WeaponHolder>();
     }
     public void InitializeHealth(int healthValue)

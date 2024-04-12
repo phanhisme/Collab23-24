@@ -15,7 +15,7 @@ public class WeaponHolder : MonoBehaviour
     public Transform circle;
     public float radius;
     public Health health;
-    Player player;
+    PlayerPointer player;
     [SerializeField] private Animator attackAnimSpeed;
     public void ResetAttack()
     {
@@ -23,7 +23,7 @@ public class WeaponHolder : MonoBehaviour
     }
     private void Start()
     {
-       player = FindObjectOfType<Player>();
+       player = FindObjectOfType<PlayerPointer>();
     }
 
     public void Update()
