@@ -7,8 +7,8 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    public int currentHealth, maxHealth;
-    public int collideDamage;
+    public float currentHealth, maxHealth;
+    public float collideDamage;
     //private bool delayShieldDamage;
     PlayerPointer player;
     GameObject mainCharacter;
@@ -26,13 +26,13 @@ public class Health : MonoBehaviour
         player = FindObjectOfType<PlayerPointer>();
         //weaponHolder = GetComponent<WeaponHolder>();
     }
-    public void InitializeHealth(int healthValue)
+    public void InitializeHealth(float healthValue)
     {
         currentHealth = healthValue;
         maxHealth = healthValue;
         isDead = false;
     }
-    public void TestHit(int damage, GameObject sender)
+    public void TestHit(float damage, GameObject sender)
     {
         if (isDead)
         {
