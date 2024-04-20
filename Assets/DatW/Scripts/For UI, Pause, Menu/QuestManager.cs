@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InGameUI : MonoBehaviour
+public class QuestManager : MonoBehaviour
 {
-    public GameObject QuestMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,18 +14,5 @@ public class InGameUI : MonoBehaviour
     void Update()
     {
         
-    }
-    public void Quest()
-    {
-        QuestMenu.SetActive(true);
-    }
-    public void Inventory()
-    {
-
-
-    }
-    public void LoadOutIG()
-    {
-
     }
 }
