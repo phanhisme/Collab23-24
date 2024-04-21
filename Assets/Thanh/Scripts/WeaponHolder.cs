@@ -14,9 +14,14 @@ public class WeaponHolder : MonoBehaviour
     public bool isAttacking { get; private set; }
     public Transform circle;
     public float radius;
+
     public Health health;
     PlayerPointer player;
+
+
+    [SerializeField] public float playerDamage = 1;
     [SerializeField] private Animator attackAnimSpeed;
+
     public void ResetAttack()
     {
         isAttacking = false;
@@ -95,7 +100,7 @@ public class WeaponHolder : MonoBehaviour
     {
         foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
-            col.GetComponent<Health>().TestHit(1, transform.parent.gameObject);
+            col.GetComponent<Health>().TestHit(playerDamage, transform.parent.gameObject);
             //Debug.Log(col.name);
 
         }
