@@ -19,7 +19,7 @@ public class PlayerPointer : MonoBehaviour
     public bool shielded;
     public bool boostAttackSpeed = false;
 
-
+    public float playerDamage = 400f;
 
     private void Start()
     {
