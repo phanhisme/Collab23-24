@@ -4,24 +4,27 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyHealth : MonoBehaviour
+public class Health : MonoBehaviour
 {
     [SerializeField]
-    public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     public float currentHealth, maxHealth;
     public float collideDamage;
+    //private bool delayShieldDamage;
     PlayerPointer player;
-    [SerializeField] private PlayerHealth playerHealth;
-    private bool isDead = false;
-    //public float shieldHealth = 2;
-    //public float shieldTimer = 2;
+    GameObject mainCharacter;
+    GameObject enemy;
+    //public int damage;
+    public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
+    [SerializeField]
+    private bool isDead = false;
+    //public float shieldTimer = 2;
     
 
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
-        playerHealth = FindObjectOfType<PlayerHealth>();
+        //weaponHolder = GetComponent<WeaponHolder>();
     }
     public void InitializeHealth(float healthValue)
     {
@@ -39,26 +42,27 @@ public class EnemyHealth : MonoBehaviour
         {
             return;
         }
-        if (!player.shielded)
-        {
-            currentHealth -= damage;
-        }
-        else if (player.shielded)
-        {
-            playerHealth.shieldHealth--;
-        }
+        //if (!player.shielded)
+        //{
+        //    currentHealth -= damage;
+        //}
+        //else if (player.shielded)
+        //{
+        //    player.shieldHealth--;
+        //}
+
     }
-    public void ColDamage()
-    {
-        if (!player.shielded)
-        {
-            playerHealth.currentHealth -= collideDamage;
-        }
-        else if (player.shielded)
-        {
-            playerHealth.shieldHealth--;
-        }
-    }
+    //public void ColDamage()
+    //{
+    //    if (!player.shielded)
+    //    {
+    //        currentHealth -= collideDamage;
+    //    }
+    //    else if (player.shielded)
+    //    {
+    //        player.shieldHealth--;
+    //    }
+    //}
     public void Dead()
     {
         if(currentHealth <= 0)
@@ -75,26 +79,28 @@ public class EnemyHealth : MonoBehaviour
     //{
     //    yield return new WaitForSeconds(8);
     //    player.ActivateShield();
-    //    shieldHealth = 2;
+    //    player.shieldHealth = 2;
     //    shieldTimer = 2;
     //}
     //public void Timer()
     //{
-    //    if (shieldTimer > 0)
+    //    if(shieldTimer > 0)
     //    {
     //        shieldTimer -= Time.deltaTime; // run the countdown
     //    }
     //    else if (shieldTimer <= 0)
-    //    {          
-    //        shieldTimer = 0;
+    //    {
+    //        //Debug.Log(this.gameObject.name);
+    //        shieldTimer = 0;  
     //    }
-    //    if (shieldTimer == 0)
-    //    {           
+    //    if(shieldTimer == 0)
+    //    {
+    //        //Debug.Log("asdasd");
     //        shieldTimer = 2;
-    //        shieldHealth -= 1;
-    //        Debug.Log(shieldHealth);
+    //        player.shieldHealth -= 1;
+    //        Debug.Log(player.shieldHealth);
     //    }
-    //    if (shieldHealth <= 0)
+    //    if (player.shieldHealth <= 0)
     //    {
     //        player.DeActivateShield();
     //        StartCoroutine(HealShield());
@@ -104,12 +110,16 @@ public class EnemyHealth : MonoBehaviour
     //}
     //public void checkHasShield()
     //{
-    //    if (gameObject.tag == "Player")
-    //    {          
+    //    if(gameObject.tag == "Player")
+    //    {
+    //        //Debug.Log("1");
     //        if (player.HasShield())
     //        {
+    //            //Debug.Log("2");
     //            Timer();
     //        }
     //    }
     //}
+
+    
 }

@@ -26,11 +26,6 @@ public class Invisibility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //The duration decreases over time
-        activateDuration -= Time.deltaTime;
-
-
         //When presses F, set the isActivated bool to true
         //Reset the duration and set the color of the player to green
         if (Input.GetKeyDown(KeyCode.F) && canButtonPressed)
@@ -42,23 +37,25 @@ public class Invisibility : MonoBehaviour
             isActivated = true;
             activateDuration = 5;
             charColor = srCharacter.color;
-            if(isActivated)
-            {
-                canButtonPressed = false;
-            }
-            else if(!isActivated)
-            {
-                canButtonPressed = true;
-            }
+            
         }
-        
+        if(isActivated)
+        {
+            canButtonPressed = false;
+            //The duration decreases over time
+            activateDuration -= Time.deltaTime;
+        }
+        else if(!isActivated)
+        {
+            canButtonPressed = true;
+        }
 
 
-        //If the duration reaches 0, the player returns to red color
+        //If the duration reaches 0, the player returns to white color
         //And the enemy can detect the player again
         if (activateDuration <= 0)
         {
-            srCharacter.color = new Color(255f, 255f, 255f);      //red color
+            srCharacter.color = new Color(255f, 255f, 255f);      //white color
             enemyPatrolScript.detectionDistance = 6f;
             canButtonPressed = true;
             isActivated = false;
@@ -70,12 +67,11 @@ public class Invisibility : MonoBehaviour
     //Deactivate the detection circle of the enemy
     IEnumerator SwitchColor()
     {
-        srCharacter.color = new Color(0f, 1f, 1f);
+        srCharacter.color = new Color(0f, 1f, 0f);
         yield return new WaitForSeconds(colorDuration);
         srCharacter.color = charColor;
         enemyPatrolScript.detectionDistance = 0f;
         isActivated = true;
-        
     }
 }
 

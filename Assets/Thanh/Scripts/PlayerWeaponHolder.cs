@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeaponHolder : MonoBehaviour
+public class WeaponHolder : MonoBehaviour
 {
     public SpriteRenderer characterRenderer, weaponRenderer;
-    //private bool attackHit = false;
+    private bool attackHit = false;
     //public float weaponDamage;
     public Animator animator;
     public float delay = 0.3f;
@@ -14,12 +14,14 @@ public class PlayerWeaponHolder : MonoBehaviour
     public bool isAttacking { get; private set; }
     public Transform circle;
     public float radius;
-    //public EnemyHealth enemyHealth;
+
+    public Health health;
     PlayerPointer player;
-    public float playerDamage = 1;
+
+
+    [SerializeField] public float playerDamage = 1;
     [SerializeField] private Animator attackAnimSpeed;
-    [SerializeField] private GoldenMoment goldenMoment;
-    public bool isHit;
+
     public void ResetAttack()
     {
         isAttacking = false;
@@ -27,7 +29,6 @@ public class PlayerWeaponHolder : MonoBehaviour
     private void Start()
     {
        player = FindObjectOfType<PlayerPointer>();
-       goldenMoment = FindObjectOfType<GoldenMoment>();
     }
 
     public void Update()
@@ -99,13 +100,10 @@ public class PlayerWeaponHolder : MonoBehaviour
     {
         foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
-            col.GetComponent<PlayerHealth>().TestHit(playerDamage, transform.parent.gameObject);
-            Debug.Log(col.name);
-            Debug.Log("Hit Successful");
-            isHit = true;
+            col.GetComponent<Health>().TestHit(playerDamage, transform.parent.gameObject);
+            //Debug.Log(col.name);
+
         }
-        Debug.Log("Hit Failed");
-        isHit = false;
     }
     private IEnumerator BoostingAttack()
     {
