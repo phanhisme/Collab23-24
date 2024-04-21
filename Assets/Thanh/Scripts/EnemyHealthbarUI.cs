@@ -4,13 +4,13 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthbar : MonoBehaviour
+public class EnemyHealthbarUI : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private Camera camera;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
-    public Health health;
+    public EnemyHealth enemyHealth;
 
     void Start()
     {
@@ -19,8 +19,8 @@ public class EnemyHealthbar : MonoBehaviour
     public void UpdateHealthBar() //to get the value from any object, not restricting from only the player or enemy
     {
 
-        slider.value = health.currentHealth;
-        slider.maxValue = health.maxHealth;
+        slider.value = enemyHealth.currentHealth;
+        slider.maxValue = enemyHealth.maxHealth;
     }
     // Start is called before the first frame update
     

@@ -10,7 +10,7 @@ public class Heal : MonoBehaviour
     bool isCD = false;
     public KeyCode ab1;
     //public Player player;
-    public Health playerHealth;
+    public PlayerHealth playerHealth;
     public int healAmount;
 
     private void Awake()

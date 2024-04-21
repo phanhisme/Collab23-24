@@ -9,26 +9,21 @@ public class PlayerPointer : MonoBehaviour
 {
     [SerializeField]
     private InputActionReference attack, pointer;
-    private WeaponHolder weaponHolder;
+    private PlayerWeaponHolder playerWeaponHolder;
     private Vector2 pointerInput;
     GameObject shield;
-    //GameObject titanGlove;
-    public float shieldHealth = 2;
-    //public float shieldTimer = 2;
     public Vector2 PointerInput => pointerInput;
     public bool shielded;
     public bool boostAttackSpeed = false;
-
+    public bool startStackingGM;
 
 
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;
-        //titanGlove = transform.Find("")
         DeActivateShield();
-        Debug.Log(shieldHealth);
         //playerHealth = 70;
-        weaponHolder = GetComponentInChildren<WeaponHolder>();
+        playerWeaponHolder = GetComponentInChildren<PlayerWeaponHolder>();
     }
     private void Awake()
     {
@@ -37,7 +32,7 @@ public class PlayerPointer : MonoBehaviour
     private void Update()
     {
         pointerInput = GetPointerInput();
-        weaponHolder.PointerPosition = pointerInput;
+        playerWeaponHolder.PointerPosition = pointerInput;
     }
     private void OnEnable()
     {
@@ -46,7 +41,7 @@ public class PlayerPointer : MonoBehaviour
 
     private void PerformAttack(InputAction.CallbackContext context)
     {
-        weaponHolder.Attack();
+        playerWeaponHolder.Attack();
     }
 
     private void OnDisable()
@@ -83,7 +78,10 @@ public class PlayerPointer : MonoBehaviour
     {
         boostAttackSpeed = false;
     }
-
+    public void ActivateGM()
+    {
+        startStackingGM = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
@@ -96,6 +94,10 @@ public class PlayerPointer : MonoBehaviour
             if (powerUp.activeTitanGlove)
             {
                 ActivateTitanGlove();
+            }
+            if(powerUp.activeGoldenMoment)
+            {
+                ActivateGM();
             }
             Destroy(powerUp.gameObject);
         }

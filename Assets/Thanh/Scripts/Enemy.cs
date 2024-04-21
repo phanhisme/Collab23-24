@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Health playerHealth;
+    //public Health playerHealth;
     public Transform circle;
     public float radius;
     public EnemyWeaponHolder holder;

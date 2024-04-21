@@ -6,13 +6,13 @@ public class HealthyHabit : MonoBehaviour
 {
 
     [SerializeField] private bool isEquipped = true;
-    Health healthScript;
+    PlayerHealth healthScript;
 
     // Start is called before the first frame update
 
     private void Awake()
     {
-        healthScript = FindObjectOfType<Health>();
+        healthScript = FindObjectOfType<PlayerHealth>();
     }
     void Start()
     {

@@ -58,7 +58,7 @@ public class Invisibility : MonoBehaviour
         //And the enemy can detect the player again
         if (activateDuration <= 0)
         {
-            srCharacter.color = new Color(1f, 0f, 0f);      //red color
+            srCharacter.color = new Color(255f, 255f, 255f);      //red color
             enemyPatrolScript.detectionDistance = 6f;
             canButtonPressed = true;
             isActivated = false;
@@ -70,7 +70,7 @@ public class Invisibility : MonoBehaviour
     //Deactivate the detection circle of the enemy
     IEnumerator SwitchColor()
     {
-        srCharacter.color = new Color(0f, 1f, 0f);
+        srCharacter.color = new Color(0f, 1f, 1f);
         yield return new WaitForSeconds(colorDuration);
         srCharacter.color = charColor;
         enemyPatrolScript.detectionDistance = 0f;
