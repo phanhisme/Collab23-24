@@ -10,15 +10,15 @@ public class CursedBlade : MonoBehaviour
     [SerializeField] private int cursedBladeTimer = 6;
     [SerializeField] private GameObject playerPos;
     [SerializeField] private bool isPicked = false;
-    WeaponHolder _weaponHolder;
-    public Health _healthScript;
+    PlayerWeaponHolder _weaponHolder;
+    public PlayerHealth _healthScript;
     [SerializeField] private float healthAfterUsage;
 
     private void Start()
     {
         //WeaponHolder _weaponHolder = gameObject.AddComponent<WeaponHolder>() as WeaponHolder;
         //Health _healthScript = gameObject.AddComponent<Health>() as Health;
-        _weaponHolder = FindObjectOfType<WeaponHolder>();
+        _weaponHolder = FindObjectOfType<PlayerWeaponHolder>();
         playerPos = GameObject.FindWithTag("Player");
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponHolder : MonoBehaviour
+public class PlayerWeaponHolder : MonoBehaviour
 {
     public SpriteRenderer characterRenderer, weaponRenderer;
     private bool attackHit = false;
@@ -14,13 +14,11 @@ public class WeaponHolder : MonoBehaviour
     public bool isAttacking { get; private set; }
     public Transform circle;
     public float radius;
-
-    public Health health;
+    public PlayerHealth health;
     PlayerPointer player;
-
-
     [SerializeField] public float playerDamage = 1;
     [SerializeField] private Animator attackAnimSpeed;
+    public bool isHit;
 
     public void ResetAttack()
     {
@@ -100,10 +98,13 @@ public class WeaponHolder : MonoBehaviour
     {
         foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
-            col.GetComponent<Health>().TestHit(playerDamage, transform.parent.gameObject);
+            col.GetComponent<PlayerHealth>().TestHit(playerDamage, transform.parent.gameObject);
             //Debug.Log(col.name);
-
+            Debug.Log("Hit Sucess");
+            isHit = true;
         }
+        isHit = false;
+        Debug.Log("Hit Fail");
     }
     private IEnumerator BoostingAttack()
     {
