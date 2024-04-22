@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerWeaponHolder : MonoBehaviour
 {
     public SpriteRenderer characterRenderer, weaponRenderer;
-    private bool attackHit = false;
     //public float weaponDamage;
     public Animator animator;
     public float delay = 0.3f;

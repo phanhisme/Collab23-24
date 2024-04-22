@@ -17,6 +17,7 @@ public class PlayerPointer : MonoBehaviour
     public bool boostAttackSpeed = false;
     public bool startStackingGM;
     public bool needleStrike;
+    public bool thornArmorActive;
 
     private void Start()
     {
@@ -86,6 +87,10 @@ public class PlayerPointer : MonoBehaviour
     {
         needleStrike = true;
     }
+    public void ActivateTA()
+    {
+        thornArmorActive = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
@@ -106,6 +111,10 @@ public class PlayerPointer : MonoBehaviour
             if(powerUp.activeNeedleStrike)
             {
                 ActivateNS();
+            }
+            if(powerUp.activeThornArmor)
+            {
+                ActivateTA();
             }
             Destroy(powerUp.gameObject);
         }

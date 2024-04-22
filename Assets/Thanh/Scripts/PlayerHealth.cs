@@ -41,7 +41,8 @@ public class PlayerHealth : MonoBehaviour
         if (!player.shielded)
         {
             currentHealth -= damage;
-            isHurt = true;
+            //isHurt = true;
+            StartCoroutine(IsPlayerHurt());
         }
         else if (player.shielded)
         {
@@ -112,6 +113,12 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-
+    public IEnumerator IsPlayerHurt()
+    {
+        isHurt = true;
+        float playerIsHurtingTime = 2;
+        yield return new WaitForSeconds(playerIsHurtingTime);
+        isHurt = false;
+    }
 
 }

@@ -10,8 +10,8 @@ public class EnemyWeaponHolder : MonoBehaviour
     public Animator anim;
     private bool noAttack;
     public float delayAttack = 0.5f;
+    public float enemyDamage = 5;
     public bool enemyAttacking { get; private set; }
-    //public Health health;
     
     
     public void ResetAttackForEnemy()
@@ -58,7 +58,6 @@ public class EnemyWeaponHolder : MonoBehaviour
     {
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
-            float enemyDamage = 5;
             col.GetComponent<EnemyHealth>().TestHit(enemyDamage, transform.parent.gameObject);
             //Debug.Log(col.name);
 

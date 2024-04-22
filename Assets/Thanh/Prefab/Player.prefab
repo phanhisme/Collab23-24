@@ -399,6 +399,57 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2032552461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2032552462}
+  - component: {fileID: 2032552463}
+  m_Layer: 3
+  m_Name: NeedleStrike
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2032552462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032552461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 952145366647941052}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2032552463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032552461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386c93cfdda70e143943e022a8b5743a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  needle: {fileID: 6432698555445321266, guid: 3f311636916037840a6c744fd96b7401, type: 3}
+  radius: 5
+  numberOfNeedle: 5
+  degree: 360
+  direction: 1
+  playerHealth: {fileID: 0}
 --- !u!1 &952145366428115834
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +811,10 @@ MonoBehaviour:
   delay: 0.3
   circle: {fileID: 952145366670910812}
   radius: 0.7
+  health: {fileID: 0}
+  playerDamage: 1
   attackAnimSpeed: {fileID: 952145367742196671}
+  isHit: 0
 --- !u!1 &952145368204048661
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +833,8 @@ GameObject:
   - component: {fileID: 1784939003106687421}
   - component: {fileID: 3730383062444816950}
   - component: {fileID: 3586149524454123783}
+  - component: {fileID: 2289509426768606038}
+  - component: {fileID: 2289509426768606039}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -801,6 +857,7 @@ Transform:
   - {fileID: 952145368120517854}
   - {fileID: 952145366428115836}
   - {fileID: 397229865}
+  - {fileID: 2032552462}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -872,6 +929,8 @@ MonoBehaviour:
   pointer: {fileID: 2923184162369203802, guid: 2c5d069ebcc68c74d8de9ecfb060f7f1, type: 3}
   shielded: 0
   boostAttackSpeed: 0
+  startStackingGM: 0
+  needleStrike: 0
 --- !u!114 &952145366647937095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,6 +954,7 @@ MonoBehaviour:
   isDead: 0
   shieldHealth: 2
   shieldTimer: 2
+  isHurt: 0
 --- !u!50 &952145366647941055
 Rigidbody2D:
   serializedVersion: 4
@@ -1019,3 +1079,30 @@ MonoBehaviour:
   _currentMoveSpeed: 0
   canDash: 0
   canAddSpeed: 0
+--- !u!114 &2289509426768606038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25dde1416f5f5824eaa0a897f21c6677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2289509426768606039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec22bb21f2abe14a981186db673382c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStackMoment: 0
+  fullStackedMoment: 20
+  isStacked: 0

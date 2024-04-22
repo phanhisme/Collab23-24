@@ -11,16 +11,20 @@ public class RemakeNeedleStrike : MonoBehaviour
     public float degree = 360f;
     public float direction = 1;
 
-    public float nextSpawnTime;
-    private float spawnTimer;
-
+    //public float nextSpawnTime;
+    //private float spawnTimer;
+    [SerializeField] PlayerHealth playerHealth;
+    private void Start()
+    {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+    }
     private void Update()
     {
-        spawnTimer -= Time.deltaTime;
-        if (spawnTimer < 0)
+        //spawnTimer -= Time.deltaTime;
+        if (playerHealth.isHurt == true)
         {
             SpawnNeedle();
-            spawnTimer = nextSpawnTime;
+            //spawnTimer = nextSpawnTime;
         }
     }
 

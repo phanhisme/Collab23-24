@@ -51,7 +51,7 @@ public class EnemyHealth : MonoBehaviour
         if (!player.shielded)
         {
             playerHealth.currentHealth -= collideDamage;
-            playerHealth.isHurt = true;
+            playerHealth.StartCoroutine(playerHealth.IsPlayerHurt());
         }
         else if (player.shielded)
         {

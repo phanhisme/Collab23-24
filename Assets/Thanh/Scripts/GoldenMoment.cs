@@ -46,7 +46,7 @@ public class GoldenMoment : MonoBehaviour
 
     void GoldenMomentIsReady()
     {
-        if(Input.GetKeyDown(KeyCode.E) && isStacked == true)
+        if(Input.GetKeyDown(KeyCode.Z) && isStacked == true)
         {
             StartCoroutine(Invulnerable());
             Debug.Log("Ready");
