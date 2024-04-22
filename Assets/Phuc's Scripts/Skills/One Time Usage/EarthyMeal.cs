@@ -31,8 +31,7 @@ public class EarthyMeal : MonoBehaviour
         //For testing purposes only
         if(Input.GetKeyDown(KeyCode.E) && isPicked)
         {
-            
-            playerHealth.maxHealth =    playerHealth.maxHealth + 1;
+            playerHealth.maxHealth = playerHealth.maxHealth + 1;
             Destroy(this.gameObject);
         }
     }
