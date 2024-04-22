@@ -9,22 +9,16 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     public float currentHealth, maxHealth;
     public float collideDamage;
-    //private bool delayShieldDamage;
     PlayerPointer player;
-    GameObject mainCharacter;
-    GameObject enemy;
-    //public int damage;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
-
-    [SerializeField]
-    private bool isDead = false;
-    //public float shieldTimer = 2;
+    [SerializeField] private bool isDead = false;
+    [SerializeField] PlayerHealth playerHealth;
     
 
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
-        //weaponHolder = GetComponent<WeaponHolder>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
     }
     public void InitializeHealth(float healthValue)
     {
@@ -52,17 +46,18 @@ public class EnemyHealth : MonoBehaviour
         //}
 
     }
-    //public void ColDamage()
-    //{
-    //    if (!player.shielded)
-    //    {
-    //        currentHealth -= collideDamage;
-    //    }
-    //    else if (player.shielded)
-    //    {
-    //        player.shieldHealth--;
-    //    }
-    //}
+    public void ColDamage()
+    {
+        if (!player.shielded)
+        {
+            playerHealth.currentHealth -= collideDamage;
+            playerHealth.isHurt = true;
+        }
+        else if (player.shielded)
+        {
+            playerHealth.shieldHealth--;
+        }
+    }
     public void Dead()
     {
         if(currentHealth <= 0)

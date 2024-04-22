@@ -16,7 +16,7 @@ public class PlayerPointer : MonoBehaviour
     public bool shielded;
     public bool boostAttackSpeed = false;
     public bool startStackingGM;
-
+    public bool needleStrike;
 
     private void Start()
     {
@@ -82,6 +82,10 @@ public class PlayerPointer : MonoBehaviour
     {
         startStackingGM = true;
     }
+    public void ActivateNS()
+    {
+        needleStrike = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
@@ -98,6 +102,10 @@ public class PlayerPointer : MonoBehaviour
             if(powerUp.activeGoldenMoment)
             {
                 ActivateGM();
+            }
+            if(powerUp.activeNeedleStrike)
+            {
+                ActivateNS();
             }
             Destroy(powerUp.gameObject);
         }

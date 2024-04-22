@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isDead = false;
     public float shieldHealth = 2;
     public float shieldTimer = 2;
+    public bool isHurt;
     
 
     private void Start()
@@ -40,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
         if (!player.shielded)
         {
             currentHealth -= damage;
+            isHurt = true;
         }
         else if (player.shielded)
         {
