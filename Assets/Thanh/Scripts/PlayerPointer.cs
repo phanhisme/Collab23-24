@@ -17,7 +17,7 @@ public class PlayerPointer : MonoBehaviour
     public bool boostAttackSpeed = false;
     public bool startStackingGM;
 
-
+    public float playerDamage;
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;

@@ -60,7 +60,7 @@ public class EnemyWeaponHolder : MonoBehaviour
         {
             float enemyDamage = 5;
             col.GetComponent<EnemyHealth>().TestHit(enemyDamage, transform.parent.gameObject);
-            //Debug.Log(col.name);
+            Debug.Log(col.name);
 
         }
     }
