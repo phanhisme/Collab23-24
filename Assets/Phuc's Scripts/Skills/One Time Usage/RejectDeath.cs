@@ -9,35 +9,43 @@ public class RejectDeath : MonoBehaviour
     private float playerCurrentHealth;
     private GameObject rejectDeathGO;
     
-    [SerializeField] private bool isRejectDeathEquipped = false;
-    [SerializeField] private bool canTriggerRejectDeath = false;
+    public bool isRejectDeathEquipped = false;
+
+    [SerializeField] private float invincibleTimer = 2.0f;
+    [SerializeField] private bool isInvincible;
+
 
     private void Start()
     {
         _playerHealth = FindObjectOfType<PlayerHealth>();
         rejectDeathGO = GameObject.Find("RejectDeath");
-        _playerHealth.currentHealth = playerCurrentHealth;
+        playerCurrentHealth = _playerHealth.currentHealth;
+        Debug.Log(playerCurrentHealth);
     }
 
     private void Update()
     {
         //Find the reject death game object in the player as a child
-        foreach (Transform eachChild in transform)  
+        foreach (Transform eachChild in transform)
         {
             //When the player found the reject death object
             if (eachChild.name == "RejectDeath")
             {
                 isRejectDeathEquipped = true;
-                canTriggerRejectDeath = true;
-                Debug.Log(eachChild.name);
+
+                //Debug.Log(eachChild.name);
+                if (playerCurrentHealth == 0 && isRejectDeathEquipped)
+                {
+                    Destroy(rejectDeathGO);
+                    isInvincible = true;
+                    playerCurrentHealth = 1;
+                    Debug.Log(playerCurrentHealth);
+                    isRejectDeathEquipped = false;
+                }
             }
         }
-        TriggerRejectDeath();
     }
 
-    void TriggerRejectDeath()
-    {
-        
-    }
+
     
 }

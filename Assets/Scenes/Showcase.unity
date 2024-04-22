@@ -2299,6 +2299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRejectDeathEquipped: 0
+  canTriggerRejectDeath: 0
 --- !u!1001 &6838364559916914049
 PrefabInstance:
   m_ObjectHideFlags: 0

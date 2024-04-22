@@ -11,17 +11,20 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth, maxHealth;
     //public int collideDamage;
     PlayerPointer player;
+    private RejectDeath _rejectDeath;
     [SerializeField]
     private bool isDead = false;
     public float shieldHealth = 2;
     public float shieldTimer = 2;
-    
 
+    public float healthValue;
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
+        _rejectDeath = FindObjectOfType<RejectDeath>();
+        
     }
-    public void InitializeHealth(float healthValue)
+    public void InitializeHealth()
     {
         currentHealth = healthValue;
         maxHealth = healthValue;
@@ -59,10 +62,10 @@ public class PlayerHealth : MonoBehaviour
     //}
     public void Dead()
     {
-        if(currentHealth <= 0)
+        if(currentHealth <= 0 && !_rejectDeath.isRejectDeathEquipped)
         {
             Destroy(gameObject);
-        }
+        }  
     }
     public void Update()
     {
