@@ -9,7 +9,6 @@ public class ThornArmor : MonoBehaviour
     [SerializeField] PlayerPointer playerPointer;
     [SerializeField] EnemyWeaponHolder enemyWeaponHolder;
     private float itemUsage = 2;
-    private float nextUsage = 2;
     private float damageReflectMultiplier = 5;
     public bool isThornArmorActive;
 
@@ -20,13 +19,24 @@ public class ThornArmor : MonoBehaviour
         playerPointer = FindObjectOfType<PlayerPointer>();
         enemyWeaponHolder = FindObjectOfType<EnemyWeaponHolder>();
     }
-
+    private void Update()
+    {
+        checkForTA();
+        ReflectDamage();
+    }
     void ReflectDamage()
     {
-        if(isThornArmorActive && itemUsage > 0) 
+        if(isThornArmorActive == true && itemUsage > 0 && playerHealth.isHurt == true) 
         {
             enemyHealth.currentHealth = enemyHealth.currentHealth - enemyWeaponHolder.enemyDamage * damageReflectMultiplier;
             itemUsage--;
+        }
+        if (itemUsage == 0)
+        {
+            isThornArmorActive = false;
+            itemUsage = 2;
+            playerPointer.DeActivateTA();
+
         }
     }
 
@@ -35,11 +45,6 @@ public class ThornArmor : MonoBehaviour
         if(playerPointer.thornArmorActive == true)
         {
             isThornArmorActive = true;
-        }
-        if(itemUsage == 0)
-        {
-            itemUsage = nextUsage;
-            isThornArmorActive = false;
         }
     }
 }

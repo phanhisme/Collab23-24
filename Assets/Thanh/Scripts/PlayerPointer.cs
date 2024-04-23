@@ -18,17 +18,14 @@ public class PlayerPointer : MonoBehaviour
     public bool startStackingGM;
     public bool needleStrike;
     public bool thornArmorActive;
+    public bool gbActive;
+    public bool heartsteelActive;
 
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;
         DeActivateShield();
-        //playerHealth = 70;
         playerWeaponHolder = GetComponentInChildren<PlayerWeaponHolder>();
-    }
-    private void Awake()
-    {
-        
     }
     private void Update()
     {
@@ -40,7 +37,6 @@ public class PlayerPointer : MonoBehaviour
     {
         attack.action.performed += PerformAttack;
     }
-
     private void PerformAttack(InputAction.CallbackContext context)
     {
         playerWeaponHolder.Attack();
@@ -70,7 +66,6 @@ public class PlayerPointer : MonoBehaviour
     {
         return shield.activeSelf;
     }
-
     public void ActivateTitanGlove()
     {
         boostAttackSpeed = true;
@@ -91,6 +86,22 @@ public class PlayerPointer : MonoBehaviour
     public void ActivateTA()
     {
         thornArmorActive = true;
+    }
+    public void DeActivateTA()
+    {
+        thornArmorActive = false; 
+    }
+    public void ActivateGB()
+    {
+        gbActive = true;
+    }
+    public void ActivateHeartsteel()
+    {
+        heartsteelActive = true;
+    }
+    public void DeActivateHeartsteel()
+    {
+        heartsteelActive = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -116,6 +127,14 @@ public class PlayerPointer : MonoBehaviour
             if(powerUp.activeThornArmor)
             {
                 ActivateTA();
+            }
+            if(powerUp.activeGuardianBlessing)
+            {
+                ActivateGB();
+            }
+            if(powerUp.activeHeartsteel)
+            {
+                ActivateHeartsteel();
             }
             Destroy(powerUp.gameObject);
         }

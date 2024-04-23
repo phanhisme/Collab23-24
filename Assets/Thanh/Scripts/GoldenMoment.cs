@@ -8,7 +8,7 @@ public class GoldenMoment : MonoBehaviour
     public float fullStackedMoment = 20;
     public bool isStacked;
     PlayerPointer player;
-    PlayerWeaponHolder pHolder; 
+    EnemyHealth enemyHealth; 
     SpriteRenderer spriteRenderer;
     Color color;
 
@@ -16,7 +16,7 @@ public class GoldenMoment : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerPointer>();
-        pHolder = FindObjectOfType<PlayerWeaponHolder>();
+        enemyHealth = FindObjectOfType<EnemyHealth>();
         isStacked = false;
         currentStackMoment = 0;
         color = spriteRenderer.material.color;
@@ -26,32 +26,32 @@ public class GoldenMoment : MonoBehaviour
     {
         if(player.startStackingGM == true)
         {
-            StackingMoment();
+            GoldenMomentIsReady();
+        }
+    }
+    void GoldenMomentIsReady()
+    {
+        StackingMoment();
+        if (Input.GetKeyDown(KeyCode.Z) && isStacked == true)
+        {
+            StartCoroutine(Invulnerable());
+            Debug.Log("Ready");
         }
     }
 
     void StackingMoment()
     {
-        if(pHolder.isHit == true)
+        if(enemyHealth.isHit == true)
         {
             currentStackMoment++;
         }
         if(currentStackMoment ==  fullStackedMoment)
         {
             isStacked = true;
-            GoldenMomentIsReady();
             currentStackMoment = 0;
         }
     }
 
-    void GoldenMomentIsReady()
-    {
-        if(Input.GetKeyDown(KeyCode.Z) && isStacked == true)
-        {
-            StartCoroutine(Invulnerable());
-            Debug.Log("Ready");
-        }
-    }
 
     private IEnumerator Invulnerable()
     {

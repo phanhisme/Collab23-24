@@ -9,6 +9,7 @@ public class PlayerWeaponHolder : MonoBehaviour
     //public float weaponDamage;
     public Animator animator;
     public float delay = 0.3f;
+    public float attackSpeedBoost = 0.2f;
     private bool attackBlocked;
     public Vector2 PointerPosition {  get; set; }
     public bool isAttacking { get; private set; }
@@ -18,7 +19,6 @@ public class PlayerWeaponHolder : MonoBehaviour
     PlayerPointer player;
     [SerializeField] public float playerDamage = 1;
     [SerializeField] private Animator attackAnimSpeed;
-    public bool isHit;
     [SerializeField] private AnimationEvent animEvent;
     [SerializeField] private LayerMask enemyMask;
 
@@ -114,7 +114,7 @@ public class PlayerWeaponHolder : MonoBehaviour
     private IEnumerator BoostingAttack()
     {
         //Debug.Log("boosting");
-        delay = 0.1f;
+        delay = delay * attackSpeedBoost;
         yield return new WaitForSeconds(10f);
         delay = 0.3f;
         player.boostAttackSpeed = false;

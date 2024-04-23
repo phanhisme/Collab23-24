@@ -445,10 +445,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   needle: {fileID: 6432698555445321266, guid: 3f311636916037840a6c744fd96b7401, type: 3}
-  radius: 5
+  radius: 2
   numberOfNeedle: 5
   degree: 360
   direction: 1
+  needleDamage: 0
   playerHealth: {fileID: 0}
 --- !u!1 &952145366428115834
 GameObject:
@@ -730,36 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c8eddf1d6daf64bb1131f36abc7bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnAnimationEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WeaponHolder, Assembly-CSharp
-        m_MethodName: ResetAttack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnAttackPerformed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WeaponHolder, Assembly-CSharp
-        m_MethodName: DetectCol
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &952145368120517853
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,12 +780,15 @@ MonoBehaviour:
   weaponRenderer: {fileID: 952145367742196656}
   animator: {fileID: 952145367742196671}
   delay: 0.3
+  attackSpeedBoost: 0.2
   circle: {fileID: 952145366670910812}
   radius: 0.7
-  health: {fileID: 0}
   playerDamage: 1
   attackAnimSpeed: {fileID: 952145367742196671}
-  isHit: 0
+  animEvent: {fileID: 952145367742196670}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &952145368204048661
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +809,8 @@ GameObject:
   - component: {fileID: 3586149524454123783}
   - component: {fileID: 2289509426768606038}
   - component: {fileID: 2289509426768606039}
+  - component: {fileID: 2289509426768606040}
+  - component: {fileID: 4074899994199849435}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -931,6 +907,9 @@ MonoBehaviour:
   boostAttackSpeed: 0
   startStackingGM: 0
   needleStrike: 0
+  thornArmorActive: 0
+  gbActive: 0
+  heartsteelActive: 0
 --- !u!114 &952145366647937095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,12 +928,13 @@ MonoBehaviour:
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
-  currentHealth: 70
+  currentHealth: 100
   maxHealth: 100
   isDead: 0
   shieldHealth: 2
   shieldTimer: 2
   isHurt: 0
+  haveShield: 0
 --- !u!50 &952145366647941055
 Rigidbody2D:
   serializedVersion: 4
@@ -1106,3 +1086,34 @@ MonoBehaviour:
   currentStackMoment: 0
   fullStackedMoment: 20
   isStacked: 0
+--- !u!114 &2289509426768606040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4422e37f5c70544860f2254ba5621b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
+  enemyHealth: {fileID: 0}
+  playerPointer: {fileID: 0}
+  enemyWeaponHolder: {fileID: 0}
+  isThornArmorActive: 0
+--- !u!114 &4074899994199849435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952145368204048661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ddd6e2cd07f3e4ea4cd65cd89caee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldHeart: 2
+  hasHeartSteel: 0

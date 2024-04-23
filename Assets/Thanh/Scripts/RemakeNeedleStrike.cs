@@ -10,6 +10,7 @@ public class RemakeNeedleStrike : MonoBehaviour
     public float numberOfNeedle;
     public float degree = 360f;
     public float direction = 1;
+    public float needleDamage;
 
     //public float nextSpawnTime;
     //private float spawnTimer;
@@ -23,7 +24,7 @@ public class RemakeNeedleStrike : MonoBehaviour
         //spawnTimer -= Time.deltaTime;
         if (playerHealth.isHurt == true)
         {
-            //SpawnNeedle();
+            SpawnNeedle();
             //spawnTimer = nextSpawnTime;
         }
     }

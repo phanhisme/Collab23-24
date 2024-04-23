@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -13,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     [SerializeField] private bool isDead = false;
     [SerializeField] PlayerHealth playerHealth;
-    
+    public bool isHit;
 
     private void Start()
     {
@@ -32,17 +33,18 @@ public class EnemyHealth : MonoBehaviour
         {
             return;
         }
-        if (!player.shielded)
+        if (currentHealth > 0)
         {
             currentHealth -= damage;
+            StartCoroutine(IsHit());
         }
 
     }
     public void ColDamage()
     {
-        if (!player.shielded)
+        if (!player.shielded && playerHealth.currentHealth > 0)
         {
-            playerHealth.currentHealth -= collideDamage;
+            playerHealth.currentHealth = playerHealth.currentHealth - collideDamage;
             playerHealth.StartCoroutine(playerHealth.IsPlayerHurt());
         }
         else if (player.shielded)
@@ -107,6 +109,10 @@ public class EnemyHealth : MonoBehaviour
     //        }
     //    }
     //}
-
-    
+    IEnumerator IsHit()
+    {
+        isHit = true;
+        yield return new WaitForSeconds(0);
+        isHit = false;
+    }
 }
