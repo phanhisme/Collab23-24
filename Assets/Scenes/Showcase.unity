@@ -369,11 +369,6 @@ MonoBehaviour:
   activeShield: 0
   activeTitanGlove: 0
   activeGoldenMoment: 1
---- !u!4 &217266351 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6838364560823930918, guid: f9187edf92408aa4aa10c76d6fa34466, type: 3}
-  m_PrefabInstance: {fileID: 6838364559916914049}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &229633708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2231,10 +2226,7 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 217266351}
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
 --- !u!114 &2289509426768606027 stripped
 MonoBehaviour:
@@ -2306,28 +2298,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48115074d42d0d48913dd7a64acb0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRejectDeathEquipped: 0
+  isRejectDeathEquipped: 1
   invincibleTimer: 2
-  isInvincible: 0
+  isInvincible: 1
 --- !u!1001 &6838364559916914049
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 2289509426768606029}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6838364560823930918, guid: f9187edf92408aa4aa10c76d6fa34466, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838364560823930918, guid: f9187edf92408aa4aa10c76d6fa34466, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838364560823930918, guid: f9187edf92408aa4aa10c76d6fa34466, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1875
       objectReference: {fileID: 0}
     - target: {fileID: 6838364560823930918, guid: f9187edf92408aa4aa10c76d6fa34466, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.07
       objectReference: {fileID: 0}
     - target: {fileID: 6838364560823930918, guid: f9187edf92408aa4aa10c76d6fa34466, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.61
+      value: -0.8400001
       objectReference: {fileID: 0}
     - target: {fileID: 6838364560823930918, guid: f9187edf92408aa4aa10c76d6fa34466, type: 3}
       propertyPath: m_LocalPosition.z

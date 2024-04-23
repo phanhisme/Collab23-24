@@ -14,7 +14,7 @@ public class RejectDeath : MonoBehaviour
     [SerializeField] private float invincibleTimer = 2.0f;
     [SerializeField] private bool isInvincible;
 
-    private int m_IndexNum;
+    //private int m_IndexNum;
     
     private void Start()
     {
@@ -24,8 +24,10 @@ public class RejectDeath : MonoBehaviour
         Debug.Log(playerCurrentHealth);
         
         //Set object to an index
-        transform.SetSiblingIndex(m_IndexNum);
-        Debug.Log(transform.GetSiblingIndex());
+        //transform.SetSiblingIndex(m_IndexNum);
+        //Debug.Log(transform.GetSiblingIndex());
+
+
     }
 
     private void Update()
@@ -33,24 +35,23 @@ public class RejectDeath : MonoBehaviour
         //Find the reject death game object in the player as a child
         foreach (Transform eachChild in transform)
         {
+            
             //When the player found the reject death object
             if (eachChild.name == "RejectDeath")
             {
                 isRejectDeathEquipped = true;
-                rejectDeathGO = this.transform.GetChild(0).gameObject;
                 StartCoroutine(TriggerInvincible());
-                Destroy(GetComponent<Transform>().GetChild(0).gameObject);
+                Debug.Log(invincibleTimer);
             }
-        }
+        }       
     }
     IEnumerator TriggerInvincible()
     {
-        if (isRejectDeathEquipped && playerCurrentHealth == 0)
+        if (isRejectDeathEquipped && playerCurrentHealth <= 0)
         {
             isInvincible = true;
-            
-            playerCurrentHealth = 1;
             yield return new WaitForSeconds(invincibleTimer);
+            Destroy(rejectDeathGO);
         }
     }
     
