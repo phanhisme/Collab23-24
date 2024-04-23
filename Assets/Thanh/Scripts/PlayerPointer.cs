@@ -33,6 +33,7 @@ public class PlayerPointer : MonoBehaviour
     private void Update()
     {
         pointerInput = GetPointerInput();
+        //Debug.Log(pointerInput);
         playerWeaponHolder.PointerPosition = pointerInput;
     }
     private void OnEnable()

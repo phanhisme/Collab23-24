@@ -23,7 +23,7 @@ public class RemakeNeedleStrike : MonoBehaviour
         //spawnTimer -= Time.deltaTime;
         if (playerHealth.isHurt == true)
         {
-            SpawnNeedle();
+            //SpawnNeedle();
             //spawnTimer = nextSpawnTime;
         }
     }

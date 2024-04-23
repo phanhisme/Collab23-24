@@ -34,10 +34,6 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
-        if (sender.layer == gameObject.layer)
-        {
-            return;
-        }
         if (!player.shielded)
         {
             currentHealth -= damage;

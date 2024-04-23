@@ -14,7 +14,7 @@ public class Power : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            pHolder.playerDamage = pHolder.playerDamage + pHolder.playerDamage * 0.2f;
+            pHolder.playerDamage += pHolder.playerDamage * 0.2f;
             Destroy(gameObject);
         }
     }

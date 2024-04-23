@@ -11,6 +11,8 @@ public class EnemyWeaponHolder : MonoBehaviour
     private bool noAttack;
     public float delayAttack = 0.5f;
     public float enemyDamage = 5;
+    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private AnimationEvent animEvent; 
     public bool enemyAttacking { get; private set; }
     
     
@@ -21,7 +23,7 @@ public class EnemyWeaponHolder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        animEvent.OnEventTriggered += DetectCol;
     }
 
     // Update is called once per frame
@@ -56,10 +58,10 @@ public class EnemyWeaponHolder : MonoBehaviour
     }
     public void DetectCol()
     {
-        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius, playerMask))
         {
-            col.GetComponent<EnemyHealth>().TestHit(enemyDamage, transform.parent.gameObject);
-            //Debug.Log(col.name);
+            col.GetComponent<PlayerHealth>().TestHit(enemyDamage, transform.parent.gameObject);
+            Debug.Log(col.name);
 
         }
     }

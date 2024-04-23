@@ -32,18 +32,10 @@ public class EnemyHealth : MonoBehaviour
         {
             return;
         }
-        if (sender.layer == gameObject.layer)
+        if (!player.shielded)
         {
-            return;
+            currentHealth -= damage;
         }
-        //if (!player.shielded)
-        //{
-        //    currentHealth -= damage;
-        //}
-        //else if (player.shielded)
-        //{
-        //    player.shieldHealth--;
-        //}
 
     }
     public void ColDamage()
