@@ -17,19 +17,23 @@ public class PlayerHealth : MonoBehaviour
     public float shieldHealth = 2;
     public float shieldTimer = 2;
 
-    public float healthValue;
+    
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         _rejectDeath = FindObjectOfType<RejectDeath>();
         
+        
     }
-    public void InitializeHealth()
+    
+    public void InitializeHealth(int healthValue)
     {
+        
         currentHealth = healthValue;
         maxHealth = healthValue;
         isDead = false;
     }
+    
     public void TestHit(float damage, GameObject sender)
     {
         if (isDead)
@@ -64,11 +68,12 @@ public class PlayerHealth : MonoBehaviour
     {
         if(currentHealth <= 0 && !_rejectDeath.isRejectDeathEquipped)
         {
-            Destroy(gameObject);
+            Destroy(gameObject);    //kills the player when the conditions are met
         }  
     }
     public void Update()
     {
+        
         Dead();
         checkHasShield();
     }
