@@ -19,6 +19,7 @@ public class CursedBlade : MonoBehaviour
         //WeaponHolder _weaponHolder = gameObject.AddComponent<WeaponHolder>() as WeaponHolder;
         //Health _healthScript = gameObject.AddComponent<Health>() as Health;
         _weaponHolder = FindObjectOfType<PlayerWeaponHolder>();
+        _healthScript = FindObjectOfType<PlayerHealth>();
         playerPos = GameObject.FindWithTag("Player");
     }
 

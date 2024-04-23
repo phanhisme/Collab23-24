@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth, maxHealth;
     //public int collideDamage;
     PlayerPointer player;
+    private RejectDeath _rejectDeath;
     [SerializeField]
     private bool isDead = false;
     public float shieldHealth = 2;
@@ -21,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
+        _rejectDeath = FindObjectOfType<RejectDeath>();
     }
     public void InitializeHealth(float healthValue)
     {
@@ -58,7 +60,9 @@ public class PlayerHealth : MonoBehaviour
     //}
     public void Dead()
     {
-        if(currentHealth <= 0)
+        //this death relies on the reject death item for testing
+        //might need to add switch cases later???
+        if(currentHealth <= 0 && !_rejectDeath.isRejectDeathEquipped)
         {
             Destroy(gameObject);
         }
