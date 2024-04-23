@@ -2298,9 +2298,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48115074d42d0d48913dd7a64acb0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRejectDeathEquipped: 1
+  isRejectDeathEquipped: 0
   invincibleTimer: 2
-  isInvincible: 1
+  isInvincible: 0
 --- !u!1001 &6838364559916914049
 PrefabInstance:
   m_ObjectHideFlags: 0

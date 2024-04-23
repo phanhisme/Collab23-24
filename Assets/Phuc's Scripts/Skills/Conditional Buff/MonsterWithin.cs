@@ -21,7 +21,7 @@ public class MonsterWithin : MonoBehaviour
         if (_playerHealth.currentHealth <= 1 && !hasBuffed)
         {
             //I don't really know math lul but this increase dmg by 25% when the player reaches 1hp
-            _playerPointer.playerDamage = _playerPointer.playerDamage + _playerPointer.playerDamage * 0.25f;
+            _playerPointer.playerDamage += _playerPointer.playerDamage * 0.25f;
             hasBuffed = true;
             if(hasBuffed)
             return;

@@ -22,11 +22,6 @@ public class RejectDeath : MonoBehaviour
         rejectDeathGO = GameObject.Find("RejectDeath");
         playerCurrentHealth = _playerHealth.currentHealth;
         Debug.Log(playerCurrentHealth);
-        
-        //Set object to an index
-        //transform.SetSiblingIndex(m_IndexNum);
-        //Debug.Log(transform.GetSiblingIndex());
-
 
     }
 
@@ -35,13 +30,12 @@ public class RejectDeath : MonoBehaviour
         //Find the reject death game object in the player as a child
         foreach (Transform eachChild in transform)
         {
-            
             //When the player found the reject death object
             if (eachChild.name == "RejectDeath")
             {
                 isRejectDeathEquipped = true;
                 StartCoroutine(TriggerInvincible());
-                Debug.Log(invincibleTimer);
+                //Debug.Log(invincibleTimer);
             }
         }       
     }
@@ -54,6 +48,4 @@ public class RejectDeath : MonoBehaviour
             Destroy(rejectDeathGO);
         }
     }
-    
-    
 }
