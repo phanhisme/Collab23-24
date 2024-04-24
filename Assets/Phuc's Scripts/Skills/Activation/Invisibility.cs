@@ -12,6 +12,7 @@ public class Invisibility : MonoBehaviour
 
     StackSkills stackskillsScript;
     EnemyPatrol enemyPatrolScript;
+    PlayerWeaponHolder playerWeaponHolder;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Invisibility : MonoBehaviour
         charColor = srCharacter.color;
         enemyPatrolScript = FindObjectOfType<EnemyPatrol>();
         stackskillsScript = FindObjectOfType<StackSkills>();
+        playerWeaponHolder = FindObjectOfType<PlayerWeaponHolder>();
     }
 
     // Update is called once per frame
@@ -49,18 +51,7 @@ public class Invisibility : MonoBehaviour
         {
             canButtonPressed = true;
         }
-
-
-        //If the duration reaches 0, the player returns to white color
-        //And the enemy can detect the player again
-        if (activateDuration <= 0)
-        {
-            srCharacter.color = new Color(255f, 255f, 255f);      //white color
-            enemyPatrolScript.detectionDistance = 6f;
-            canButtonPressed = true;
-            isActivated = false;
-            stackskillsScript.InvisButtonPress = false;
-        }
+        ResetInvis();
     }
 
     //Switch the color of the player function
@@ -71,7 +62,22 @@ public class Invisibility : MonoBehaviour
         yield return new WaitForSeconds(colorDuration);
         srCharacter.color = charColor;
         enemyPatrolScript.detectionDistance = 0f;
-        isActivated = true;
+        
+    }
+
+    public void ResetInvis()
+    {
+        //If the duration reaches 0, the player returns to white color
+        //And the enemy can detect the player again
+        if (activateDuration <= 0)
+        {
+            srCharacter.color = new Color(255f, 255f, 255f);      //white color
+            enemyPatrolScript.detectionDistance = 6f;
+            canButtonPressed = true;
+            isActivated = false;
+            stackskillsScript.InvisButtonPress = false;
+            playerWeaponHolder.canInstaKill = false;
+        }
     }
 }
 

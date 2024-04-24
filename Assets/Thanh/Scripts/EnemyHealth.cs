@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, ITakeDamage
 {
     [SerializeField]
     public float currentHealth, maxHealth;
@@ -114,5 +114,10 @@ public class EnemyHealth : MonoBehaviour
         isHit = true;
         yield return new WaitForSeconds(0);
         isHit = false;
+    }
+
+    public void TakeDamage(GameObject gameObject)
+    {
+        throw new NotImplementedException();
     }
 }

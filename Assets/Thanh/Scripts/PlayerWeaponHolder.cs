@@ -11,7 +11,7 @@ public class PlayerWeaponHolder : MonoBehaviour
     public float delay = 0.3f;
     public float attackSpeedBoost = 0.2f;
     private bool attackBlocked;
-    public Vector2 PointerPosition {  get; set; }
+    public Vector2 PointerPosition { get; set; }
     public bool isAttacking { get; private set; }
     public Transform circle;
     public float radius;
@@ -21,20 +21,26 @@ public class PlayerWeaponHolder : MonoBehaviour
     [SerializeField] private Animator attackAnimSpeed;
     [SerializeField] private AnimationEvent animEvent;
     [SerializeField] private LayerMask enemyMask;
-
+    public bool canInstaKill;
+    Invisibility invisibility;
+    EnemyHealth enemyHealth;
+    public GameObject enemy;
     public void ResetAttack()
     {
         isAttacking = false;
     }
     private void Start()
     {
-       player = FindObjectOfType<PlayerPointer>();
-       animEvent.OnEventTriggered += ResetAttack;
-       animEvent.OnEventTriggered += DetectCol;
+        player = FindObjectOfType<PlayerPointer>();
+        animEvent.OnEventTriggered += ResetAttack;
+        animEvent.OnEventTriggered += DetectCol;
+        invisibility = FindObjectOfType<Invisibility>();
+        enemyHealth = FindObjectOfType<EnemyHealth>();
     }
 
     public void Update()
     {
+        checkForInvis();
         if (isAttacking)
         {
             return;
@@ -42,17 +48,17 @@ public class PlayerWeaponHolder : MonoBehaviour
         Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
         transform.right = direction;
         Vector2 scale = transform.localScale;
-        if(direction.x < 0)
+        if (direction.x < 0)
         {
             scale.y = -1;
         }
-        else if(direction.x > 0)
+        else if (direction.x > 0)
         {
             scale.y = 1;
         }
         transform.localScale = scale;
-        
-        if(transform.localEulerAngles.z > 180 && transform.localEulerAngles.z <360)
+
+        if (transform.localEulerAngles.z > 180 && transform.localEulerAngles.z < 360)
         {
             weaponRenderer.sortingOrder = characterRenderer.sortingOrder - 1;
         }
@@ -63,8 +69,8 @@ public class PlayerWeaponHolder : MonoBehaviour
     }
 
     public void Attack()
-    { 
-        if(attackBlocked)
+    {
+        if (attackBlocked)
         {
             return;
         }
@@ -79,8 +85,8 @@ public class PlayerWeaponHolder : MonoBehaviour
 
         if (player.boostAttackSpeed == true)
         {
-           StartCoroutine(BoostingAttack());
-           //Debug.Log("start boosting");
+            StartCoroutine(BoostingAttack());
+            //Debug.Log("start boosting");
         }
         else
         {
@@ -100,16 +106,12 @@ public class PlayerWeaponHolder : MonoBehaviour
     }
     public void DetectCol()
     {
-        foreach(Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius, enemyMask))
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius, enemyMask))
         {
-            //Debug.Log(col.name);
             col.GetComponent<EnemyHealth>().TestHit(playerDamage, transform.parent.gameObject);
             Debug.Log(col.name);
-            //Debug.Log("Hit Sucess");
-            //isHit = true;
+            instaKill();
         }
-        //isHit = false;
-        //Debug.Log("Hit Fail");
     }
     private IEnumerator BoostingAttack()
     {
@@ -125,6 +127,32 @@ public class PlayerWeaponHolder : MonoBehaviour
         else
         {
             attackAnimSpeed.speed = 1;
+        }
+    }
+
+    //StealthKill
+    public void checkForInvis()
+    {
+        if (invisibility.isActivated == true && player.skActive == true)
+        {
+            canInstaKill = true;
+        }
+        if (canInstaKill == true && invisibility.activateDuration <= 0)
+        {
+            afterKill();
+        }
+    }
+    public void afterKill()
+    {
+        invisibility.isActivated = false;
+        invisibility.ResetInvis();
+    }
+    public void instaKill()
+    {
+        if (canInstaKill == true && invisibility.activateDuration > 0)
+        {
+            afterKill();
+            Destroy(enemy);
         }
     }
 }

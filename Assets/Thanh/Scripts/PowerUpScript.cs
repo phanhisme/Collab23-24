@@ -11,6 +11,7 @@ public class PowerUpScript : MonoBehaviour
     public bool activeThornArmor;
     public bool activeGuardianBlessing;
     public bool activeHeartsteel;
+    public bool activeStealthKill;
     // Start is called before the first frame update
     void Start()
     {

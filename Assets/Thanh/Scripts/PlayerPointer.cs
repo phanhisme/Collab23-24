@@ -20,6 +20,7 @@ public class PlayerPointer : MonoBehaviour
     public bool thornArmorActive;
     public bool gbActive;
     public bool heartsteelActive;
+    public bool skActive;
 
     private void Start()
     {
@@ -103,6 +104,11 @@ public class PlayerPointer : MonoBehaviour
     {
         heartsteelActive = false;
     }
+    public void ActiveSK()
+    {
+        skActive = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
@@ -135,6 +141,10 @@ public class PlayerPointer : MonoBehaviour
             if(powerUp.activeHeartsteel)
             {
                 ActivateHeartsteel();
+            }
+            if(powerUp.activeStealthKill)
+            {
+                ActiveSK();
             }
             Destroy(powerUp.gameObject);
         }
