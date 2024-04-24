@@ -71,7 +71,7 @@ public class Invisibility : MonoBehaviour
         yield return new WaitForSeconds(colorDuration);
         srCharacter.color = charColor;
         enemyPatrolScript.detectionDistance = 0f;
-        isActivated = true;
+        
     }
 }
 

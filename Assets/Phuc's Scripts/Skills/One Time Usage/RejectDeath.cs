@@ -33,6 +33,10 @@ public class RejectDeath : MonoBehaviour
         if (isRejectDeathEquipped && _playerHealth.currentHealth == 0)
         {
             isInvincible = true;
+            if (isInvincible)
+            {
+                _playerHealth.isHurt = true;
+            }
             yield return new WaitForSeconds(invincibleTimer);
             isInvincible = false;
             Destroy(gameObject);

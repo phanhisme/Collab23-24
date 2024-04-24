@@ -14,7 +14,7 @@ public class PlayerWeaponHolder : MonoBehaviour
     public bool isAttacking { get; private set; }
     public Transform circle;
     public float radius;
-    //public PlayerHealth phealth;
+    //public PlayerHealth health;
     PlayerPointer player;
     [SerializeField] public float playerDamage = 1;
     [SerializeField] private Animator attackAnimSpeed;
@@ -86,6 +86,9 @@ public class PlayerWeaponHolder : MonoBehaviour
         {
             player.DeActivateTitanGlove();
         }
+        
+        //Getting bleed effect from cursed blade
+        
     }
     private IEnumerator DelayAttack()
     {
