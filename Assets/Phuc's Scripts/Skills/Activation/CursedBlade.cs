@@ -5,7 +5,7 @@ using UnityEngine;
 public class CursedBlade : MonoBehaviour
 {
 
-    [SerializeField] private bool isCursedBladeActive, canActiveCursedBlade;
+    public bool isCursedBladeActive, canActiveCursedBlade;
     [SerializeField] private int HPDeduction = 1;
     [SerializeField] private int cursedBladeTimer = 6;
     [SerializeField] private GameObject playerPos;
@@ -31,15 +31,14 @@ public class CursedBlade : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if(isPicked && canActiveCursedBlade)    //need to fix later when dmg is made
+            //Prevent the player to use the cursed blade if the player has 1hp
+            if(isPicked && canActiveCursedBlade && _healthScript.currentHealth > 1)    //need to fix later when dmg is made
             {
                 //Destroy(gameObject);
                 _healthScript.currentHealth -= HPDeduction;
                 StartCoroutine(ActivatingCursedBlade());
                 
             }
-            else if (isPicked && !canActiveCursedBlade)
-                return;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,14 +57,8 @@ public class CursedBlade : MonoBehaviour
         {
             isCursedBladeActive = true;
             canActiveCursedBlade = false;
-            
-            //Debug.Log(cursedBladeTimer);
         }
-        else if (_healthScript.currentHealth <= 1 && canActiveCursedBlade)
-        {
-            //The player cannot activate cursed blade if the health is equal or below 1
-            canActiveCursedBlade = false;
-        }
+       
         yield return new WaitForSeconds(cursedBladeTimer);
         //Disable cursed blade after 6 seconds
         isPicked = false;

@@ -13,12 +13,19 @@ public class EnemyHealth : MonoBehaviour
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     [SerializeField] private bool isDead = false;
     [SerializeField] PlayerHealth playerHealth;
-    
 
+
+    //BLEEDING EFFECT
+    CursedBlade _cursedBladeScript;
+    [SerializeField] private float enemyReceiveDMG;
+    [SerializeField] private float extraBleedDMG;
+    [SerializeField] private int bleedTimer = 3;
+    private float HPthreshold;
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         playerHealth = FindObjectOfType<PlayerHealth>();
+        _cursedBladeScript = FindObjectOfType<CursedBlade>();
     }
     public void InitializeHealth(float healthValue)
     {
@@ -34,8 +41,15 @@ public class EnemyHealth : MonoBehaviour
         }
         if (!player.shielded)
         {
+            //Enemy receive dmg
             currentHealth -= damage;
+            
         }
+        else if(!player.shielded && _cursedBladeScript.isCursedBladeActive)
+        {
+            
+        }
+        
 
     }
     public void ColDamage()
@@ -52,7 +66,13 @@ public class EnemyHealth : MonoBehaviour
     }
     public void Dead()
     {
+        HPthreshold = maxHealth * 0.15f;
         if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+        //When the cursed blade is active and the enemy's health is below 15%, kill.
+        else if(_cursedBladeScript.isCursedBladeActive && currentHealth < HPthreshold)
         {
             Destroy(gameObject);
         }
@@ -60,53 +80,17 @@ public class EnemyHealth : MonoBehaviour
     public void Update()
     {
         Dead();
-        //checkHasShield();
+        Debug.Log(this.currentHealth);
+        
     }
-    //IEnumerator HealShield()
-    //{
-    //    yield return new WaitForSeconds(8);
-    //    player.ActivateShield();
-    //    player.shieldHealth = 2;
-    //    shieldTimer = 2;
-    //}
-    //public void Timer()
-    //{
-    //    if(shieldTimer > 0)
-    //    {
-    //        shieldTimer -= Time.deltaTime; // run the countdown
-    //    }
-    //    else if (shieldTimer <= 0)
-    //    {
-    //        //Debug.Log(this.gameObject.name);
-    //        shieldTimer = 0;  
-    //    }
-    //    if(shieldTimer == 0)
-    //    {
-    //        //Debug.Log("asdasd");
-    //        shieldTimer = 2;
-    //        player.shieldHealth -= 1;
-    //        Debug.Log(player.shieldHealth);
-    //    }
-    //    if (player.shieldHealth <= 0)
-    //    {
-    //        player.DeActivateShield();
-    //        StartCoroutine(HealShield());
-    //    }
-    //    int minutes = Mathf.FloorToInt(shieldTimer / 60);
-    //    int seconds = Mathf.FloorToInt(shieldTimer % 60);
-    //}
-    //public void checkHasShield()
-    //{
-    //    if(gameObject.tag == "Player")
-    //    {
-    //        //Debug.Log("1");
-    //        if (player.HasShield())
-    //        {
-    //            //Debug.Log("2");
-    //            Timer();
-    //        }
-    //    }
-    //}
 
-    
+
+    //BLEED FUNCTIONS
+    void BleedEffect()
+    {
+        extraBleedDMG = maxHealth * 0.05f;
+    }
+
+   
+
 }

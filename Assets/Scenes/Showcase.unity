@@ -1061,7 +1061,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1011084334, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
       propertyPath: currentHealth
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1463867792, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
       propertyPath: player
