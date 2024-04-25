@@ -110,7 +110,11 @@ public class PlayerWeaponHolder : MonoBehaviour
         {
             col.GetComponent<EnemyHealth>().TestHit(playerDamage, transform.parent.gameObject);
             Debug.Log(col.name);
-            instaKill();
+            if (canInstaKill == true && invisibility.activateDuration > 0)
+            {
+                afterKill();
+                Destroy(col.gameObject);
+            }
         }
     }
     private IEnumerator BoostingAttack()
@@ -146,13 +150,5 @@ public class PlayerWeaponHolder : MonoBehaviour
     {
         invisibility.isActivated = false;
         invisibility.ResetInvis();
-    }
-    public void instaKill()
-    {
-        if (canInstaKill == true && invisibility.activateDuration > 0)
-        {
-            afterKill();
-            Destroy(enemy);
-        }
     }
 }

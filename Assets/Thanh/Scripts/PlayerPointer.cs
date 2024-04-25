@@ -21,6 +21,7 @@ public class PlayerPointer : MonoBehaviour
     public bool gbActive;
     public bool heartsteelActive;
     public bool skActive;
+    public bool fbActive;
 
     private void Start()
     {
@@ -108,6 +109,10 @@ public class PlayerPointer : MonoBehaviour
     {
         skActive = true;
     }
+    public void ActiveFb()
+    {
+        fbActive = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -145,6 +150,10 @@ public class PlayerPointer : MonoBehaviour
             if(powerUp.activeStealthKill)
             {
                 ActiveSK();
+            }
+            if(powerUp.activeFrostbite)
+            {
+                ActiveFb();
             }
             Destroy(powerUp.gameObject);
         }

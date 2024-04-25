@@ -7,6 +7,7 @@ public class EnemyPatrol : MonoBehaviour
 {
 
     public GameObject player;
+    Invisibility invisibility;
         
 
     public float speed;
@@ -18,7 +19,7 @@ public class EnemyPatrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        invisibility = FindObjectOfType<Invisibility>();
     }
 
     // Update is called once per frame
@@ -44,8 +45,8 @@ public class EnemyPatrol : MonoBehaviour
 
 
         /*If the player is in range of detection of the enemy
-        then the enemy will move towards the player */
-        if (distance < detectionDistance)
+        then the enemy will move towards the player */  
+        if (distance < detectionDistance && invisibility.isActivated == false)
         {
             //If the enemy has detected the player then move 
             //towards the player
