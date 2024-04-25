@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795624d9cfb5b0b43b1f8b0b6bd29a69, type: 3}
-  m_Name: DungeonGenerationData
+  m_Script: {fileID: 11500000, guid: 5598790cc88668648a817eccc8cf42c8, type: 3}
+  m_Name: NPCTest
   m_EditorClassIdentifier: 
-  numberOfCrawlers: 1
-  interationMin: 4
-  interationMax: 6
+  NPCName: David
+  QuestID: 01
