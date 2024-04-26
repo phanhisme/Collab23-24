@@ -20,12 +20,15 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float enemyReceiveDMG;
     [SerializeField] private float extraBleedDMG;
     [SerializeField] private int bleedTimer = 3;
-    private float HPthreshold;
+    [SerializeField] private float HpThreshold;
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         _cursedBladeScript = FindObjectOfType<CursedBlade>();
+        
+        //Getting bleed effect
+        extraBleedDMG = maxHealth * 0.05f;
     }
     public void InitializeHealth(float healthValue)
     {
@@ -35,11 +38,12 @@ public class EnemyHealth : MonoBehaviour
     }
     public void TestHit(float damage, GameObject sender)
     {
+       
         if (isDead)
         {
             return;
         }
-        if (!player.shielded)
+        if (!player.shielded && !_cursedBladeScript.isCursedBladeActive)
         {
             //Enemy receive dmg
             currentHealth -= damage;
@@ -47,10 +51,9 @@ public class EnemyHealth : MonoBehaviour
         }
         else if(!player.shielded && _cursedBladeScript.isCursedBladeActive)
         {
-            
+            currentHealth -= damage;
+            StartCoroutine(BleedEffect());
         }
-        
-
     }
     public void ColDamage()
     {
@@ -66,13 +69,16 @@ public class EnemyHealth : MonoBehaviour
     }
     public void Dead()
     {
-        HPthreshold = maxHealth * 0.15f;
-        if(currentHealth <= 0)
+        //Execute when the enemy's health is below 15%
+        HpThreshold = maxHealth * 0.15f;
+        
+        //When the cursed blade is active and the enemy's health is below 15%, kill.
+        if(_cursedBladeScript.isCursedBladeActive && currentHealth < HpThreshold)
         {
             Destroy(gameObject);
         }
-        //When the cursed blade is active and the enemy's health is below 15%, kill.
-        else if(_cursedBladeScript.isCursedBladeActive && currentHealth < HPthreshold)
+        //If the cursed blade is not active then check this statement
+        else if(currentHealth <= 0)
         {
             Destroy(gameObject);
         }
@@ -81,15 +87,23 @@ public class EnemyHealth : MonoBehaviour
     {
         Dead();
         Debug.Log(this.currentHealth);
-        
     }
 
-
-    //BLEED FUNCTIONS
-    void BleedEffect()
+    IEnumerator BleedEffect()
     {
-        extraBleedDMG = maxHealth * 0.05f;
+        do
+        { 
+            currentHealth -= extraBleedDMG; 
+            yield return new WaitForSeconds(bleedTimer);
+            
+        } while (_cursedBladeScript.isCursedBladeActive);
     }
+    
+
+
+   
+      
+    
 
    
 
