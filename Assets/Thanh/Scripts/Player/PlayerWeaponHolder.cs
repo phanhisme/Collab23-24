@@ -24,7 +24,8 @@ public class PlayerWeaponHolder : MonoBehaviour
     public bool canInstaKill;
     Invisibility invisibility;
     EnemyHealth enemyHealth;
-    public GameObject enemy;
+    Frostbite frostbite;
+    
     public void ResetAttack()
     {
         isAttacking = false;
@@ -36,6 +37,7 @@ public class PlayerWeaponHolder : MonoBehaviour
         animEvent.OnEventTriggered += DetectCol;
         invisibility = FindObjectOfType<Invisibility>();
         enemyHealth = FindObjectOfType<EnemyHealth>();
+        frostbite = FindObjectOfType<Frostbite>(); 
     }
 
     public void Update()
@@ -110,6 +112,7 @@ public class PlayerWeaponHolder : MonoBehaviour
         {
             col.GetComponent<EnemyHealth>().TestHit(playerDamage, transform.parent.gameObject);
             Debug.Log(col.name);
+            frostbite.checkForFrostChance();
             if (canInstaKill == true && invisibility.activateDuration > 0)
             {
                 afterKill();

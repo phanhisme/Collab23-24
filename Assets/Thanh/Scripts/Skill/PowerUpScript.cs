@@ -13,6 +13,7 @@ public class PowerUpScript : MonoBehaviour
     public bool activeHeartsteel;
     public bool activeStealthKill;
     public bool activeFrostbite;
+    public bool activeCoinFarmAndRest;
     // Start is called before the first frame update
     void Start()
     {

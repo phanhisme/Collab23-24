@@ -22,6 +22,7 @@ public class PlayerPointer : MonoBehaviour
     public bool heartsteelActive;
     public bool skActive;
     public bool fbActive;
+    public bool cfActive;
 
     private void Start()
     {
@@ -114,6 +115,11 @@ public class PlayerPointer : MonoBehaviour
         fbActive = true;
     }
 
+    public void ActiveCf()
+    {
+        cfActive = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
@@ -154,6 +160,10 @@ public class PlayerPointer : MonoBehaviour
             if(powerUp.activeFrostbite)
             {
                 ActiveFb();
+            }
+            if(powerUp.activeCoinFarmAndRest)
+            {
+                ActiveCf();
             }
             Destroy(powerUp.gameObject);
         }

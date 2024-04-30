@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     public float currentHealth, maxHealth;
-    //public int collideDamage;
+    public float collideDamage;
     PlayerPointer player;
     [SerializeField]
     private bool isDead = false;
@@ -59,17 +59,18 @@ public class PlayerHealth : MonoBehaviour
             shieldHealth--;
         }
     }
-    //public void ColDamage()
-    //{
-    //    if (!player.shielded)
-    //    {
-    //        currentHealth -= collideDamage;
-    //    }
-    //    else if (player.shielded)
-    //    {
-    //        shieldHealth--;
-    //    }
-    //}
+    public void ColDamage()
+    {
+        if (!player.shielded && currentHealth > 0)
+        {
+            currentHealth -= collideDamage;
+            StartCoroutine(IsPlayerHurt());
+        }
+        else if (player.shielded)
+        {
+            shieldHealth--;
+        }
+    }
     public void Dead()
     {
         if(currentHealth <= 0)
