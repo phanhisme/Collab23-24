@@ -32,6 +32,7 @@ public class GoldenMoment : MonoBehaviour
 
     void StackingMoment()
     {
+        //When the player attacks
         if(pHolder.isHit == true)
         {
             currentStackMoment++;
