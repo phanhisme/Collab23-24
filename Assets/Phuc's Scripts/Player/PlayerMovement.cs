@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
             _currentBoostSpeedDuration = 0f;
             canAddSpeed = true;
             hasFinishedDashing = false;
-            dashBoostSpeedDuration = 2.5f;
+            dashBoostSpeedDuration = 1.5f;
             if(!checkOnce)
             {
                 CheckForSpeed();

@@ -7,54 +7,42 @@ public class RejectDeath : MonoBehaviour
 {
     private PlayerHealth _playerHealth;
     private EnemyPatrol _enemyPatrol;
-    
-    [SerializeField] private float playerCurrentHealth;
-    [SerializeField] private GameObject rejectDeathGO;
+    [SerializeField] private GameObject playerGO;
     
     public bool isRejectDeathEquipped = false;
 
-    [SerializeField] private float invincibleTimer = 2.0f;
+    [SerializeField] private float invincibleTimer;
     [SerializeField] private bool isInvincible;
     
     private void Start()
     {
         _playerHealth = FindObjectOfType<PlayerHealth>();
         _enemyPatrol = FindObjectOfType<EnemyPatrol>();
-        rejectDeathGO = GameObject.Find("RejectDeath");
-        playerCurrentHealth = _playerHealth.currentHealth;
+        playerGO = GameObject.Find("Player");
     }
     private void Update()
     {
-        
-        //Find the reject death game object in the player as a child
-        foreach (Transform eachChild in transform)
+        if (transform.parent == playerGO.transform)
         {
-            //When the player found the reject death object
-            if (eachChild.name == "RejectDeath")
-            {
-                isRejectDeathEquipped = true;
-                StartCoroutine(TriggerInvincible());
-                Debug.Log(playerCurrentHealth);
-            }
+            isRejectDeathEquipped = true;
+            StartCoroutine(TriggerInvincible());
         }
-       
     }
     IEnumerator TriggerInvincible()
     {
-        if (isRejectDeathEquipped && playerCurrentHealth == 0)
+        if (isRejectDeathEquipped && _playerHealth.currentHealth == 0)
         {
             isInvincible = true;
+            if (isInvincible)
+            {
+                _playerHealth.isHurt = true;
+            }
             yield return new WaitForSeconds(invincibleTimer);
             isInvincible = false;
-            Destroy(rejectDeathGO);
+            Destroy(gameObject);
             isRejectDeathEquipped = false;
-            playerCurrentHealth = 1;
+            _playerHealth.currentHealth = 1;
         }
-
-        while (isInvincible)
-        {
-            //while the player is invincible, the enemy cannot detect the player
-            _enemyPatrol.hasDetectPlayer = false;
-        }
+        
     }
 }
