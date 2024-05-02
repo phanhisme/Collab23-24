@@ -14,15 +14,17 @@ public class RemakeNeedleStrike : MonoBehaviour
 
     //public float nextSpawnTime;
     //private float spawnTimer;
-    [SerializeField] PlayerHealth playerHealth;
+    PlayerHealth playerHealth;
+    PlayerPointer playerPointer;
     private void Start()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
+        playerPointer = FindObjectOfType<PlayerPointer>();
     }
     private void Update()
     {
         //spawnTimer -= Time.deltaTime;
-        if (playerHealth.isHurt == true)
+        if (playerHealth.isHurt == true && playerPointer.needleStrike == true)
         {
             SpawnNeedle();
             //spawnTimer = nextSpawnTime;
