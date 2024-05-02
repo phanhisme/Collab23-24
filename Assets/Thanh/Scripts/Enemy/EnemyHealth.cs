@@ -14,12 +14,19 @@ public class EnemyHealth : MonoBehaviour
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     [SerializeField] private bool isDead = false;
     [SerializeField] PlayerHealth playerHealth;
+    [SerializeField] CursedBlade _cursedBladeScript;
     public bool isHit;
+
+    public float HpThreshold;
+    private int bleedTimer;
+    [Seriprivate float extraBleedDMG;
+
 
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         playerHealth = FindObjectOfType<PlayerHealth>();
+        _cursedBladeScript = FindObjectOfType<CursedBlade>();
     }
     public void InitializeHealth(float healthValue)
     {
@@ -33,16 +40,33 @@ public class EnemyHealth : MonoBehaviour
         {
             return;
         }
-        if (currentHealth > 0)
+        
+        if (currentHealth > 0 && _cursedBladeScript.isCursedBladeActive)
+        {
+            //currentHealth -= damage;
+            StartCoroutine(BleedEffect());
+            Debug.Log(currentHealth);
+        }
+        else if (currentHealth > 0)
         {
             currentHealth -= damage;
             StartCoroutine(IsHit());
-        }
 
+        }
     }
     public void Dead()
     {
-        if(currentHealth <= 0)
+       
+        //Execute when the enemy's health is below 15%
+        HpThreshold = maxHealth * 0.15f;
+
+        //When the cursed blade is active and the enemy's health is below 15%, kill.
+        if (_cursedBladeScript.isCursedBladeActive && currentHealth < HpThreshold)
+        {
+            Destroy(gameObject);
+        }
+        //If the cursed blade is not active then check this statement
+        else if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
@@ -50,7 +74,7 @@ public class EnemyHealth : MonoBehaviour
     public void Update()
     {
         Dead();
-        //checkHasShield();
+        
     }
     public IEnumerator IsHit()
     {
@@ -58,5 +82,15 @@ public class EnemyHealth : MonoBehaviour
         float isHitDuration = 0;
         yield return new WaitForSeconds(isHitDuration);
         isHit = false;
+    }
+    IEnumerator BleedEffect()
+    {
+        extraBleedDMG = maxHealth * 0.05f;
+        do
+        {
+            currentHealth -= extraBleedDMG;
+            yield return new WaitForSeconds(bleedTimer);
+
+        } while (_cursedBladeScript.isCursedBladeActive);
     }
 }
