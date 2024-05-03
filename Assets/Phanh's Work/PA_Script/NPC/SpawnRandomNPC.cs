@@ -50,5 +50,8 @@ public class SpawnRandomNPC : MonoBehaviour
 
         NPCBehaviour behaviour = FindObjectOfType<NPCBehaviour>();
         behaviour.thisNPC = thisScriptable;
+
+        QuestLogic logic = FindObjectOfType<QuestLogic>();
+        logic.chosenNPC = thisScriptable;
     }
 }

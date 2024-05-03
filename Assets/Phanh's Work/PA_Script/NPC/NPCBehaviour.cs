@@ -8,7 +8,6 @@ public class NPCBehaviour : MonoBehaviour
     private bool hasSpoken = false; //has spoken in that day
 
     public CreateNPC thisNPC;
-    public CreateQuest chosenScriptable;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,5 +24,9 @@ public class NPCBehaviour : MonoBehaviour
 
     }
 
+    public string GetNPCName()
+    {
+        return thisNPC.NPCName;
+    }
 
 }
