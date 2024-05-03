@@ -24,9 +24,4 @@ public class NPCBehaviour : MonoBehaviour
 
     }
 
-    public string GetNPCName()
-    {
-        return thisNPC.NPCName;
-    }
-
 }

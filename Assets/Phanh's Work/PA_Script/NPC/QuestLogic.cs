@@ -6,11 +6,10 @@ using TMPro;
 
 public class QuestLogic : MonoBehaviour
 {
-    public List<CreateReward> rewardType = new List<CreateReward>();
-    private CreateReward chosenRewardType;
+    public List<CreateQuest> rewardType = new List<CreateQuest>();
+    private CreateQuest chosenRewardType;
     public CreateNPC chosenNPC;
 
-    private string questTitle;
     public int amountNeeded;
 
     public TextMeshProUGUI questName;
@@ -33,7 +32,7 @@ public class QuestLogic : MonoBehaviour
     {
         currentStatus = Status.STANDBY;
 
-        RandomQuestData(); //choose a quest type
+        //RandomQuestData(); //choose a quest type
     }
 
     public void RandomQuestData()
@@ -99,10 +98,10 @@ public class QuestLogic : MonoBehaviour
             switch (b)
             {
                 case 0:
-                    return $"Fruity Harvest";
+                    return $"Gold Rush";
 
                 case 1:
-                    return $"Seeds of Sweet Success";
+                    return $"Forge a Fortune";
 
                 case 2:
                     return $"Rags to Riches";
@@ -125,9 +124,7 @@ public class QuestLogic : MonoBehaviour
                     return $"Fortune Through Forage";
             }
         }
-        
-
-        return questTitle;
+        return "";
     }
 
     private int QuestItemAmount()
@@ -175,19 +172,23 @@ public class QuestLogic : MonoBehaviour
 
     public string FormattedIntro()
     {
-        //int r = Random.Range(0, 4);
 
-        //switch (0)
-        //{
-        //    case 0:
-        //        //return $"<color=blue>{behaviour.thisNPC.NPCName}</color> has a request for you!";
-        //        break;
-        //}
+        int r = Random.Range(0, 3);
 
-        NPCBehaviour behaviour = FindObjectOfType<NPCBehaviour>();
-        Debug.Log(chosenNPC.NPCName);
+        switch (r)
+        {
+            case 0:
+                return $"<color=blue>{chosenNPC.NPCName}</color> has a request for you!";
 
-        return $"<color=blue>{chosenNPC.NPCName}</color> has a request for you!";
+            case 1:
+                return $"<color=blue>{chosenNPC.NPCName}</color> is seeking for your help!";
+
+            case 2:
+                return $"<color=blue>{chosenNPC.NPCName}</color> commisioned you!";
+
+        }
+
+        return "";
     }
 
     public int RandomNumberForQuestTitle()

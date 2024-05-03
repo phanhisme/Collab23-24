@@ -14,6 +14,8 @@ public class SpawnRandomNPC : MonoBehaviour
     private enum DayCycle{ DAY, NIGHT};
     private DayCycle currentCycle;
 
+    public string Tname;
+
 
     void Start()
     {
@@ -53,5 +55,7 @@ public class SpawnRandomNPC : MonoBehaviour
 
         QuestLogic logic = FindObjectOfType<QuestLogic>();
         logic.chosenNPC = thisScriptable;
+
+        logic.RandomQuestData();
     }
 }
