@@ -181,10 +181,10 @@ public class QuestLogic : MonoBehaviour
                 return $"<color=blue>{chosenNPC.NPCName}</color> has a request for you!";
 
             case 1:
-                return $"<color=blue>{chosenNPC.NPCName}</color> is seeking for your help!";
+                return $"<color=blue>{chosenNPC.NPCName}</color> is seeking for your help...";
 
             case 2:
-                return $"<color=blue>{chosenNPC.NPCName}</color> commisioned you!";
+                return $"A new commission from <color=blue>{chosenNPC.NPCName}</color> just arrived!";
 
         }
 
