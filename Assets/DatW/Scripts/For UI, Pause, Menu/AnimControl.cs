@@ -5,6 +5,8 @@ using UnityEngine;
 public class AnimControl : MonoBehaviour
 {
     private Animator animator;
+    [SerializeField] private string chooseWeapAnim = "WeapChooseAnim";
+    [SerializeField] private string closeWeapAnim = "WeapChooseCloseAnim";
     void Start()
     {
         // Get the Animator component attached to the GameObject
@@ -17,15 +19,12 @@ public class AnimControl : MonoBehaviour
 
     public void PlayAnimation1()
     {
-        // Stop other animations and play Animation1
-        animator.SetBool("WeapChooseAnim", true);
-        animator.SetBool("WeapChooseCloseAnim", false);
+        animator.Play(chooseWeapAnim,0, 0.0f);
     }
 
     public void PlayAnimation2()
     {
-        // Stop other animations and play Animation2
-        animator.SetBool("WeapChooseAnim", false);
-        animator.SetBool("WeapChooseCloseAnim", true);
+        
+        animator.Play(closeWeapAnim, 0, 0.0f);
     }
 }
