@@ -505,6 +505,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c8eddf1d6daf64bb1131f36abc7bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &143912058
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4549566157370347269, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576546, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576546, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576546, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8426006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576556, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_Name
+      value: Lifesteal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576556, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.724
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.444
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045193352684576557, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4549566157370347270, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+--- !u!1 &143912059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7045193352684576556, guid: afdc4ea0703835447b3a0a668d224439, type: 3}
+  m_PrefabInstance: {fileID: 143912058}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &143912060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143912059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad505d97c2920c4f8f2a23bb09f2753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLifeStealActive: 0
+  healChance: 0.2
+  playerPos: {fileID: 0}
+  _playerHealth: {fileID: 0}
+  _enemyHealth: {fileID: 0}
+  canHeal: 0
+  randomChance: 0
 --- !u!224 &184603632 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8802388202603904693, guid: d36cedd06c18c0d448926f3285de5467, type: 3}

@@ -95,7 +95,7 @@ public class PlayerWeaponHolder : MonoBehaviour
             player.DeActivateTitanGlove();
         }
         
-        //Getting bleed effect from cursed blade
+        
         
     }
     private IEnumerator DelayAttack()
@@ -114,7 +114,7 @@ public class PlayerWeaponHolder : MonoBehaviour
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius, enemyMask))
         {
             col.GetComponent<EnemyHealth>().TestHit(playerDamage, transform.parent.gameObject);
-            Debug.Log(col.name);
+            //Debug.Log(col.name);
             frostbite.checkForFrostChance();
             if (canInstaKill == true && invisibility.activateDuration > 0)
             {

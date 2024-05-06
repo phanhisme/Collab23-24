@@ -28,11 +28,11 @@ public class Frostbite : MonoBehaviour
         {
             enemyPatrol.speed = enemyPatrol.speed * slowMultiplier;
             StartCoroutine(SlowDuration(slowDuration));
-            Debug.Log("Slowed");
+            //Debug.Log("Slowed");
         }
         else if(playerPointer.fbActive == false || randomChance > frostChance || isSlowed == true && enemyHealth.isHit == true) 
         {
-            Debug.Log("NotSlowed");
+            //Debug.Log("NotSlowed");
             return;
         }
     }
