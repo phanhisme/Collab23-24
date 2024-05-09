@@ -7,22 +7,22 @@ public class RejectDeath : MonoBehaviour
 {
     private PlayerHealth _playerHealth;
     private EnemyPatrol _enemyPatrol;
-    [SerializeField] private GameObject playerGO;
     
     public bool isRejectDeathEquipped = false;
 
     [SerializeField] private float invincibleTimer;
     [SerializeField] private bool isInvincible;
-    
+
+    private GameObject playerPos;
     private void Start()
     {
         _playerHealth = FindObjectOfType<PlayerHealth>();
         _enemyPatrol = FindObjectOfType<EnemyPatrol>();
-        playerGO = GameObject.Find("Player");
+        playerPos = GameObject.FindWithTag("Player");
     }
     private void Update()
     {
-        if (transform.parent == playerGO.transform)
+        if (transform.parent == playerPos.transform)
         {
             isRejectDeathEquipped = true;
             StartCoroutine(TriggerInvincible());
@@ -43,6 +43,12 @@ public class RejectDeath : MonoBehaviour
             isRejectDeathEquipped = false;
             _playerHealth.currentHealth = 1;
         }
-        
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.transform.SetParent(playerPos.transform);
+        }
     }
 }

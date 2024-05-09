@@ -23,16 +23,16 @@ public class Frostbite : MonoBehaviour
     public void checkForFrostChance()
     {
         randomChance = Random.Range(0, 101);
-        Debug.Log(randomChance);
+        //Debug.Log(randomChance);
         if(randomChance <= frostChance && isSlowed == false && enemyHealth.isHit == true && playerPointer.fbActive == true)
         {
             enemyPatrol.speed = enemyPatrol.speed * slowMultiplier;
             StartCoroutine(SlowDuration(slowDuration));
-            Debug.Log("Slowed");
+            //Debug.Log("Slowed");
         }
         else if(playerPointer.fbActive == false || randomChance > frostChance || isSlowed == true && enemyHealth.isHit == true) 
         {
-            Debug.Log("NotSlowed");
+            //Debug.Log("NotSlowed");
             return;
         }
     }
