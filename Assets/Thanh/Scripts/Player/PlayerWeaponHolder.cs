@@ -25,6 +25,7 @@ public class PlayerWeaponHolder : MonoBehaviour
     Invisibility invisibility;
     EnemyHealth enemyHealth;
     Frostbite frostbite;
+    Lifesteal _lifeSteal;
     
     public void ResetAttack()
     {
@@ -37,7 +38,9 @@ public class PlayerWeaponHolder : MonoBehaviour
         animEvent.OnEventTriggered += DetectCol;
         invisibility = FindObjectOfType<Invisibility>();
         enemyHealth = FindObjectOfType<EnemyHealth>();
-        frostbite = FindObjectOfType<Frostbite>(); 
+        frostbite = FindObjectOfType<Frostbite>();
+        _lifeSteal = FindObjectOfType<Lifesteal>();
+
     }
 
     public void Update()
@@ -68,6 +71,8 @@ public class PlayerWeaponHolder : MonoBehaviour
         {
             weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
         }
+
+        
     }
 
     public void Attack()
@@ -94,9 +99,8 @@ public class PlayerWeaponHolder : MonoBehaviour
         {
             player.DeActivateTitanGlove();
         }
-        
-        
-        
+
+
     }
     private IEnumerator DelayAttack()
     {
@@ -121,6 +125,10 @@ public class PlayerWeaponHolder : MonoBehaviour
                 afterKill();
                 Destroy(col.gameObject);
             }
+            
+            //The player restores 1hp after hitting the enemy
+            //Please take my branch
+            _lifeSteal.LifestealAfterHit();
         }
     }
     private IEnumerator BoostingAttack()
@@ -157,4 +165,6 @@ public class PlayerWeaponHolder : MonoBehaviour
         invisibility.isActivated = false;
         invisibility.ResetInvis();
     }
+
+   
 }

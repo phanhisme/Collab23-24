@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lifesteal : MonoBehaviour
 {
-    [SerializeField] private bool isLifeStealActive;
+    public bool isLifeStealActive;
     public float healChance = 0.2f;
 
     [SerializeField] private GameObject playerPos;
@@ -13,7 +13,7 @@ public class Lifesteal : MonoBehaviour
     [SerializeField] private EnemyHealth _enemyHealth;
     [SerializeField] private PlayerWeaponHolder _playerWeaponHolder;
 
-    [SerializeField] private bool canHeal = false;
+    
 
     public float randomChance;
 
@@ -27,11 +27,7 @@ public class Lifesteal : MonoBehaviour
 
     private void Update()
     {
-        if (_enemyHealth.isHit && isLifeStealActive)
-        {
-            StartCoroutine(LifestealAfterHit());
-            Debug.Log(randomChance);
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,23 +37,21 @@ public class Lifesteal : MonoBehaviour
         {
             gameObject.transform.SetParent(playerPos.transform);
             isLifeStealActive = true;
-            canHeal = true;
+           
         }
         else
         {
             isLifeStealActive = false;
         }
     }
-    public IEnumerator LifestealAfterHit()
-    {
-        
-        randomChance = Random.Range(0f, 1f);
-        if (_playerWeaponHolder.GetComponent<PlayerWeaponHolder>().isAttacking && randomChance < healChance && canHeal)
+    public void LifestealAfterHit()
+    { 
+        //Returns the value of 0 to 1
+        randomChance = Random.value;
+        if (randomChance < healChance)
         {            
             _playerHealth.currentHealth += 1;
-            canHeal = false;
         }
-        yield return new WaitForSeconds(0f);
     }
 }
 
