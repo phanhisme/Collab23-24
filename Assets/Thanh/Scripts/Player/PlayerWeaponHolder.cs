@@ -162,7 +162,9 @@ public class PlayerWeaponHolder : MonoBehaviour
     }
     public void afterKill()
     {
+        Debug.Log("after");
         invisibility.isActivated = false;
+        invisibility.activateDuration = 0;
         invisibility.ResetInvis();
     }
 
