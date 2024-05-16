@@ -6,8 +6,6 @@ using TMPro;
 
 public class QuestLogic : MonoBehaviour
 {
-    public List<CreateQuest> rewardType = new List<CreateQuest>();
-    private CreateQuest chosenRewardType;
     public CreateNPC chosenNPC;
 
     public int amountNeeded;
@@ -20,13 +18,12 @@ public class QuestLogic : MonoBehaviour
     public TextMeshProUGUI rewardAmount;
     public TextMeshProUGUI progression;
 
-    public Image questStatus;
+    public List<Sprite> statusSprite = new List<Sprite>();
 
     public enum Status { ONGOING, STANDBY, CLAIMABLE, CLAIMED }
     public Status currentStatus;
 
-    public enum QuestItem { Currency, PickUps, Villagers, EnemyDrops }
-    public QuestItem questItem;
+    
 
     public void QuestStatus(Status questStatus)
     {
@@ -34,6 +31,7 @@ public class QuestLogic : MonoBehaviour
         switch (questStatus)
         {
             case Status.ONGOING:
+
                 break;
 
             case Status.STANDBY:
@@ -63,8 +61,8 @@ public class QuestLogic : MonoBehaviour
         questDetails.text = FormattedDescription();
         questIntro.text = FormattedIntro();
 
-        rewardImage.sprite = chosenRewardType.rewardIcon;
-        rewardAmount.text = chosenRewardType.rewardAmount.ToString();
+        //rewardImage.sprite = chosenRewardType.rewardIcon;
+        //rewardAmount.text = chosenRewardType.rewardAmount.ToString();
         //progression.text=chosenScriptable.
 
         
@@ -73,20 +71,20 @@ public class QuestLogic : MonoBehaviour
 
     public string FormattedDescription()
     {
-        switch (questItem)
-        {
-            case QuestItem.Villagers:
-                return $"Rescue <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
+        //switch (questItem)
+        //{
+        //    case QuestItem.Villagers:
+        //        return $"Rescue <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
 
-            case QuestItem.Currency:
-                return $"Obtain <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
+        //    case QuestItem.Currency:
+        //        return $"Obtain <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
 
-            case QuestItem.PickUps:
-                return $"Retrieve <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
+        //    case QuestItem.PickUps:
+        //        return $"Retrieve <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
 
-            case QuestItem.EnemyDrops:
-                return $"Obtain <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
-        }
+        //    case QuestItem.EnemyDrops:
+        //        return $"Obtain <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
+        //}
         return "";
     }
 

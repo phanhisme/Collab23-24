@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: V01
   questTitle: Lost in the Wilds
-  questDescription: Rescue <color=green>1 Villagers</color>
+  questDescription: My friend is missing! Rescue <color=green>1 Villagers</color>
   rewardIcon: {fileID: 21300000, guid: 2eb9040eaa30b8540a069b0d5f6b927e, type: 3}
   rewardAmount: 5
   questTime: 0
+  questItem: 2

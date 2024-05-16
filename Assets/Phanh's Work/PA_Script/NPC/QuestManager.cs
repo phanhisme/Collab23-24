@@ -12,29 +12,7 @@ public class QuestManager : MonoBehaviour
         int i = Random.Range(0, allQuest.Count);
 
         randQuest = allQuest[i];
-        addedQuest.Add(randQuest);
-
-        switch (i)
-        {
-            case 0: //quest 01
-                
-                
-                break;
-
-            case 1:
-                
-                break;
-
-            case 2:
-                
-                break;
-
-            case 3:
-                
-                break;
-        }
-
-        
+        addedQuest.Add(randQuest); 
     }
 
     public void OnGoingQuest(QuestLogic chosenQuest)
@@ -48,10 +26,7 @@ public class QuestManager : MonoBehaviour
         {
             //find existing quest in the 
             chosenQuest.currentStatus = QuestLogic.Status.ONGOING;
-        }
-           
-
-        
+        } 
     }
 
     //public

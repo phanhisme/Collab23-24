@@ -15,5 +15,6 @@ public class CreateQuest : ScriptableObject
 
     public float questTime; //for quest which counts time like online for zz minutes
 
-    
+    public enum QuestItem { Currency, PickUps, Villagers, EnemyDrops }
+    public QuestItem questItem;
 }

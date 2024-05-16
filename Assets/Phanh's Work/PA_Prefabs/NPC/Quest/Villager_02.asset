@@ -19,3 +19,4 @@ MonoBehaviour:
   rewardIcon: {fileID: 0}
   rewardAmount: 0
   questTime: 0
+  questItem: 2
