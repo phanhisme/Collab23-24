@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3614d07861607749821e08e8c5052c3, type: 3}
   m_Name: Villager_02
   m_EditorClassIdentifier: 
-  questTitle: 
+  questID: V02
+  questTitle: Answer the Desperate Plea
+  questDescription: A desperate scream pierces the woods! Find and rescue <color=green>the
+    mysterious villager</color> within 900 seconds  or face dire consequences!
   rewardIcon: {fileID: 0}
   rewardAmount: 0
   questTime: 0

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3614d07861607749821e08e8c5052c3, type: 3}
   m_Name: Currency_02
   m_EditorClassIdentifier: 
+  questID: C02
   questTitle: Gold Rush
+  questDescription: Obtain <color=yellow>400 Stage Coin</color> in 900 seconds
   rewardIcon: {fileID: 21300000, guid: 2eb9040eaa30b8540a069b0d5f6b927e, type: 3}
-  rewardAmount: 5
+  rewardAmount: 10
   questTime: 900

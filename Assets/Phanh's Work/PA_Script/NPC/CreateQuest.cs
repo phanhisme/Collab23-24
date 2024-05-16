@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Quest", menuName = "Quest System/Create Quests")]
 public class CreateQuest : ScriptableObject
 {
+    public string questID;
+
     public string questTitle;
+    public string questDescription;
 
     public Sprite rewardIcon;
     public int rewardAmount;
