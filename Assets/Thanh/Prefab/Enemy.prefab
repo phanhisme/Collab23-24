@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6491490455753061649}
   - component: {fileID: 6491490455753061650}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: HoldWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,11 @@ MonoBehaviour:
   radius: 0.82
   anim: {fileID: 6491490456247524897}
   delayAttack: 0.5
-  health: {fileID: 0}
+  enemyDamage: 5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  animEvent: {fileID: 0}
 --- !u!1 &6491490455858719558
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +66,7 @@ GameObject:
   - component: {fileID: 6491490455858719578}
   - component: {fileID: 6491490455858719579}
   - component: {fileID: 6491490455858719556}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +167,7 @@ GameObject:
   - component: {fileID: 6491490455942789941}
   - component: {fileID: 6491490455942789899}
   - component: {fileID: 6491490455942789940}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +263,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   target: {fileID: 6851891554381255628}
   offset: {x: 0, y: 1.3, z: 0}
-  health: {fileID: 598192872}
+  enemyHealth: {fileID: 1011084334}
 --- !u!1 &6491490455971283378
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6491490455971283377}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +306,7 @@ GameObject:
   - component: {fileID: 6491490456179664743}
   - component: {fileID: 6491490456179664741}
   - component: {fileID: 6491490456179664742}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +383,7 @@ GameObject:
   - component: {fileID: 6491490456247524903}
   - component: {fileID: 6491490456247524897}
   - component: {fileID: 6491490456247524896}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: EnemyWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,36 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c8eddf1d6daf64bb1131f36abc7bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnAnimationEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6491490455753061650}
-        m_TargetAssemblyTypeName: EnemyWeaponHolder, Assembly-CSharp
-        m_MethodName: ResetAttackForEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnAttackPerformed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6491490455753061650}
-        m_TargetAssemblyTypeName: EnemyWeaponHolder, Assembly-CSharp
-        m_MethodName: DetectCol
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6491490456295070503
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,8 +503,10 @@ GameObject:
   - component: {fileID: 6851891554381255630}
   - component: {fileID: 6851891554381255631}
   - component: {fileID: 6851891554381255624}
-  - component: {fileID: 598192872}
-  m_Layer: 6
+  - component: {fileID: 1463867792}
+  - component: {fileID: 1011084334}
+  - component: {fileID: -7052518298395917574}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -553,7 +529,7 @@ Transform:
   - {fileID: 6491490455971283377}
   - {fileID: 6491490455753061649}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6851891554381255629
 SpriteRenderer:
@@ -636,7 +612,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -671,7 +647,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &598192872
+--- !u!114 &1463867792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -680,11 +656,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6491490456295070503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2166c0529f64fbc4abcd0b0377c09e14, type: 3}
+  m_Script: {fileID: 11500000, guid: 45cf21fb5ac638f4eb271dafd1e38a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 2
-  maxHealth: 2
+  player: {fileID: 0}
+  speed: 3
+  distance: 4
+  detectionDistance: 5
+  hasDetectPlayer: 0
+--- !u!114 &1011084334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491490456295070503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd00fd058dc0d784abaed352183fa502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 10
+  maxHealth: 10
   collideDamage: 1
   OnHitWithReference:
     m_PersistentCalls:
@@ -693,7 +686,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isDead: 0
-  shieldTimer: 2
+  playerHealth: {fileID: 0}
+  isHit: 0
+--- !u!114 &-7052518298395917574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491490456295070503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a139ef333210349beb970a97046e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: {fileID: 0}
 --- !u!1 &6491490457109044942
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6491490457109044941}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6491490457244913290}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,7 +780,7 @@ GameObject:
   - component: {fileID: 6491490457363635467}
   - component: {fileID: 6491490457363635465}
   - component: {fileID: 6491490457363635466}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

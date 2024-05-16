@@ -5,13 +5,13 @@ using UnityEngine;
 public class EarthyMeal : MonoBehaviour
 {
     [SerializeField] private bool isPicked = false;
-    Health healthScript;
+    PlayerHealth playerHealth;
     
     public Transform player;
     public GameObject playerObj;
     private void Awake()
     {
-        healthScript = FindObjectOfType<Health>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
     }
     private void Start()
     {
@@ -31,8 +31,7 @@ public class EarthyMeal : MonoBehaviour
         //For testing purposes only
         if(Input.GetKeyDown(KeyCode.E) && isPicked)
         {
-            
-            healthScript.maxHealth = healthScript.maxHealth + 1;
+            playerHealth.maxHealth = playerHealth.maxHealth + 1;
             Destroy(this.gameObject);
         }
     }
