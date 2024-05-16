@@ -28,103 +28,23 @@ public class QuestLogic : MonoBehaviour
     public enum QuestItem { Currency, PickUps, Villagers, EnemyDrops }
     public QuestItem questItem;
 
-    private void Start()
+    public void QuestStatus(Status questStatus)
     {
-        currentStatus = Status.STANDBY;
-
-        //RandomQuestData(); //choose a quest type
-    }
-
-    public void RandomQuestData()
-    {
-        int i = Random.Range(0, 3);
-
-        switch (i)
+        //newly accepted quest will automatically become on going upon acception
+        switch (questStatus)
         {
-            case 0:
-                Debug.Log("Villager");
-                questItem = QuestItem.Villagers;
-                chosenRewardType = rewardType[0]; //5 currency
+            case Status.ONGOING:
                 break;
 
-            case 1:
-                Debug.Log("Currency");
-                questItem = QuestItem.Currency;
-                chosenRewardType = rewardType[0]; //5 currency
+            case Status.STANDBY:
                 break;
 
-            case 2:
-                Debug.Log("PU");
-                questItem = QuestItem.PickUps;
-                chosenRewardType = rewardType[0]; //5 currency
+            case Status.CLAIMABLE:
                 break;
 
-            case 3:
-                Debug.Log("Drop");
-                questItem = QuestItem.EnemyDrops;
-                chosenRewardType = rewardType[0]; //5 currency
+            case Status.CLAIMED:
                 break;
         }
-
-        //we can add special quest which rewards the player with weapon/activation
-
-        RandomQuestTitle();
-        ApplyQuestData();
-    }
-
-    public string RandomQuestTitle()
-    {
-        if (questItem == QuestItem.Villagers)
-        {
-            int a = RandomNumberForQuestTitle();
-
-            switch (a)
-            {
-                case 0:
-                    return $"Lost in the Wilds";
-
-                case 1:
-                    return $"Answer the Desperate Plea";
-
-                case 2:
-                    return $"Search for the Missing One";
-            }
-        }
-
-        else if (questItem == QuestItem.Currency)
-        {
-            int b = RandomNumberForQuestTitle();
-
-            switch (b)
-            {
-                case 0:
-                    return $"Gold Rush";
-
-                case 1:
-                    return $"Forge a Fortune";
-
-                case 2:
-                    return $"Rags to Riches";
-            }
-        }
-
-        else if (questItem == QuestItem.PickUps)
-        {
-            int c = RandomNumberForQuestTitle();
-
-            switch (c)
-            {
-                case 0:
-                    return $"Fruity Harvest";
-
-                case 1:
-                    return $"Seeds of Sweet Success";
-
-                case 2:
-                    return $"Fortune Through Forage";
-            }
-        }
-        return "";
     }
 
     private int QuestItemAmount()
@@ -139,7 +59,7 @@ public class QuestLogic : MonoBehaviour
 
     void ApplyQuestData()
     {
-        questName.text = RandomQuestTitle();
+        //questName.text = RandomQuestTitle();
         questDetails.text = FormattedDescription();
         questIntro.text = FormattedIntro();
 
