@@ -7,11 +7,11 @@ public class QuestManager : MonoBehaviour
     public List<CreateQuest> allQuest = new List<CreateQuest>();
     public List<CreateQuest> addedQuest = new List<CreateQuest>();
 
-    public void RandomQuestData(CreateQuest randQuest)
+    public void RandomQuestData()
     {
         int i = Random.Range(0, allQuest.Count);
 
-        randQuest = allQuest[i];
+        CreateQuest randQuest = allQuest[i];
         addedQuest.Add(randQuest); 
     }
 
@@ -31,3 +31,4 @@ public class QuestManager : MonoBehaviour
 
     //public
 }
+ 
