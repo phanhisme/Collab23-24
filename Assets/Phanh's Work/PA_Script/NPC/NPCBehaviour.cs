@@ -8,43 +8,87 @@ public class NPCBehaviour : MonoBehaviour
     public Collider2D col;
     private bool hasSpoken = false; //has spoken in that day
     private bool hasTakenQuest = false; //ask if the player has finish the quest if this is true
+    private bool checkInRange = false;
+    private bool interacting = false;
 
     public CreateNPC thisNPC; //npc scriptable - we can add NPC trait - to randomize what they might say from different traits
 
-    public bool isAvailableForQuest = false; 
+    public bool isAvailableForQuest = false;
+
+    public List<CreateQuest> allQuest = new List<CreateQuest>();
     public CreateQuest quest;
 
-    public GameObject idleChat;
+    public GameObject idleChat; //showing a speech bubble above the player
     public TextMeshPro chatText;
 
-    private GameObject player;
+    private int path;
 
     public TextMeshProUGUI timerText;
     public float popChatCooldown = 10.0f;
     public float currentTime = 0f;
+
+    public enum Status { TALKING, IDLE};
+    public Status currentStatus;
     
     private void Start()
     {
+        currentStatus = Status.IDLE;
         idleChat.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        float randomValue = Random.value;
+        if (randomValue <= 0.7)
+        {
+            //chances to receive quest
+            isAvailableForQuest = true;
+            path = 3;
+            RandomQuest();
+
+            Debug.Log("quest is available");
+        }
+        else
+        {
+            isAvailableForQuest = false;
+            path = Random.Range(0, 2); //depends on the player's level later
+        }
     }
 
     private void Update()
     {
-        if (player != null)
+        if (!checkInRange) // if there is the player within the scene -> randomly pop up a random chat
         {
             timerText.text = currentTime.ToString();
-            
-            if (currentTime <= popChatCooldown)
-            {
-                currentTime += Time.deltaTime;
-            }
-            else if (currentTime >= popChatCooldown)
-            {
-                currentTime = 0;
-                StartCoroutine(WaitForTime(2));
-            }
 
+            if(currentStatus == Status.IDLE)
+            {
+                if (currentTime <= popChatCooldown)
+                {
+                    currentTime += Time.deltaTime;
+                }
+                else if (currentTime >= popChatCooldown)
+                {
+                    StartCoroutine(WaitForTime(5));
+                }
+            }
+        }
+
+        else
+        {
+            if (currentStatus == Status.IDLE) //not talking to anyone
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    Interact();
+                    currentStatus = Status.TALKING;
+                }
+            }
+        }
+
+        if (interacting)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ShowQuest();
+            }
         }
     }
 
@@ -52,17 +96,14 @@ public class NPCBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Interact();
-            }
+            checkInRange = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        checkInRange = false;
+        currentStatus = Status.IDLE;
     }
 
     private void PopUpChat()
@@ -71,20 +112,19 @@ public class NPCBehaviour : MonoBehaviour
         float randomTalkChance = Random.value;
         Debug.Log(randomTalkChance);
 
-        if (randomTalkChance <= 0.7)
+        if (randomTalkChance <= 0.5)
         {
             idleChat.SetActive(true);
             
             if (!isAvailableForQuest)
             {
-                //not every npc hold quests (20% only)
-                int a = GetRandomValue();
-                switch (a)
+                //not every npc hold quests
+
+                switch (path) //keep random for now
                 {
                     case 0:
-                        chatText.text = "Greetings.What a beautiful day this morning!";
+                        chatText.text = "";
                         //nothing special, just random greetings and cozy conversation - spawn rate reduce as the player level up
-                        RandomCasualDialogue();
                         break;
 
                     case 1:
@@ -99,8 +139,6 @@ public class NPCBehaviour : MonoBehaviour
                                                                                                 //Congrats (if obtained a new item, obtained a special item, first time clear,... - reward with 1 gold for talking)
                         break;
                 }
-
-                
             }
             else //quest is available
             {
@@ -111,42 +149,128 @@ public class NPCBehaviour : MonoBehaviour
                         //for urgent quest
                         chatText.text = "Please, help...";
                     }
-                    int b = 1;
-                    switch (1)
+
+                    else
                     {
-                        case 0:
-                            chatText.text = "Hero, can you please listen to this man's request?";
-                            break;
+                        int b = GetRandomValue();
+                        switch (b)
+                        {
+                            case 0:
+                                chatText.text = "Hero, can you please listen to this man's request?";
+                                break;
 
-                        case 1:
-                            chatText.text = "I need your help!";
-                            break;
+                            case 1:
+                                chatText.text = "I need your help!";
+                                break;
 
-                        case 2:
-                            chatText.text = ""; //to be honest this is a bad design, i need to make this as muted as possible
-                            break;
+                            case 2:
+                                chatText.text = "A request for a deserved hero...";
+                                break;
+                        }
                     }
                 }
                 else
                 {
                     Debug.Log("There is no assigned quest");
                 }
-
             }
-
         }
-
-        
-    }
-
-    public void RandomCasualDialogue()
-    {
-
     }
 
     public void Interact()
     {
+        DialogueReceiver receiver = FindObjectOfType<DialogueReceiver>();
+        receiver.speakerName.text = thisNPC.NPCName;
 
+        switch (path)
+        {
+            case 0:
+                int randCasual = GetRandomValue();
+                switch (randCasual)
+                {
+                    case 0:
+                        receiver.diaText.text = "Greetings. What a beautiful day this morning!";
+                        break;
+
+                    case 1:
+                        receiver.diaText.text = "The weather today is great to hang out by the Square!";
+                        break;
+
+                    case 2:
+                        receiver.diaText.text = "I bought some cookies from the Trader this morning. They look ... questioning, but taste great!"; //HAPPY COOKIES - gift 6 cookies for a girl in the dark wood
+                                                                                                                                                   //traders sell 2 per day - 2 golds each
+                        break;
+                }
+                break;
+
+            case 1:
+                //int randItem= //AFTER INVENTORY
+
+                int randGift = GetRandomValue();
+                switch (randGift)
+                {
+                    case 0:
+                        receiver.diaText.text = "Found this under my bed this morning, I think you might need it!";
+                        break;
+
+                    case 1:
+                        receiver.diaText.text = "I just ";
+                        break;
+
+                    case 2:
+                        receiver.diaText.text = "Found this under my bed this morning, I think you might need it!";
+                        break;
+                }
+
+                break;
+
+            case 2:
+                int randTips = GetRandomValue();
+                switch (randTips)
+                {
+                    case 0:
+                        receiver.diaText.text = "Are you hungry? I heard that berries are very good for your health!";
+                        break;
+
+                    case 1:
+                        receiver.diaText.text = "Energy Drinks are pretty great for your stamina, just in case you need them, I think that the Trader sells them!";
+                        break;
+
+                    case 2:
+                        receiver.diaText.text = "I heard that there is a mysterious Secret Trader in the wood! Spooky~ If you give him your coins he might trade some <color=yellow>Golds</color> for it!";
+                        break;
+                }
+
+                break;
+
+            case 3:
+                receiver.diaText.text = "Would you like to listen to my request?";
+                interacting = true;
+                
+                break;
+        }
+    }
+
+    public void ShowQuest()
+    {
+        //animation of the dialoguebox
+
+        //insert text
+        QuestLogic questBox = FindObjectOfType<QuestLogic>();
+        questBox.chosenNPC = thisNPC;
+
+        questBox.questName.text = quest.questTitle;
+        questBox.questDetails.text = quest.questDescription;
+        questBox.questIntro.text = questBox.FormattedIntro();
+
+        //dialogueBox..text = quest.questDescription;
+    }
+
+    public void RandomQuest()
+    {
+        Debug.Log("receiving quest");
+        int r = Random.Range(0, allQuest.Count);
+        quest = allQuest[r];
     }
 
     public int GetRandomValue()
@@ -156,7 +280,7 @@ public class NPCBehaviour : MonoBehaviour
 
     IEnumerator WaitForTime(float time)
     {
-        
+        currentTime = 0;
         PopUpChat();
         yield return new WaitForSeconds(time);
         idleChat.SetActive(false);
