@@ -55,12 +55,12 @@ public class RemakeNeedleStrike : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.layer == 7)
-        {
-            enemyHealth.currentHealth -= needleDamage;
-            Destroy(collision.gameObject);
-        }
-    }
+    //void OnTriggerEnter2D(Collision2D collision)
+    //{
+    //    if(collision.gameObject.layer == 7)
+    //    {
+    //        enemyHealth.currentHealth -= needleDamage;
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
 }
