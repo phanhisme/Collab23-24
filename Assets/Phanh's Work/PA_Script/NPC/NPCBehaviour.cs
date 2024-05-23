@@ -90,6 +90,25 @@ public class NPCBehaviour : MonoBehaviour
                 ShowQuest();
             }
         }
+
+        if (currentStatus == Status.TALKING)
+        {
+            //LOCK INTERACTION
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            PlayerMovement movement = player.GetComponent<PlayerMovement>();
+            DashStamina playerStamina = player.GetComponent<DashStamina>();
+
+            movement.enabled = false;
+            playerStamina.enabled = false;
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Debug.Log("escaping");
+                currentStatus = Status.IDLE;
+                movement.enabled = true;
+                playerStamina.enabled = true;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -97,7 +116,7 @@ public class NPCBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             checkInRange = true;
-        }
+        } 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -244,8 +263,21 @@ public class NPCBehaviour : MonoBehaviour
                 break;
 
             case 3:
-                receiver.diaText.text = "Would you like to listen to my request?";
-                interacting = true;
+                int randRequest = GetRandomValue();
+                switch (randRequest)
+                {
+                    case 0:
+                        receiver.diaText.text = "Would you like to listen to my request?";
+                        interacting = true;
+                        break;
+
+                    case 1:
+                        receiver.diaText.text = "I see my commission has reached your hand, would you like to accept it?";
+                        break;
+
+                    case 2:
+                        break;
+                }
                 
                 break;
         }

@@ -108,10 +108,4 @@ public class QuestLogic : MonoBehaviour
 
         return "";
     }
-
-    public int RandomNumberForQuestTitle()
-    {
-
-        return Random.Range(0, 2);
-    }
 }
