@@ -24,7 +24,7 @@ public class Room : MonoBehaviour
 
     //doors
     public Door leftDoor;
-    public Door righttDoor;
+    public Door rightDoor;
     public Door topDoor;
     public Door bottomDoor;
 
@@ -51,7 +51,7 @@ public class Room : MonoBehaviour
             switch (d.doorType)
             {
                 case Door.DoorType.right:
-                    righttDoor = d;
+                    rightDoor = d;
                     break;
 
                 case Door.DoorType.left:
