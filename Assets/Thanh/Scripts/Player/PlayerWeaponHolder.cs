@@ -15,7 +15,6 @@ public class PlayerWeaponHolder : MonoBehaviour
     public bool isAttacking { get; private set; }
     public Transform circle;
     public float radius;
-    //public PlayerHealth health;
     PlayerPointer player;
     [SerializeField] public float playerDamage = 1;
     [SerializeField] private Animator attackAnimSpeed;

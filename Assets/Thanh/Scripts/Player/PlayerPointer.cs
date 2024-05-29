@@ -22,7 +22,7 @@ public class PlayerPointer : MonoBehaviour
     public bool heartsteelActive;
     public bool skActive;
     public bool fbActive;
-    public bool cfActive;
+    public bool ldActive;
 
     private void Start()
     {
@@ -115,9 +115,9 @@ public class PlayerPointer : MonoBehaviour
         fbActive = true;
     }
 
-    public void ActiveCf()
+    public void ActiveLD()
     {
-        cfActive = true;
+        ldActive = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -161,9 +161,9 @@ public class PlayerPointer : MonoBehaviour
             {
                 ActiveFb();
             }
-            if(powerUp.activeCoinFarmAndRest)
+            if(powerUp.activeLuckyDrop)
             {
-                ActiveCf();
+                ActiveLD();
             }
             Destroy(powerUp.gameObject);
         }

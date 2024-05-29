@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDeath()
     {
-        if(enemyHealth.currentHealth <= 0 && playerPointer.cfActive == true)
+        if(enemyHealth.currentHealth <= 0 && playerPointer.ldActive == true)
         {
             GameObject go = Instantiate(gold, Vector3.zero, Quaternion.identity);
             go.GetComponent<ItemDrop>().SetData(enemyData.rewardType, enemyData.finalGoldDrop);
