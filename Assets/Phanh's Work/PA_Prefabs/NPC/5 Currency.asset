@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795624d9cfb5b0b43b1f8b0b6bd29a69, type: 3}
-  m_Name: DungeonGenerationData
+  m_Script: {fileID: 11500000, guid: e3614d07861607749821e08e8c5052c3, type: 3}
+  m_Name: 5 Currency
   m_EditorClassIdentifier: 
-  numberOfCrawlers: 1
-  interationMin: 4
-  interationMax: 6
+  rewardIcon: {fileID: 21300000, guid: 2eb9040eaa30b8540a069b0d5f6b927e, type: 3}
+  rewardAmount: 5
+  questTime: 0
