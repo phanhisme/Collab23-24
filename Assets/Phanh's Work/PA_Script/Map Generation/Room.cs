@@ -77,36 +77,36 @@ public class Room : MonoBehaviour
         if (name.Contains("End") && !updatedDoors)
         {
             //only remove the doors once!
-            RemoveUnconnectedDoor();
+            CreateDoorway();
             updatedDoors = true;
         }
 
     }
 
-    public void RemoveUnconnectedDoor()
+    public void CreateDoorway()
     {
         foreach (Door door in doors)
         {
             switch (door.doorType)
             {
                 case Door.DoorType.right:
-                    if (GetRight() == null)
-                        door.gameObject.SetActive(false);
+                    if (GetRight() != null)
+                        DoorSetUp(door);
                     break;
 
                 case Door.DoorType.left:
-                    if (GetLeft() == null)
-                        door.gameObject.SetActive(false);
+                    if (GetLeft() != null)
+                        DoorSetUp(door);
                     break;
 
                 case Door.DoorType.top:
-                    if (GetTop() == null)
-                        door.gameObject.SetActive(false);
+                    if (GetTop() != null)
+                        DoorSetUp(door);
                     break;
 
                 case Door.DoorType.bottom:
-                    if (GetBottom() == null)
-                        door.gameObject.SetActive(false);
+                    if (GetBottom() != null)
+                        DoorSetUp(door);
                     break;
             }
         }
@@ -174,5 +174,16 @@ public class Room : MonoBehaviour
             //call room controller to call for the camera
             RoomController.instance.OnPlayerEnterRoom(this);
         }
+    }
+
+    public void DoorSetUp(Door thisDoor)
+    {
+        //remove collider
+        BoxCollider2D rightCol = thisDoor.gameObject.GetComponent<BoxCollider2D>();
+        rightCol.enabled = false;
+
+        //change color
+        SpriteRenderer sprite = thisDoor.gameObject.GetComponent<SpriteRenderer>();
+        sprite.color = Color.blue;
     }
 }
