@@ -47,16 +47,23 @@ public class PlayerHealth : MonoBehaviour
             heartsteel.shieldHeart--;
             heartsteel.DeactivateHeartsteel();
             currentHealth += enemyWeaponHolder.enemyDamage;
+            OnHitWithReference?.Invoke(sender);
         }
         if (!player.shielded && currentHealth > 0)
         {
             currentHealth -= damage;
             //isHurt = true;
             StartCoroutine(IsPlayerHurt());
+            OnHitWithReference?.Invoke(sender);
         }
         else if (player.shielded)
         {
             shieldHealth--;
+        }
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+            OnDeathWithReference?.Invoke(gameObject);
         }
     }
     public void ColDamage()
@@ -73,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
     }
     public void Dead()
     {
-        if(currentHealth <= 0)
+        if(isDead == true)
         {
             Destroy(gameObject);
         }

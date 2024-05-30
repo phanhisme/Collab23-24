@@ -23,8 +23,8 @@ public class RemakeNeedleStrike : MonoBehaviour
         playerPointer = FindObjectOfType<PlayerPointer>();
         enemyHealth = FindObjectOfType<EnemyHealth> ();
 
-        BoxCollider2D bc;
-        bc = gameObject.AddComponent<BoxCollider2D>() as BoxCollider2D;
+        //BoxCollider2D bc;
+        //bc = gameObject.AddComponent<BoxCollider2D>() as BoxCollider2D;
     }
     private void Update()
     {
@@ -55,12 +55,12 @@ public class RemakeNeedleStrike : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.layer == 7)
-        {
-            enemyHealth.currentHealth -= needleDamage;
-            Destroy(collision.gameObject);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.layer == 7)
+    //    {
+    //        enemyHealth.currentHealth -= needleDamage;
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
 }
