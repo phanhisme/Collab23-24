@@ -12,6 +12,8 @@ public enum Direction
 
 public class DungeonCrawlerController : MonoBehaviour
 {
+    public static Direction lastDirection;
+
     public static List<Vector2Int> positionsVisited = new List<Vector2Int>();
     private static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
     {   
@@ -25,7 +27,15 @@ public class DungeonCrawlerController : MonoBehaviour
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
 
-        int crawlers = Random.Range(dungeonData.minNumberOfCrawlers, dungeonData.maxNumberOfCrawlers);
+        int crawlers;
+        float rCrawlers = Random.value;
+        if (rCrawlers < 0.2f)
+        {
+            crawlers = dungeonData.maxNumberOfCrawlers;
+        }
+        else
+            crawlers = dungeonData.minNumberOfCrawlers; //percent to have 2 route is lower to lower chance of meeting the boss early
+
         for (int i = 0; i < crawlers; i++)
         {
             dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
@@ -37,18 +47,23 @@ public class DungeonCrawlerController : MonoBehaviour
         {
             foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
             {
-                Dictionary<Direction, Vector2Int> lastDir = dungeonCrawler.GetLastDirection(directionMovementMap);
-
-                if (dungeonCrawler == dungeonCrawlers[0])
+                if (i == 0)
                 {
-                    Debug.Log("Taking data for the first room");
-                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
+                    lastDirection = dungeonCrawler.GetFirstDirection(directionMovementMap);
+
+                    Vector2Int newPos = dungeonCrawler.MoveAtRandom(lastDirection, directionMovementMap);
                     positionsVisited.Add(newPos);
                 }
                 else
                 {
-                    Debug.Log("Data for the other rooms");
-                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
+                    Direction avoiding = dungeonCrawler.GetPathToAvoid(lastDirection);
+                    Debug.Log("Last direction is: " + lastDirection + ". Thus, avoiding " + avoiding);
+
+                    //get new lastDir
+                    lastDirection = dungeonCrawler.GetNewDirection(directionMovementMap, avoiding);
+                    Debug.Log("Getting new last direction: " + lastDirection);
+
+                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap, lastDirection);
                     positionsVisited.Add(newPos);
                 }
             }
