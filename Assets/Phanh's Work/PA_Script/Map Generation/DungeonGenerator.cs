@@ -19,13 +19,15 @@ public class DungeonGenerator : MonoBehaviour
         //keep outside to avoid spawning more than 1 start room
         RoomController.instance.LoadRoom("Start", 0, 0);
 
+        int rand = Random.Range(3, dungeonRooms.Count - 1);
+        Debug.Log("A special room is spawning at " + rand);
 
         foreach (Vector2Int roomLocation in rooms)
         {
-            int rand = Random.Range(3, dungeonRooms.Count);
-            Debug.Log("A special room is spawning at " + rand);
-
-            //if(dungeonRooms[rand])
+            if (roomLocation == dungeonRooms[rand]) //one room only
+            {
+                RoomController.instance.LoadRoom("TreasureRoom", roomLocation.x, roomLocation.y);
+            }
             RoomController.instance.LoadRoom("Empty", roomLocation.x, roomLocation.y);
 
 

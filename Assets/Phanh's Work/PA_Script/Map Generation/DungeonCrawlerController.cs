@@ -25,7 +25,8 @@ public class DungeonCrawlerController : MonoBehaviour
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
 
-        for (int i = 0; i < dungeonData.numberOfCrawlers; i++)
+        int crawlers = Random.Range(dungeonData.minNumberOfCrawlers, dungeonData.maxNumberOfCrawlers);
+        for (int i = 0; i < crawlers; i++)
         {
             dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
         }
@@ -36,8 +37,20 @@ public class DungeonCrawlerController : MonoBehaviour
         {
             foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
             {
-                Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
-                positionsVisited.Add(newPos);
+                Dictionary<Direction, Vector2Int> lastDir = dungeonCrawler.GetLastDirection(directionMovementMap);
+
+                if (dungeonCrawler == dungeonCrawlers[0])
+                {
+                    Debug.Log("Taking data for the first room");
+                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
+                    positionsVisited.Add(newPos);
+                }
+                else
+                {
+                    Debug.Log("Data for the other rooms");
+                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
+                    positionsVisited.Add(newPos);
+                }
             }
 
             //if (dungeonCrawlers.Count == 0)
