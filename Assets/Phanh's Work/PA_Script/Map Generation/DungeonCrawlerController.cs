@@ -27,34 +27,42 @@ public class DungeonCrawlerController : MonoBehaviour
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
 
-        int crawlers;
-        float rCrawlers = Random.value;
-        if (rCrawlers < 0.2f)
-        {
-            crawlers = dungeonData.maxNumberOfCrawlers;
-        }
-        else
-            crawlers = dungeonData.minNumberOfCrawlers; //percent to have 2 route is lower to lower chance of meeting the boss early
-
-        for (int i = 0; i < crawlers; i++)
-        {
-            dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
-        }
+        //for (int i = 0; i < crawlers; i++) //if crawlers is 2, interation should take note too
+        //{
+        //    dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
+        //}
 
         int interation = Random.Range(dungeonData.interationMin, dungeonData.interationMax);
-
+        Debug.Log("Interation begin with " + interation);
         for(int i = 0; i < interation; i++)
         {
+            //check for chance of max crawlers
+            int r = numberOfCrawlers(dungeonData);
+            if (r == dungeonData.minNumberOfCrawlers)
+            {
+                
+            }
+            else if (r == dungeonData.maxNumberOfCrawlers)
+            {
+                for(int t = 0; t < r; t++)
+                {
+                    Debug.Log("Start index is: " + i);
+                    i += 1;
+                    Debug.Log("Late index is: " + i);
+                }
+            }
+
             foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
             {
                 if (i == 0)
                 {
+                    dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
                     lastDirection = dungeonCrawler.GetFirstDirection(directionMovementMap);
 
                     Vector2Int newPos = dungeonCrawler.MoveAtRandom(lastDirection, directionMovementMap);
                     positionsVisited.Add(newPos);
                 }
-                else
+                else if (i > 0 && i < interation)
                 {
                     Direction avoiding = dungeonCrawler.GetPathToAvoid(lastDirection);
                     Debug.Log("Last direction is: " + lastDirection + ". Thus, avoiding " + avoiding);
@@ -66,23 +74,26 @@ public class DungeonCrawlerController : MonoBehaviour
                     Vector2Int newPos = dungeonCrawler.Move(directionMovementMap, lastDirection);
                     positionsVisited.Add(newPos);
                 }
+                else if (i == interation)
+                {
+                    Debug.Log("This is the end other loop. Total index is " + i);
+                }
             }
-
-            //if (dungeonCrawlers.Count == 0)
-            //{
-            //    Vector2Int newPos = dungeonCrawlers[0].Move(directionMovementMap);
-            //    positionsVisited.Add(newPos);
-            //}
-            //else
-            //{
-            //    foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
-            //    {
-            //        Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
-            //        positionsVisited.Add(newPos);
-            //    }
-            //}
         }
 
         return positionsVisited;
+    }
+
+    public static int numberOfCrawlers(DungeonGenerationData dungeonData) //chance to spawn 1/2 room (following data of the S0 dungeonData)
+    {
+        int crawlers;
+        float rCrawlers = Random.value;
+        if (rCrawlers < 0.2f)
+        {
+            crawlers = dungeonData.maxNumberOfCrawlers;
+        }
+        else
+            crawlers = dungeonData.minNumberOfCrawlers; //percent to have 2 route is lower to lower chance of meeting the boss early
+        return crawlers;
     }
 }
