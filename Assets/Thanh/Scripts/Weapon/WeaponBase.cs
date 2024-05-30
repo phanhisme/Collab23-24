@@ -11,7 +11,7 @@ public class WeaponBase : MonoBehaviour
     public float power;
     public float affectedSpeed;
     public float weight;
-
+    public float delay;
     public virtual void Attack(Animator animator)
     {
 

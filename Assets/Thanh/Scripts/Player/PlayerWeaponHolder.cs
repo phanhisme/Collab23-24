@@ -166,6 +166,4 @@ public class PlayerWeaponHolder : MonoBehaviour
         invisibility.activateDuration = 0;
         invisibility.ResetInvis();
     }
-
-   
 }
