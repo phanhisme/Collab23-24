@@ -27,16 +27,7 @@ public class DungeonCrawlerController : MonoBehaviour
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
 
-        int crawlers;
-        float rCrawlers = Random.value;
-        if (rCrawlers < 0.2f)
-        {
-            crawlers = dungeonData.maxNumberOfCrawlers;
-        }
-        else
-            crawlers = dungeonData.minNumberOfCrawlers; //percent to have 2 route is lower to lower chance of meeting the boss early
-
-        for (int i = 0; i < crawlers; i++)
+        for (int i = 0; i < dungeonData.minNumberOfCrawlers; i++)
         {
             dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
         }
