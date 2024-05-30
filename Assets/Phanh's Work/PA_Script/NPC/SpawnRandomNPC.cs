@@ -54,8 +54,8 @@ public class SpawnRandomNPC : MonoBehaviour
         behaviour.thisNPC = thisScriptable;
 
         QuestLogic logic = FindObjectOfType<QuestLogic>();
-        logic.chosenNPC = thisScriptable;
+        //logic.chosenNPC = thisScriptable;
 
-        logic.RandomQuestData();
+        //logic.RandomQuestData();
     }
 }

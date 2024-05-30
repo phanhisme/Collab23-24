@@ -65,7 +65,7 @@ public class RoomController : MonoBehaviour
                 foreach(Room room in loadRooms)
                 {
                     //once the boss room has spawned -> remove door
-                    room.RemoveUnconnectedDoor();
+                    room.CreateDoorway();
                 }
 
                 updatedRooms = true;
