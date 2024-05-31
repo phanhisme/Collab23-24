@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSpear : MonoBehaviour
+public class WeaponSpear : WeaponBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public int maxCombo = 3;
+    public int currentCombo = 0;
+    //float elaspetime
+    public override void Attack()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Attack(); 
+        currentCombo++;
+        //animator.GetCurrentAnimatorStateInfo(0).Length;
+        //elaspeTime
     }
 }

@@ -9,34 +9,21 @@ public class CursedBlade : MonoBehaviour
     [SerializeField] private int HPDeduction = 1;
     [SerializeField] private int cursedBladeTimer = 6;
     [SerializeField] private GameObject playerPos;
-    PlayerWeaponHolder _weaponHolder;
+    WeaponBase weaponBase;
     public PlayerHealth _healthScript;
-    private EnemyHealth _enemyHealth;
-    
-    
     [SerializeField] private float healthAfterUsage;
 
-    //BLEED
-    public float HpThreshold;
-    public int bleedTimer = 6;
-    public float extraBleedDMG;
-    
-    
+
+    private EnemyHealth _enemyHealth;
     private void Start()
     {
         //WeaponHolder _weaponHolder = gameObject.AddComponent<WeaponHolder>() as WeaponHolder;
         //Health _healthScript = gameObject.AddComponent<Health>() as Health;
-        
-        _weaponHolder = FindObjectOfType<PlayerWeaponHolder>();
+        weaponBase = FindObjectOfType<WeaponBase>();
         _healthScript = FindObjectOfType<PlayerHealth>();
         _enemyHealth = FindObjectOfType<EnemyHealth>();
         
         playerPos = GameObject.FindWithTag("Player");
-        
-        //Execute when the enemy's health is below 15%
-        HpThreshold = _enemyHealth.maxHealth * 0.15f;
-        extraBleedDMG = _enemyHealth.maxHealth * 0.05f;
-        bleedTimer = 6;
     }
 
     void Update()
@@ -72,8 +59,9 @@ public class CursedBlade : MonoBehaviour
         
         yield return new WaitForSeconds(cursedBladeTimer);
         //Disable cursed blade after 6 seconds
-
+        //isPicked = true;
         isCursedBladeActive = false;
         canActiveCursedBlade = true;
+
     }
 }

@@ -12,7 +12,7 @@ public class Invisibility : MonoBehaviour
 
     StackSkills stackskillsScript;
     EnemyPatrol enemyPatrolScript;
-    PlayerWeaponHolder playerWeaponHolder;
+    WeaponBase weaponBase;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class Invisibility : MonoBehaviour
         charColor = srCharacter.color;
         enemyPatrolScript = FindObjectOfType<EnemyPatrol>();
         stackskillsScript = FindObjectOfType<StackSkills>();
-        playerWeaponHolder = FindObjectOfType<PlayerWeaponHolder>();
+        weaponBase = FindObjectOfType<WeaponBase>();
     }
 
     // Update is called once per frame
@@ -76,7 +76,7 @@ public class Invisibility : MonoBehaviour
             canButtonPressed = true;
             isActivated = false;
             stackskillsScript.InvisButtonPress = false;
-            playerWeaponHolder.canInstaKill = false;
+            weaponBase.canInstaKill = false;
         }
     }
 }
