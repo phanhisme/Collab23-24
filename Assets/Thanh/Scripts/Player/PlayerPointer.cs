@@ -9,7 +9,7 @@ public class PlayerPointer : MonoBehaviour
 {
     [SerializeField]
     private InputActionReference attack, pointer;
-    private PlayerWeaponHolder playerWeaponHolder;
+    WeaponBase weaponBase;
     private Vector2 pointerInput;
     GameObject shield;
     public Vector2 PointerInput => pointerInput;
@@ -28,13 +28,13 @@ public class PlayerPointer : MonoBehaviour
     {
         shield = transform.Find("Shield").gameObject;
         DeActivateShield();
-        playerWeaponHolder = GetComponentInChildren<PlayerWeaponHolder>();
+        weaponBase = GetComponentInChildren<WeaponBase>();
     }
     private void Update()
     {
         pointerInput = GetPointerInput();
         //Debug.Log(pointerInput);
-        playerWeaponHolder.PointerPosition = pointerInput;
+        weaponBase.PointerPosition = pointerInput;
     }
     private void OnEnable()
     {
@@ -42,7 +42,8 @@ public class PlayerPointer : MonoBehaviour
     }
     private void PerformAttack(InputAction.CallbackContext context)
     {
-        playerWeaponHolder.Attack();
+        //playerWeaponHolder.Attack(anim);
+        weaponBase.Attack(); 
     }
 
     private void OnDisable()

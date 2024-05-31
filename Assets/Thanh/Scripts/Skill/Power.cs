@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Power : MonoBehaviour
 {
-    PlayerWeaponHolder pHolder;
+    WeaponBase weaponBase;
     private void Start()
     {
-        pHolder  = FindObjectOfType<PlayerWeaponHolder>();
+        weaponBase = FindObjectOfType<WeaponBase>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            pHolder.playerDamage += pHolder.playerDamage * 0.2f;
+            weaponBase.power += weaponBase.power * 0.2f;
             Destroy(gameObject);
         }
     }
