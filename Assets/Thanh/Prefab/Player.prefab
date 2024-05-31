@@ -450,7 +450,6 @@ MonoBehaviour:
   degree: 360
   direction: 1
   needleDamage: 0
-  playerHealth: {fileID: 0}
 --- !u!1 &952145366428115834
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +739,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 952145368120517854}
-  - component: {fileID: 1729262306}
   m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Player
@@ -764,32 +762,6 @@ Transform:
   m_Father: {fileID: 952145366647941052}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1729262306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952145368120517853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb19198afabee84abc69b781361855d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 952145366647941053}
-  weaponRenderer: {fileID: 952145367742196656}
-  animator: {fileID: 952145367742196671}
-  delay: 0.3
-  attackSpeedBoost: 0.2
-  circle: {fileID: 952145366670910812}
-  radius: 0.7
-  playerDamage: 1
-  attackAnimSpeed: {fileID: 952145367742196671}
-  animEvent: {fileID: 952145367742196670}
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
-  canInstaKill: 0
 --- !u!1 &952145368204048661
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +886,7 @@ MonoBehaviour:
   heartsteelActive: 0
   skActive: 0
   fbActive: 0
-  cfActive: 0
+  ldActive: 0
 --- !u!114 &952145366647937095
 MonoBehaviour:
   m_ObjectHideFlags: 0

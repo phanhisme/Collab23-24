@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WeaponSword : WeaponBase
 {
-    public override void Attack(Animator anim)
+    public override void Attack()
     {
-        
+        base.Attack();
+        animator.SetTrigger("SwordAttack");
     }
 }
+

@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public float shieldHealth = 2;
     public float shieldTimer = 2;
     public bool isHurt;
-    PlayerWeaponHolder playerWeaponHolder;
+    WeaponBase weaponBase;
     EnemyWeaponHolder enemyWeaponHolder;
     private float atkSpeedMultiplier = 0.1f;
     float baseAtkSpeed = 0.3f;
@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
-        playerWeaponHolder = FindObjectOfType<PlayerWeaponHolder>();
+        weaponBase = FindObjectOfType<WeaponBase>();
         heartsteel = FindObjectOfType<Heartsteel>();
         enemyWeaponHolder = FindObjectOfType<EnemyWeaponHolder>();
     }
@@ -145,11 +145,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (player.shielded == true && haveShield == true)
         {
-            playerWeaponHolder.delay = playerWeaponHolder.delay * atkSpeedMultiplier;
+            weaponBase.delay = weaponBase.delay * atkSpeedMultiplier;
         }
         if(!player.shielded == true && haveShield == true)
         {
-            playerWeaponHolder.delay = baseAtkSpeed;
+            weaponBase.delay = baseAtkSpeed;
         }
     }
 
@@ -161,5 +161,4 @@ public class PlayerHealth : MonoBehaviour
         }
         boostAtkSpeed();
     }
-
 }

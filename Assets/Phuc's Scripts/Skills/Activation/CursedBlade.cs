@@ -9,7 +9,7 @@ public class CursedBlade : MonoBehaviour
     [SerializeField] private int HPDeduction = 1;
     [SerializeField] private int cursedBladeTimer = 6;
     [SerializeField] private GameObject playerPos;
-    PlayerWeaponHolder _weaponHolder;
+    WeaponBase weaponBase;
     public PlayerHealth _healthScript;
     [SerializeField] private float healthAfterUsage;
 
@@ -19,7 +19,7 @@ public class CursedBlade : MonoBehaviour
     {
         //WeaponHolder _weaponHolder = gameObject.AddComponent<WeaponHolder>() as WeaponHolder;
         //Health _healthScript = gameObject.AddComponent<Health>() as Health;
-        _weaponHolder = FindObjectOfType<PlayerWeaponHolder>();
+        weaponBase = FindObjectOfType<WeaponBase>();
         _healthScript = FindObjectOfType<PlayerHealth>();
         _enemyHealth = FindObjectOfType<EnemyHealth>();
         
