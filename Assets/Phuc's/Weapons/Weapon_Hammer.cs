@@ -32,12 +32,8 @@ public class Weapon_Hammer : WeaponBase
     {
         animator = GetComponent<Animator>();
     }
-    public override void Attack(Animator animator)
-    {
-        
-
-    }
-    //TODO: HAMMER SLAM ATTACK 
+  
+    /*//TODO: HAMMER SLAM ATTACK 
     void Update()
         {
             if (Input.GetMouseButton(0) && Hammer_CanAttack) 
@@ -58,8 +54,9 @@ public class Weapon_Hammer : WeaponBase
         if (Input.GetMouseButtonDown(0) && !isSwinging)
         {
             isSwinging = true;
-            animator.SetTrigger("Swing");
-            Invoke("PerformSwing", swingDuration);
+            
+            Invoke(nameof(PerformSwing), swingDuration);
+            
         }
 
         if (isCharging && chargeTimer > 1)
@@ -72,7 +69,7 @@ public class Weapon_Hammer : WeaponBase
                 // Instantiate the AOE visual effect at the player's position
                 GameObject visualEffect = Instantiate(AOEVisual, transform.position, Quaternion.identity);
                 Destroy(visualEffect, 1f);
-             StartCoroutine(Hammer_AttackDelay());
+                StartCoroutine(Hammer_AttackDelay());
                     
             
                 // Calculate AOE radius based on charge time
@@ -87,7 +84,7 @@ public class Weapon_Hammer : WeaponBase
                     if (collider.CompareTag("Enemy"))
                     {
                     // Apply damage to the enemy
-                    /*collider.GetComponent<EnemyHealth>().TestHit();*/
+                    /*collider.GetComponent<EnemyHealth>().TestHit();#1#
                     }
                 }
 
@@ -114,16 +111,16 @@ public class Weapon_Hammer : WeaponBase
     {
         // Detect enemies within the swing radius
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, swingRadius, enemyLayer);
-
+        
         // Deal damage to each enemy within the swing radius
         foreach (Collider2D enemy in hitEnemies)
         {
           /*  // Apply damage to the enemy
-            enemy.GetComponent<EnemyHealth>().TakeDamage(damage);*/
+            enemy.GetComponent<EnemyHealth>().TakeDamage(damage);#1#
         }
 
         isSwinging = false; // Reset swinging flag
-    }
+    }*/
 
    
 }

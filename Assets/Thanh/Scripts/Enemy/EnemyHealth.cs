@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
     PlayerPointer player;
     CursedBlade _cursedBladeScript;
 
-
+    
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
@@ -32,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = healthValue;
         maxHealth = healthValue;
         isDead = false;
+        
     }
     public void TestHit(float damage, GameObject sender)
     {

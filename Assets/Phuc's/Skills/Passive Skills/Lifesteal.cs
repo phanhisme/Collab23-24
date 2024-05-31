@@ -11,7 +11,7 @@ public class Lifesteal : MonoBehaviour
 
     [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private EnemyHealth _enemyHealth;
-    [SerializeField] private PlayerWeaponHolder _playerWeaponHolder;
+    [SerializeField] private WeaponBase _weaponBase;
 
     
 

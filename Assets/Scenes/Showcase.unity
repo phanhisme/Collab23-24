@@ -874,7 +874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &958401025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +892,18 @@ MonoBehaviour:
   affectedSpeed: 1
   weight: 5
   delay: 1
+  attackBlocked: 0
+  attackSpeedBoost: 0
+  canInstaKill: 0
+  animator: {fileID: 0}
+  characterRenderer: {fileID: 0}
+  weaponRenderer: {fileID: 0}
+  circle: {fileID: 0}
+  animEvent: {fileID: 0}
+  attackAnimSpeed: {fileID: 0}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
   maxChargeTime: 3
   minAOERadius: 1
   maxAOERadius: 5
@@ -1297,10 +1309,30 @@ PrefabInstance:
       propertyPath: playerMask.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6491490455753061651, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491490455858719558, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6491490455942789940, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 111301498}
+    - target: {fileID: 6491490455942789942, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491490455971283378, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491490456179664736, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6491490456179664743, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1309,9 +1341,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6491490456247524898, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6491490456295070503, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491490456295070503, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491490457109044942, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491490457244913291, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491490457363635508, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6851891554381255628, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
       propertyPath: m_RootOrder
@@ -1385,7 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ceab0414e21e04ea367daf3306d03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 4
+  range: 0.8
   power: 3
   affectedSpeed: 0
   weight: 2
@@ -1401,7 +1453,7 @@ MonoBehaviour:
   attackAnimSpeed: {fileID: 1883218214}
   enemyMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
 --- !u!4 &1625975870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952145366670910812, guid: 56410447425adcf4e8617558b74ecf98, type: 3}

@@ -13,7 +13,9 @@ public class CursedBlade : MonoBehaviour
     public PlayerHealth _healthScript;
     [SerializeField] private float healthAfterUsage;
 
-
+    public float bleedTimer = 6f;
+    public float HpThreshold;
+    public float extraBleedDMG;
     private EnemyHealth _enemyHealth;
     private void Start()
     {
@@ -24,6 +26,11 @@ public class CursedBlade : MonoBehaviour
         _enemyHealth = FindObjectOfType<EnemyHealth>();
         
         playerPos = GameObject.FindWithTag("Player");
+
+
+        HpThreshold = _enemyHealth.maxHealth * 0.15f;
+        extraBleedDMG = _enemyHealth.maxHealth * 0.05f;
+
     }
 
     void Update()
