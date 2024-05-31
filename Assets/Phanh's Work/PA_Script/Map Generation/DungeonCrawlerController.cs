@@ -26,6 +26,7 @@ public class DungeonCrawlerController : MonoBehaviour
     public static List<Vector2Int> GenerateDungeon(DungeonGenerationData dungeonData)
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
+        List<DungeonCrawler> containStuff = new List<DungeonCrawler>();
 
         //for (int i = 0; i < crawlers; i++) //if crawlers is 2, interation should take note too
         //{
@@ -34,52 +35,65 @@ public class DungeonCrawlerController : MonoBehaviour
 
         int interation = Random.Range(dungeonData.interationMin, dungeonData.interationMax);
         Debug.Log("Interation begin with " + interation);
-        for(int i = 0; i < interation; i++)
+
+        do
         {
-            //check for chance of max crawlers
-            int r = numberOfCrawlers(dungeonData);
-            if (r == dungeonData.minNumberOfCrawlers)
+            int roomsToSpawn;
+            if (positionsVisited.Count == 0)
             {
-                
+                dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
+                roomsToSpawn = 1;
             }
-            else if (r == dungeonData.maxNumberOfCrawlers)
+            else
             {
-                for(int t = 0; t < r; t++)
+                //check for chance of max crawlers
+                int r = numberOfCrawlers(dungeonData);
+
+                for (int a = 0; a < r; a++) //if crawlers is 2, spawn 2 rooms
                 {
-                    Debug.Log("Start index is: " + i);
-                    i += 1;
-                    Debug.Log("Late index is: " + i);
+                    //add new crawler from the position of the last position visited
+                    dungeonCrawlers.Add(new DungeonCrawler(positionsVisited[positionsVisited.Count - 1]));
+
+                    Debug.Log(positionsVisited[positionsVisited.Count - 1] +"has travelled from"+ lastDirection);
+                }
+
+                roomsToSpawn = r;
+                for (int n = roomsToSpawn; n > 0; n--)
+                {
+                    foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
+                    {
+                        Debug.Log("Since number of room is " + roomsToSpawn + ", left with" + n + " rooms");
+
+                        if (positionsVisited.Count == 0)
+                        {
+                            lastDirection = dungeonCrawler.GetFirstDirection(directionMovementMap);
+
+                            Vector2Int newPos = dungeonCrawler.MoveAtRandom(lastDirection, directionMovementMap);
+                            positionsVisited.Add(newPos);
+                        }
+                        else if (positionsVisited.Count > 0 && positionsVisited.Count < interation)
+                        {
+                            Direction avoiding = dungeonCrawler.GetPathToAvoid(lastDirection);
+
+                            //get new lastDir
+                            lastDirection = dungeonCrawler.GetNewDirection(directionMovementMap, avoiding);
+                            Debug.Log("moving to " + lastDirection);
+
+                            Vector2Int newPos = dungeonCrawler.Move(directionMovementMap, lastDirection);
+                            positionsVisited.Add(newPos);
+                        }
+
+                        containStuff.Add(dungeonCrawler);
+                        Debug.Log("Contain " + dungeonCrawler + "similar with " + containStuff[containStuff.Count - 1]);
+                        dungeonCrawlers.Remove(dungeonCrawler);
+
+                    }
                 }
             }
 
-            foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
-            {
-                if (i == 0)
-                {
-                    dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
-                    lastDirection = dungeonCrawler.GetFirstDirection(directionMovementMap);
+        } while (positionsVisited.Count != interation);
 
-                    Vector2Int newPos = dungeonCrawler.MoveAtRandom(lastDirection, directionMovementMap);
-                    positionsVisited.Add(newPos);
-                }
-                else if (i > 0 && i < interation)
-                {
-                    Direction avoiding = dungeonCrawler.GetPathToAvoid(lastDirection);
-                    Debug.Log("Last direction is: " + lastDirection + ". Thus, avoiding " + avoiding);
-
-                    //get new lastDir
-                    lastDirection = dungeonCrawler.GetNewDirection(directionMovementMap, avoiding);
-                    Debug.Log("Getting new last direction: " + lastDirection);
-
-                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap, lastDirection);
-                    positionsVisited.Add(newPos);
-                }
-                else if (i == interation)
-                {
-                    Debug.Log("This is the end other loop. Total index is " + i);
-                }
-            }
-        }
+        
 
         return positionsVisited;
     }

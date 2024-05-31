@@ -21,7 +21,6 @@ public class DungeonCrawler : MonoBehaviour
     public Direction GetFirstDirection(Dictionary<Direction, Vector2Int> directionMovementMap)
     {
         Direction toMove = (Direction)Random.Range(0, directionMovementMap.Count);
-        Debug.Log("First direction is " + toMove);
         return toMove;
     }
 
@@ -34,7 +33,6 @@ public class DungeonCrawler : MonoBehaviour
     public Direction GetNewDirection(Dictionary<Direction, Vector2Int> directionMovementMap, Direction avoiding)
     {
         Direction movingTo = NewDirection(avoiding, directionMovementMap);
-        Debug.Log("Direction is moving to: " + movingTo);
         return movingTo;
     }
 

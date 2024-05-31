@@ -24,10 +24,10 @@ public class DungeonGenerator : MonoBehaviour
 
         foreach (Vector2Int roomLocation in rooms)
         {
-            if (roomLocation == dungeonRooms[rand]) //one room only
-            {
-                RoomController.instance.LoadRoom("TreasureRoom", roomLocation.x, roomLocation.y);
-            }
+            //if (roomLocation == dungeonRooms[rand]) //one room only
+            //{
+            //    RoomController.instance.LoadRoom("TreasureRoom", roomLocation.x, roomLocation.y);
+            //}
             RoomController.instance.LoadRoom("Empty", roomLocation.x, roomLocation.y);
 
 
