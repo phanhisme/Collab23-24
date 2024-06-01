@@ -179,6 +179,17 @@ public class RoomController : MonoBehaviour
         return loadRooms.Find(item => item.X == X && item.Y == Y);
     }
 
+    public string GetRandomRoomName()
+    {
+        string[] possibleRooms = new string[]
+        {
+            "Empty",
+            "Basic",
+        };
+
+        return possibleRooms[Random.Range(0, possibleRooms.Length)];
+    }
+
     public void OnPlayerEnterRoom(Room room)
     {
         //get the current room -> set the camera to that room

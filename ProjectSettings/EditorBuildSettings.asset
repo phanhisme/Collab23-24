@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Phanh's Work/PA_Scene/Base.unity
     guid: 73cc4f202f7085c4ebe61bcabbcff587
   - enabled: 1
-    path: Assets/Phanh's Work/PA_Scene/TreasureRoom.unity
+    path: Assets/Phanh's Work/PA_Scene/BaseTreasureRoom.unity
     guid: 4069da0aec1fb5e4e9ecacc228d9bad5
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseBasic.unity
+    guid: d0fbea5d1040c0444bed2e5126b4b6fa
   m_configObjects: {}

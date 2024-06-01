@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610086caeab93de4a9ba60ab38ac1ec0, type: 3}
+  m_Name: Flower
+  m_EditorClassIdentifier: 
+  itemToSpawn: {fileID: 5336800720435535777, guid: 45239dcdebcc41d41ad9673870d140ea, type: 3}
+  minSpawn: 1
+  maxSpawn: 3

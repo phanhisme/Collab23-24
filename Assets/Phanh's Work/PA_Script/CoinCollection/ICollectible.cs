@@ -6,3 +6,13 @@ public interface ICollectible //interface = template
 {
     public void Collect();
 }
+
+public interface IPickUps
+{
+    //Items itemScriptable { get; }
+
+    Items Item { get; }
+    string ItemName { get; }
+
+    public void Collect();
+}

@@ -56,7 +56,10 @@ public class NPCBehaviour : MonoBehaviour
     {
         if (!checkInRange) // if there is the player within the scene -> randomly pop up a random chat
         {
-            timerText.text = currentTime.ToString();
+            if (timerText != null)
+            {
+                timerText.text = currentTime.ToString();
+            }
 
             if(currentStatus == Status.IDLE)
             {
@@ -129,7 +132,7 @@ public class NPCBehaviour : MonoBehaviour
     {
         //talk for fun. increase interaction and maybe friendship for better quest reward
         float randomTalkChance = Random.value;
-        Debug.Log(randomTalkChance);
+        //Debug.Log(randomTalkChance);
 
         if (randomTalkChance <= 0.5)
         {
