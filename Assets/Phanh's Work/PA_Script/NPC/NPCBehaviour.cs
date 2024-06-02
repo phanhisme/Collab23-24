@@ -41,9 +41,10 @@ public class NPCBehaviour : MonoBehaviour
     private void Start()
     {
         questAndDiaPanel = GameObject.Find("Quest&Dialogue");
-        questUI = GameObject.Find("Quest");
-        dialogueBox = GameObject.Find("Dialogue");
+        questUI = questAndDiaPanel.transform.GetChild(1).gameObject;
+        dialogueBox = questAndDiaPanel.transform.GetChild(2).gameObject;
 
+        Debug.Log(questUI);
         questUI.SetActive(false);
         dialogueBox.SetActive(false);
 
@@ -109,13 +110,19 @@ public class NPCBehaviour : MonoBehaviour
                     currentStatus = Status.TALKING;
                 }
             }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    dialogueBox.SetActive(false);
+                }
+            }
         }
 
         if (interacting)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("heyhey");
                 ShowQuest();
             }
         }
@@ -363,15 +370,35 @@ public class NPCBehaviour : MonoBehaviour
         questUI.SetActive(true);
 
         QuestLogic questBox = FindObjectOfType<QuestLogic>();
-        questBox.chosenNPC = thisNPC;
 
         questBox.questName.text = quest.questTitle;
         questBox.questDetails.text = quest.questDescription;
 
-        string intro = questBox.FormattedIntro();
+        string intro = FormattedIntro();
         questBox.questIntro.text = intro;
 
         //dialogueBox..text = quest.questDescription;
+    }
+
+    public string FormattedIntro()
+    {
+
+        int r = Random.Range(0, 3);
+
+        switch (r)
+        {
+            case 0:
+                return $"<color=blue>{thisNPC.NPCName}</color> has a request for you!";
+
+            case 1:
+                return $"<color=blue>{thisNPC.NPCName}</color> is seeking for your help...";
+
+            case 2:
+                return $"A new commission from <color=blue>{thisNPC.NPCName}</color> just arrived!";
+
+        }
+
+        return "";
     }
 
     public void RandomQuest()

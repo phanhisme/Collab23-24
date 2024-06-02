@@ -6,8 +6,6 @@ using TMPro;
 
 public class QuestLogic : MonoBehaviour
 {
-    public CreateNPC chosenNPC;
-
     public int amountNeeded;
 
     public TextMeshProUGUI questName;
@@ -50,35 +48,12 @@ public class QuestLogic : MonoBehaviour
         return amountNeeded;
     }
 
-    void QuestImplementation()
+    public void AcceptQuest()
     {
-
-    }
-
-    void ApplyQuestData()
-    {
-        questIntro.text = FormattedIntro();
+        QuestManager questManager = FindObjectOfType<QuestManager>();
+        
     }
 
 
-    public string FormattedIntro()
-    {
-
-        int r = Random.Range(0, 3);
-
-        switch (r)
-        {
-            case 0:
-                return $"<color=blue>{chosenNPC.NPCName}</color> has a request for you!";
-
-            case 1:
-                return $"<color=blue>{chosenNPC.NPCName}</color> is seeking for your help...";
-
-            case 2:
-                return $"A new commission from <color=blue>{chosenNPC.NPCName}</color> just arrived!";
-
-        }
-
-        return "";
-    }
+    
 }

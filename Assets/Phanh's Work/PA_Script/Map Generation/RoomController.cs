@@ -181,14 +181,39 @@ public class RoomController : MonoBehaviour
 
     public string GetRandomRoomName()
     {
+        float spawnChance = Random.value;
+
         string[] possibleRooms = new string[]
         {
-            "Empty",
             "Basic",
-            "VillagerQuest"
+            "Basic1"
         };
 
-        return possibleRooms[Random.Range(0, possibleRooms.Length)];
+        string[] eliteRooms = new string[]
+        {
+            "Elite",
+            "Elite1"
+        };
+
+        string[] specialRooms = new string[]
+        {
+            "Treasure",
+            "Shop",
+            "Rest Stop",
+            "Blacksmith"
+        };
+
+        if (spawnChance < 0.2)
+        {
+            return specialRooms[Random.Range(0, specialRooms.Length)];
+        }
+        else if (spawnChance < 0.4)
+        {
+            return eliteRooms[Random.Range(0, eliteRooms.Length)];
+        }
+        else
+            return possibleRooms[Random.Range(0, possibleRooms.Length)];
+
     }
 
     public void OnPlayerEnterRoom(Room room)
