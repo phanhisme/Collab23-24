@@ -57,36 +57,9 @@ public class QuestLogic : MonoBehaviour
 
     void ApplyQuestData()
     {
-        //questName.text = RandomQuestTitle();
-        questDetails.text = FormattedDescription();
         questIntro.text = FormattedIntro();
-
-        //rewardImage.sprite = chosenRewardType.rewardIcon;
-        //rewardAmount.text = chosenRewardType.rewardAmount.ToString();
-        //progression.text=chosenScriptable.
-
-        
-        // questStatus;
     }
 
-    public string FormattedDescription()
-    {
-        //switch (questItem)
-        //{
-        //    case QuestItem.Villagers:
-        //        return $"Rescue <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
-
-        //    case QuestItem.Currency:
-        //        return $"Obtain <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
-
-        //    case QuestItem.PickUps:
-        //        return $"Retrieve <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
-
-        //    case QuestItem.EnemyDrops:
-        //        return $"Obtain <b><color=green>{amountNeeded} {questItem}</color></b> from the Forest";
-        //}
-        return "";
-    }
 
     public string FormattedIntro()
     {

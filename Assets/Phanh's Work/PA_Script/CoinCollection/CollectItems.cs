@@ -45,29 +45,8 @@ public class CollectItems : MonoBehaviour
 
             }
 
-            Debug.Log("HA");
-
             collectible.Collect();
         }
-    }
-
-    private void OnEnable()
-    {
-        UniversalPickUps.OnCollected += ItemManager;
-    }
-
-    private void OnDisable()
-    {
-        UniversalPickUps.OnCollected -= ItemManager;
-    }
-
-    public void ItemManager()
-    {
-        //coinsCount++;
-        //coinText.text = coinsCount.ToString();
-        //Debug.Log("collected " + coinsCount + " coins");
-
-        
     }
 
     public void GetData(int itemNumber, Items itemData)
@@ -84,7 +63,7 @@ public class CollectItems : MonoBehaviour
         pickUpItems.Add(newItem);
     }
 
-    public Item FindCorrectItem(List<Item> itemList,IPickUps pickUp)
+    public Item FindCorrectItem(List<Item> itemList, IPickUps pickUp)
     {
         foreach (Item i in itemList)
         {
@@ -94,4 +73,21 @@ public class CollectItems : MonoBehaviour
 
         return new Item();
     }
+
+    //private void OnEnable()
+    //{
+    //    UniversalPickUps.OnCollected += ItemManager;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    UniversalPickUps.OnCollected -= ItemManager;
+    //}
+
+    //public void ItemManager()
+    //{
+    //    //coinsCount++;
+    //    //coinText.text = coinsCount.ToString();
+    //    //Debug.Log("collected " + coinsCount + " coins");
+    //}
 }

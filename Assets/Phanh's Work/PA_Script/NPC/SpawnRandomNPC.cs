@@ -6,9 +6,11 @@ using TMPro;
 
 public class SpawnRandomNPC : MonoBehaviour
 {
-    public List<CreateNPC> allNPC = new List<CreateNPC>();
+    public GameObject npcToSpawn;
+    
+    public Transform[] waypoints;
 
-    public GameObject npcHolder;
+    public Transform npcHolder;
     public GameObject textObject;
 
     private enum DayCycle{ DAY, NIGHT};
@@ -18,19 +20,18 @@ public class SpawnRandomNPC : MonoBehaviour
     {
         currentCycle = DayCycle.DAY;
         DayCycleControl();
+
+        SpawnNPC();
     }
 
     void DayCycleControl()
     {
         if (currentCycle == DayCycle.DAY)
         {
-            SpawnNPC(); //if the cycle of the day (at base is Day) //can use int if spawn more than 1
-           
-            
+             //if the cycle of the day (at base is Day) //can use int if spawn more than 1
         }
-        else
+        else if (currentCycle == DayCycle.NIGHT)
         {
-            
             //everyone goes to sleep
             //darker background and fire will turn on as light
         }
@@ -38,21 +39,11 @@ public class SpawnRandomNPC : MonoBehaviour
 
     void SpawnNPC()
     {
-        //at the start of day, a random npc will appear at the base
-        int randomValue = Random.Range(0, allNPC.Count); //can random spawn location
+        Debug.Log("spawning npc");
+        int randomWaypoints = Random.Range(0, waypoints.Length);
+        Transform chosenWaypoints = waypoints[randomWaypoints];
 
-        //replace the existing npc to the data of the random npc
-        CreateNPC thisScriptable = allNPC[randomValue];
-
-        TextMeshPro text = textObject.GetComponent<TextMeshPro>();
-        text.text = thisScriptable.NPCName;
-
-        NPCBehaviour behaviour = FindObjectOfType<NPCBehaviour>();
-        behaviour.thisNPC = thisScriptable;
-
-        QuestLogic logic = FindObjectOfType<QuestLogic>();
-        //logic.chosenNPC = thisScriptable;
-
-        //logic.RandomQuestData();
+        GameObject thisNPC = Instantiate(npcToSpawn, chosenWaypoints);
+        thisNPC.transform.parent = npcHolder;
     }
 }

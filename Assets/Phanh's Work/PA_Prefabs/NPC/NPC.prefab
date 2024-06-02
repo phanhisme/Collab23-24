@@ -35,7 +35,7 @@ Transform:
   - {fileID: 2269404450685467027}
   - {fileID: 2269404450435254781}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2269404449387878391
 SpriteRenderer:
@@ -122,6 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41b1ec6ea9bc314ab2d7ac48164658d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allNPC:
+  - {fileID: 11400000, guid: 95bb11b2f4d543a4da6d434143389824, type: 2}
+  - {fileID: 11400000, guid: 52ebad49d3d2ea44fb0084ca659831c4, type: 2}
+  - {fileID: 11400000, guid: d5de03dad3cc30e47b6e7d92494a95df, type: 2}
+  nameText: {fileID: 2269404450685467028}
   col: {fileID: 2269404449431820696}
   thisNPC: {fileID: 0}
   isAvailableForQuest: 0
@@ -138,7 +143,6 @@ MonoBehaviour:
   quest: {fileID: 0}
   idleChat: {fileID: 2269404450435254780}
   chatText: {fileID: 2269404450435254782}
-  timerText: {fileID: 0}
   popChatCooldown: 15
   currentTime: 0
   currentStatus: 0

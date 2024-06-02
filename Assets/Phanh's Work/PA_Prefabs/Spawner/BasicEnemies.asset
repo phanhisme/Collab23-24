@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 610086caeab93de4a9ba60ab38ac1ec0, type: 3}
-  m_Name: Villager
+  m_Name: BasicEnemies
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 6209490252548991701, guid: b00b413451b424548a137f88112bb168, type: 3}
-  minSpawn: 0
+  itemToSpawn: {fileID: 6491490456295070503, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+  minSpawn: 4
   maxSpawn: 1

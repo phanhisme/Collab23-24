@@ -185,6 +185,7 @@ public class RoomController : MonoBehaviour
         {
             "Empty",
             "Basic",
+            "VillagerQuest"
         };
 
         return possibleRooms[Random.Range(0, possibleRooms.Length)];
@@ -195,5 +196,7 @@ public class RoomController : MonoBehaviour
         //get the current room -> set the camera to that room
         CameraController.instance.currentRoom = room;
         currRoom = room;
+
+        //updatedRooms();
     }
 }
