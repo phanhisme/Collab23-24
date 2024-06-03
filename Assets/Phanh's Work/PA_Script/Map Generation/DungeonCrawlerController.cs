@@ -12,6 +12,8 @@ public enum Direction
 
 public class DungeonCrawlerController : MonoBehaviour
 {
+    public static Direction lastDirection;
+
     public static List<Vector2Int> positionsVisited = new List<Vector2Int>();
     private static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
     {   
@@ -25,7 +27,7 @@ public class DungeonCrawlerController : MonoBehaviour
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
 
-        for (int i = 0; i < dungeonData.numberOfCrawlers; i++)
+        for (int i = 0; i < dungeonData.minNumberOfCrawlers; i++)
         {
             dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
         }
@@ -36,8 +38,25 @@ public class DungeonCrawlerController : MonoBehaviour
         {
             foreach (DungeonCrawler dungeonCrawler in dungeonCrawlers)
             {
-                Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
-                positionsVisited.Add(newPos);
+                if (i == 0)
+                {
+                    lastDirection = dungeonCrawler.GetFirstDirection(directionMovementMap);
+
+                    Vector2Int newPos = dungeonCrawler.MoveAtRandom(lastDirection, directionMovementMap);
+                    positionsVisited.Add(newPos);
+                }
+                else
+                {
+                    Direction avoiding = dungeonCrawler.GetPathToAvoid(lastDirection);
+                    Debug.Log("Last direction is: " + lastDirection + ". Thus, avoiding " + avoiding);
+
+                    //get new lastDir
+                    lastDirection = dungeonCrawler.GetNewDirection(directionMovementMap, avoiding);
+                    Debug.Log("Getting new last direction: " + lastDirection);
+
+                    Vector2Int newPos = dungeonCrawler.Move(directionMovementMap, lastDirection);
+                    positionsVisited.Add(newPos);
+                }
             }
 
             //if (dungeonCrawlers.Count == 0)

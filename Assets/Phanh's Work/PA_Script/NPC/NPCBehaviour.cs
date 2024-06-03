@@ -5,6 +5,9 @@ using TMPro;
 
 public class NPCBehaviour : MonoBehaviour
 {
+    public List<CreateNPC> allNPC = new List<CreateNPC>();
+    public TextMeshPro nameText;
+
     public Collider2D col;
     private bool hasSpoken = false; //has spoken in that day
     private bool hasTakenQuest = false; //ask if the player has finish the quest if this is true
@@ -29,26 +32,46 @@ public class NPCBehaviour : MonoBehaviour
 
     public enum Status { TALKING, IDLE};
     public Status currentStatus;
+
+    //ui
+    public GameObject questAndDiaPanel;
+    public GameObject questUI;
+    public GameObject dialogueBox;
     
     private void Start()
     {
-        currentStatus = Status.IDLE;
-        idleChat.SetActive(false);
+        questAndDiaPanel = GameObject.Find("Quest&Dialogue");
+        questUI = questAndDiaPanel.transform.GetChild(1).gameObject;
+        dialogueBox = questAndDiaPanel.transform.GetChild(2).gameObject;
 
-        float randomValue = Random.value;
-        if (randomValue <= 0.7)
-        {
-            //chances to receive quest
-            isAvailableForQuest = true;
-            path = 3;
-            RandomQuest();
+        Debug.Log(questUI);
+        questUI.SetActive(false);
+        dialogueBox.SetActive(false);
 
-            Debug.Log("quest is available");
-        }
-        else
+        thisNPC = RandomNPC();
+
+        if (thisNPC != null)
         {
-            isAvailableForQuest = false;
-            path = Random.Range(0, 2); //depends on the player's level later
+            GetData(thisNPC);
+
+            currentStatus = Status.IDLE;
+            idleChat.SetActive(false);
+
+            float randomValue = Random.value;
+            if (randomValue <= 0.7)
+            {
+                //chances to receive quest
+                isAvailableForQuest = true;
+                path = 3;
+                RandomQuest();
+
+                Debug.Log("quest is available");
+            }
+            else
+            {
+                isAvailableForQuest = false;
+                path = Random.Range(0, 2); //depends on the player's level later
+            }
         }
     }
 
@@ -56,9 +79,12 @@ public class NPCBehaviour : MonoBehaviour
     {
         if (!checkInRange) // if there is the player within the scene -> randomly pop up a random chat
         {
-            timerText.text = currentTime.ToString();
+            if (timerText != null)
+            {
+                timerText.text = currentTime.ToString();
+            }
 
-            if(currentStatus == Status.IDLE)
+            if (currentStatus == Status.IDLE)
             {
                 if (currentTime <= popChatCooldown)
                 {
@@ -69,16 +95,26 @@ public class NPCBehaviour : MonoBehaviour
                     StartCoroutine(WaitForTime(5));
                 }
             }
+            else
+                StopAllCoroutines();
         }
 
         else
         {
+            StopAllCoroutines();
             if (currentStatus == Status.IDLE) //not talking to anyone
             {
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     Interact();
                     currentStatus = Status.TALKING;
+                }
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    dialogueBox.SetActive(false);
                 }
             }
         }
@@ -105,10 +141,26 @@ public class NPCBehaviour : MonoBehaviour
             {
                 Debug.Log("escaping");
                 currentStatus = Status.IDLE;
+
+                dialogueBox.SetActive(false);
+                questUI.SetActive(false);
+
                 movement.enabled = true;
                 playerStamina.enabled = true;
             }
         }
+    }
+
+    public CreateNPC RandomNPC()
+    {
+        int randomValue = Random.Range(0, allNPC.Count);
+        return allNPC[randomValue];
+    }
+
+    public void GetData(CreateNPC npc)
+    {
+        TextMeshPro text = nameText.GetComponent<TextMeshPro>();
+        text.text = npc.NPCName;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -129,7 +181,7 @@ public class NPCBehaviour : MonoBehaviour
     {
         //talk for fun. increase interaction and maybe friendship for better quest reward
         float randomTalkChance = Random.value;
-        Debug.Log(randomTalkChance);
+        //Debug.Log(randomTalkChance);
 
         if (randomTalkChance <= 0.5)
         {
@@ -198,27 +250,58 @@ public class NPCBehaviour : MonoBehaviour
 
     public void Interact()
     {
+        dialogueBox.SetActive(true);
+
         DialogueReceiver receiver = FindObjectOfType<DialogueReceiver>();
         receiver.speakerName.text = thisNPC.NPCName;
 
-        switch (path)
+        if (!hasSpoken)
         {
+            string text = CustomDialogue(path);
+            receiver.diaText.text = text;
+
+            if (path == 3)
+            {
+                interacting = true;
+            }
+            else
+                interacting = false;
+
+            hasSpoken = true;
+        }
+        else
+        {
+            if(path == 3)
+            {
+                ShowQuest();
+            }
+            else
+            {
+                string reply = "You have talked to this NPC";
+                receiver.diaText.text = reply;
+            }
+
+            
+        }
+    }
+
+    public string CustomDialogue( int value)
+    {
+        switch (value)
+        {
+            
             case 0:
                 int randCasual = GetRandomValue();
                 switch (randCasual)
                 {
                     case 0:
-                        receiver.diaText.text = "Greetings. What a beautiful day this morning!";
-                        break;
+                        return "Greetings. What a beautiful day this morning!";
 
                     case 1:
-                        receiver.diaText.text = "The weather today is great to hang out by the Square!";
-                        break;
+                        return "The weather today is great to hang out by the Square!";
 
                     case 2:
-                        receiver.diaText.text = "I bought some cookies from the Trader this morning. They look ... questioning, but taste great!"; //HAPPY COOKIES - gift 6 cookies for a girl in the dark wood
-                                                                                                                                                   //traders sell 2 per day - 2 golds each
-                        break;
+                        return "I bought some cookies from the Trader this morning. They look ... questioning, but taste great!"; //HAPPY COOKIES - gift 6 cookies for a girl in the dark wood
                 }
                 break;
 
@@ -229,16 +312,13 @@ public class NPCBehaviour : MonoBehaviour
                 switch (randGift)
                 {
                     case 0:
-                        receiver.diaText.text = "Found this under my bed this morning, I think you might need it!";
-                        break;
+                        return "Found this under my bed this morning, I think you might need it!";
 
                     case 1:
-                        receiver.diaText.text = "I just ";
-                        break;
+                        return "Got this from a friend! Do not tell them I gave this to you though!";
 
                     case 2:
-                        receiver.diaText.text = "Found this under my bed this morning, I think you might need it!";
-                        break;
+                        return "I cleaned my basement and found this... not sure how to use that to be honest";
                 }
 
                 break;
@@ -248,16 +328,13 @@ public class NPCBehaviour : MonoBehaviour
                 switch (randTips)
                 {
                     case 0:
-                        receiver.diaText.text = "Are you hungry? I heard that berries are very good for your health!";
-                        break;
+                        return "Are you hungry? I heard that berries are very good for your health!";
 
                     case 1:
-                        receiver.diaText.text = "Energy Drinks are pretty great for your stamina, just in case you need them, I think that the Trader sells them!";
-                        break;
+                        return "Energy Drinks are pretty great for your stamina, just in case you need them, I think that the Trader sells them!";
 
                     case 2:
-                        receiver.diaText.text = "I heard that there is a mysterious Secret Trader in the wood! Spooky~ If you give him your coins he might trade some <color=yellow>Golds</color> for it!";
-                        break;
+                        return "I heard that there is a mysterious Secret Trader in the wood! Spooky~ If you give him your coins he might trade some <color=yellow>Golds</color> for it!";
                 }
 
                 break;
@@ -267,20 +344,22 @@ public class NPCBehaviour : MonoBehaviour
                 switch (randRequest)
                 {
                     case 0:
-                        receiver.diaText.text = "Would you like to listen to my request?";
-                        interacting = true;
-                        break;
+                        return "Would you like to listen to my request?";
 
                     case 1:
-                        receiver.diaText.text = "I see my commission has reached your hand, would you like to accept it?";
-                        break;
+                        return "I see my commission has reached your hand, would you like to accept it?";
 
                     case 2:
                         break;
                 }
-                
+
                 break;
+
+            default:
+                return "";
         }
+        return "";
+
     }
 
     public void ShowQuest()
@@ -288,14 +367,38 @@ public class NPCBehaviour : MonoBehaviour
         //animation of the dialoguebox
 
         //insert text
+        questUI.SetActive(true);
+
         QuestLogic questBox = FindObjectOfType<QuestLogic>();
-        questBox.chosenNPC = thisNPC;
 
         questBox.questName.text = quest.questTitle;
         questBox.questDetails.text = quest.questDescription;
-        questBox.questIntro.text = questBox.FormattedIntro();
+
+        string intro = FormattedIntro();
+        questBox.questIntro.text = intro;
 
         //dialogueBox..text = quest.questDescription;
+    }
+
+    public string FormattedIntro()
+    {
+
+        int r = Random.Range(0, 3);
+
+        switch (r)
+        {
+            case 0:
+                return $"<color=blue>{thisNPC.NPCName}</color> has a request for you!";
+
+            case 1:
+                return $"<color=blue>{thisNPC.NPCName}</color> is seeking for your help...";
+
+            case 2:
+                return $"A new commission from <color=blue>{thisNPC.NPCName}</color> just arrived!";
+
+        }
+
+        return "";
     }
 
     public void RandomQuest()
