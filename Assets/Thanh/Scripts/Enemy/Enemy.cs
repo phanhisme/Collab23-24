@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
 
         enemyData = new EnemyData
         {
+            //ID = enemyDataSO.ID,
+            //health = enemyDataSO.health,
             baseGoldDrop = enemyDataSO.baseGoldDrop,
             finalGoldDrop = enemyDataSO.finalGoldDrop,
             currencyMultiplier = enemyDataSO.currencyMultiplier,
