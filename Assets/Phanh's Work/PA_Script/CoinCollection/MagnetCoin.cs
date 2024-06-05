@@ -12,5 +12,10 @@ public class MagnetCoin : MonoBehaviour
             //find player's location
             coin.FindTarget(transform.parent.position);
         }
+
+        else if (collision.gameObject.TryGetComponent<UniversalPickUps>(out UniversalPickUps item))
+        {
+            item.FindTarget(transform.parent.position);
+        }
     }
 }

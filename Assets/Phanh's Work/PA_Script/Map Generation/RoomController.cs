@@ -65,7 +65,7 @@ public class RoomController : MonoBehaviour
                 foreach(Room room in loadRooms)
                 {
                     //once the boss room has spawned -> remove door
-                    room.RemoveUnconnectedDoor();
+                    room.CreateDoorway();
                 }
 
                 updatedRooms = true;
@@ -179,10 +179,49 @@ public class RoomController : MonoBehaviour
         return loadRooms.Find(item => item.X == X && item.Y == Y);
     }
 
+    public string GetRandomRoomName()
+    {
+        float spawnChance = Random.value;
+
+        string[] possibleRooms = new string[]
+        {
+            "Basic",
+            "Basic1"
+        };
+
+        string[] eliteRooms = new string[]
+        {
+            "Elite",
+            "Elite1"
+        };
+
+        string[] specialRooms = new string[]
+        {
+            "Treasure",
+            "Shop",
+            "Rest Stop",
+            "Blacksmith"
+        };
+
+        if (spawnChance < 0.2)
+        {
+            return specialRooms[Random.Range(0, specialRooms.Length)];
+        }
+        else if (spawnChance < 0.4)
+        {
+            return eliteRooms[Random.Range(0, eliteRooms.Length)];
+        }
+        else
+            return possibleRooms[Random.Range(0, possibleRooms.Length)];
+
+    }
+
     public void OnPlayerEnterRoom(Room room)
     {
         //get the current room -> set the camera to that room
         CameraController.instance.currentRoom = room;
         currRoom = room;
+
+        //updatedRooms();
     }
 }

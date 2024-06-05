@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InGameUI : MonoBehaviour
 {
+    public GameObject QuestMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class InGameUI : MonoBehaviour
     }
     public void Quest()
     {
-
+        QuestMenu.SetActive(true);
     }
     public void Inventory()
     {

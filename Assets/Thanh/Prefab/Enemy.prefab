@@ -49,6 +49,11 @@ MonoBehaviour:
   radius: 0.82
   anim: {fileID: 6491490456247524897}
   delayAttack: 0.5
+  enemyDamage: 5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  animEvent: {fileID: 0}
 --- !u!1 &6491490455858719558
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,36 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c8eddf1d6daf64bb1131f36abc7bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnAnimationEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6491490455753061650}
-        m_TargetAssemblyTypeName: EnemyWeaponHolder, Assembly-CSharp
-        m_MethodName: ResetAttackForEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnAttackPerformed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6491490455753061650}
-        m_TargetAssemblyTypeName: EnemyWeaponHolder, Assembly-CSharp
-        m_MethodName: DetectCol
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6491490456295070503
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,6 +505,7 @@ GameObject:
   - component: {fileID: 6851891554381255624}
   - component: {fileID: 1463867792}
   - component: {fileID: 1011084334}
+  - component: {fileID: -7052518298395917574}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -619,6 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081329c93f9b8c84fa14e42ba087bcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
   circle: {fileID: 6491490455971283377}
   radius: 2.03
   holder: {fileID: 6491490455753061650}
@@ -699,16 +676,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd00fd058dc0d784abaed352183fa502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 10
+  maxHealth: 10
+  collideDamage: 1
   OnHitWithReference:
     m_PersistentCalls:
       m_Calls: []
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
-  currentHealth: 10
-  maxHealth: 10
-  collideDamage: 1
+  isDead: 0
   playerHealth: {fileID: 0}
+  isHit: 0
+--- !u!114 &-7052518298395917574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491490456295070503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a139ef333210349beb970a97046e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: {fileID: 0}
 --- !u!1 &6491490457109044942
 GameObject:
   m_ObjectHideFlags: 0
