@@ -104,7 +104,7 @@ public class NPCBehaviour : MonoBehaviour
             StopAllCoroutines();
             if (currentStatus == Status.IDLE) //not talking to anyone
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     Interact();
                     currentStatus = Status.TALKING;

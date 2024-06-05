@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PanelManager : MonoBehaviour
 {
@@ -39,5 +40,16 @@ public class PanelManager : MonoBehaviour
     public void OnPointerClick(PointerEventData eventData)
     {
         HideSaveSlotsPanel(); // Hide the save slots panel
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(12);
+    }
+
+    public void Exit()
+    {
+        Debug.Log("quitting");
+        Application.Quit();
     }
 }

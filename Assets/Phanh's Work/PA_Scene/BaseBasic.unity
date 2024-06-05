@@ -1837,6 +1837,8 @@ MonoBehaviour:
     spawnerData: {fileID: 11400000, guid: 18f723ba144e92a4c98bacf0a863d9fb, type: 2}
   - name: Drops
     spawnerData: {fileID: 11400000, guid: 2a80463d3160ced479e0e4fd9ea92130, type: 2}
+  - name: Enemies
+    spawnerData: {fileID: 11400000, guid: 424624b88bed7ea4b8915a0858b31c8e, type: 2}
 --- !u!1 &1719784423
 GameObject:
   m_ObjectHideFlags: 0
