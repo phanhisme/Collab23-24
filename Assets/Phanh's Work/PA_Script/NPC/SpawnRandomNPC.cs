@@ -7,11 +7,9 @@ using TMPro;
 public class SpawnRandomNPC : MonoBehaviour
 {
     public GameObject npcToSpawn;
-    
     public GameObject[] waypoints;
-
-    public Transform npcHolder;
     public GameObject textObject;
+    public Transform npcHolder;
 
     private enum DayCycle{ DAY, NIGHT};
     private DayCycle currentCycle;

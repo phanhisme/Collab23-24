@@ -9,9 +9,15 @@ public class NPCBehaviour : MonoBehaviour
     public TextMeshPro nameText;
 
     public Collider2D col;
+    
+    //friendship - if any
     private bool hasSpoken = false; //has spoken in that day
-    private bool hasTakenQuest = false; //ask if the player has finish the quest if this is true
-    public bool checkInRange = false;
+
+    private bool hasAcceptedQuest = false;
+    private bool hasTakenQuest = false; //ask if the player has take a quest
+    private bool checkInRange = false;
+
+    //kind of misled - meaning this npc has a quest for the player
     private bool interacting = false;
 
     public CreateNPC thisNPC; //npc scriptable - we can add NPC trait - to randomize what they might say from different traits
@@ -37,9 +43,21 @@ public class NPCBehaviour : MonoBehaviour
     public GameObject questAndDiaPanel;
     public GameObject questUI;
     public GameObject dialogueBox;
-    
+
+    //player
+    GameObject player;
+    PlayerMovement movement;
+    DashStamina playerStamina;
+    QuestManager qm;
+
     private void Start()
     {
+        qm = FindObjectOfType<QuestManager>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        movement = player.GetComponent<PlayerMovement>();
+        playerStamina = player.GetComponent<DashStamina>();
+
         questAndDiaPanel = GameObject.Find("Quest&Dialogue");
         questUI = questAndDiaPanel.transform.GetChild(1).gameObject;
         dialogueBox = questAndDiaPanel.transform.GetChild(2).gameObject;
@@ -97,6 +115,12 @@ public class NPCBehaviour : MonoBehaviour
             }
             else
                 StopAllCoroutines();
+
+            questUI.SetActive(false);
+            dialogueBox.SetActive(false);
+
+            movement.enabled = true;
+            playerStamina.enabled = true;
         }
 
         else
@@ -112,52 +136,49 @@ public class NPCBehaviour : MonoBehaviour
             }
             else
             {
+                //if only when the path is 3 == quest available => able to show quest
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    dialogueBox.SetActive(false);
-                }
-            }
-        }
+                    if (!interacting || hasAcceptedQuest)
+                    {
+                        dialogueBox.SetActive(false);
+                        currentStatus = Status.IDLE;
+                    }
 
-        if (interacting)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ShowQuest();
+
+                    else if (interacting)
+                    {
+                        if (!hasTakenQuest)
+                        {
+                            ShowQuest();
+                            dialogueBox.SetActive(false);
+                            hasTakenQuest = true;
+                        }
+                    }
+                }
             }
         }
 
         if (currentStatus == Status.TALKING)
         {
-            //LOCK INTERACTION
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            PlayerMovement movement = player.GetComponent<PlayerMovement>();
-            DashStamina playerStamina = player.GetComponent<DashStamina>();
-
             movement.enabled = false;
             playerStamina.enabled = false;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Debug.Log("escaping");
-                currentStatus = Status.IDLE;
-
-                dialogueBox.SetActive(false);
-                questUI.SetActive(false);
-
-                movement.enabled = true;
-                playerStamina.enabled = true;
-            }
+        }
+        else if (currentStatus == Status.IDLE)
+        {
+            movement.enabled = true;
+            playerStamina.enabled = true;
         }
     }
 
-    public CreateNPC RandomNPC()
+    public CreateNPC RandomNPC() //Random which NPC to spawn
     {
         int randomValue = Random.Range(0, allNPC.Count);
         return allNPC[randomValue];
     }
 
-    public void GetData(CreateNPC npc)
+    public void GetData(CreateNPC npc) //Get Name for NPC
     {
         TextMeshPro text = nameText.GetComponent<TextMeshPro>();
         text.text = npc.NPCName;
@@ -271,25 +292,23 @@ public class NPCBehaviour : MonoBehaviour
         }
         else
         {
-            if(path == 3)
+            if (hasAcceptedQuest)
             {
-                ShowQuest();
+                string reply = "You have taken a quest from this NPC";
+                receiver.diaText.text = reply;
             }
-            else
+            else if (!interacting)
             {
                 string reply = "You have talked to this NPC";
                 receiver.diaText.text = reply;
             }
-
-            
         }
     }
 
     public string CustomDialogue( int value)
     {
         switch (value)
-        {
-            
+        {  
             case 0:
                 int randCasual = GetRandomValue();
                 switch (randCasual)
@@ -350,7 +369,7 @@ public class NPCBehaviour : MonoBehaviour
                         return "I see my commission has reached your hand, would you like to accept it?";
 
                     case 2:
-                        break;
+                        return "The way I see it, a hero comes to save the day!";
                 }
 
                 break;
@@ -403,9 +422,30 @@ public class NPCBehaviour : MonoBehaviour
 
     public void RandomQuest()
     {
-        Debug.Log("receiving quest");
+        //Debug.Log("receiving quest");
         int r = Random.Range(0, allQuest.Count);
         quest = allQuest[r];
+    }
+
+    public void AcceptQuest()
+    {
+        hasAcceptedQuest = true;
+
+        qm.addedQuest.Add(quest);
+        questUI.SetActive(false);
+        currentStatus = Status.IDLE;
+    }
+
+    public void DeclineQuest()
+    {
+        questUI.SetActive(false);
+        dialogueBox.SetActive(true);
+
+        DialogueReceiver dia = FindObjectOfType<DialogueReceiver>();
+        dia.diaText.text = "Alright, I guess you do not have time for this. I am leaving";
+
+        currentStatus = Status.IDLE;
+        Destroy(this.gameObject,3f);
     }
 
     public int GetRandomValue()
@@ -420,5 +460,4 @@ public class NPCBehaviour : MonoBehaviour
         yield return new WaitForSeconds(time);
         idleChat.SetActive(false);
     }
-
 }
