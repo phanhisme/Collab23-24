@@ -199,7 +199,7 @@ public class RoomController : MonoBehaviour
         {
             "Treasure",
             "Shop",
-            "Rest Stop",
+            "RestStop",
             "Blacksmith"
         };
 

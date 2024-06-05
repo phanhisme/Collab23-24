@@ -943,7 +943,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952145368204048661}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1124,6 +1124,8 @@ GameObject:
   m_Component:
   - component: {fileID: 383361586085092729}
   - component: {fileID: 4281910661929354017}
+  - component: {fileID: 8290043133266602024}
+  - component: {fileID: 8549217846217606878}
   m_Layer: 3
   m_Name: CollectorCollider
   m_TagString: Untagged
@@ -1158,8 +1160,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95696bc1e9eb60340a104185ed6c24d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectedItems: []
+  pickUpItems: []
   travelSpd: 5
-  coinText: {fileID: 0}
+--- !u!114 &8290043133266602024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449591827711299619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb09521c94c69204fa3a5b0f16801fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  travelSpd: 5
+--- !u!61 &8549217846217606878
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449591827711299619}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2330832565775240427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2397594348581542527}
   - component: {fileID: 1970448070416663702}
+  - component: {fileID: 7204097997840532876}
   m_Layer: 3
   m_Name: MagnetCollider
   m_TagString: Untagged
@@ -1204,3 +1247,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc49c84171294a84c81d5c5df6de9a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &7204097997840532876
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330832565775240427}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2

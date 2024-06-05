@@ -7,11 +7,11 @@ public class CollectCoin : MonoBehaviour
 {
     private int coinsCount = 0;
     public int travelSpd = 5;
-    public TextMeshProUGUI coinText;
+    //public TextMeshProUGUI coinText;
 
     public void Start()
     {
-        coinText.text = coinsCount.ToString();
+        //coinText.text = coinsCount.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,7 +36,7 @@ public class CollectCoin : MonoBehaviour
     public void CoinManager()
     {
         coinsCount++;
-        coinText.text = coinsCount.ToString();
+        //coinText.text = coinsCount.ToString();
         Debug.Log("collected " + coinsCount + " coins");
     }
 }

@@ -8,7 +8,7 @@ public class SpawnRandomNPC : MonoBehaviour
 {
     public GameObject npcToSpawn;
     
-    public Transform[] waypoints;
+    public GameObject[] waypoints;
 
     public Transform npcHolder;
     public GameObject textObject;
@@ -41,9 +41,9 @@ public class SpawnRandomNPC : MonoBehaviour
     {
         Debug.Log("spawning npc");
         int randomWaypoints = Random.Range(0, waypoints.Length);
-        Transform chosenWaypoints = waypoints[randomWaypoints];
+        GameObject chosenWaypoints = waypoints[randomWaypoints];
 
-        GameObject thisNPC = Instantiate(npcToSpawn, chosenWaypoints);
+        GameObject thisNPC = Instantiate(npcToSpawn, chosenWaypoints.transform.position, Quaternion.identity) as GameObject;
         thisNPC.transform.parent = npcHolder;
     }
 }
