@@ -22,7 +22,10 @@ public class StartStage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        wantToStart = true;
+        if (collision.gameObject.tag == "Player")
+        {
+            wantToStart = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

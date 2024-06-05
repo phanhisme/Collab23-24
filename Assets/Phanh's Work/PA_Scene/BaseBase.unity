@@ -545,7 +545,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.42998594, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -556,7 +556,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.17, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &117272518
 SpriteRenderer:
@@ -2942,6 +2942,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1449591827711299619, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330832565775240427, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8290043133266602024, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 719071817}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 56410447425adcf4e8617558b74ecf98, type: 3}

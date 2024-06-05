@@ -11,7 +11,7 @@ public class NPCBehaviour : MonoBehaviour
     public Collider2D col;
     private bool hasSpoken = false; //has spoken in that day
     private bool hasTakenQuest = false; //ask if the player has finish the quest if this is true
-    private bool checkInRange = false;
+    public bool checkInRange = false;
     private bool interacting = false;
 
     public CreateNPC thisNPC; //npc scriptable - we can add NPC trait - to randomize what they might say from different traits
@@ -165,7 +165,7 @@ public class NPCBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Interactable")
         {
             checkInRange = true;
         } 
