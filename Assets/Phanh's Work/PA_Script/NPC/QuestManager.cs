@@ -6,9 +6,25 @@ public class QuestManager : MonoBehaviour
 {
     public List<CreateQuest> addedQuest = new List<CreateQuest>();
 
-    public void RandomQuestData()
+    public GameObject questPrefab;
+    public Transform contenTransform;
+
+    int previousQuestQuantity = 0;
+
+    public void UpdateNewQuest()
     {
-       
+        if (previousQuestQuantity < addedQuest.Count)
+        {
+            InstantiateQuest(addedQuest[addedQuest.Count - 1]);
+        }
+    }
+
+    public void InstantiateQuest(CreateQuest thisQuest)
+    {
+        GameObject showQuest = Instantiate(questPrefab, contenTransform);
+
+        QuestUI ui = showQuest.GetComponent<QuestUI>();
+        ui.UpdateUI(thisQuest);
     }
 
     public void OnGoingQuest(QuestLogic chosenQuest)

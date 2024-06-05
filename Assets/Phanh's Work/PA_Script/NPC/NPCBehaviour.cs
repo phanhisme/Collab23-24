@@ -62,7 +62,6 @@ public class NPCBehaviour : MonoBehaviour
         questUI = questAndDiaPanel.transform.GetChild(1).gameObject;
         dialogueBox = questAndDiaPanel.transform.GetChild(2).gameObject;
 
-        Debug.Log(questUI);
         questUI.SetActive(false);
         dialogueBox.SetActive(false);
 
@@ -432,6 +431,8 @@ public class NPCBehaviour : MonoBehaviour
         hasAcceptedQuest = true;
 
         qm.addedQuest.Add(quest);
+        qm.UpdateNewQuest();
+
         questUI.SetActive(false);
         currentStatus = Status.IDLE;
     }

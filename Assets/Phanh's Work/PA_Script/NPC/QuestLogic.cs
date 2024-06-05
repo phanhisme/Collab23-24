@@ -42,18 +42,4 @@ public class QuestLogic : MonoBehaviour
                 break;
         }
     }
-
-    private int QuestItemAmount()
-    {
-        return amountNeeded;
-    }
-
-    public void AcceptQuest()
-    {
-        QuestManager questManager = FindObjectOfType<QuestManager>();
-        
-    }
-
-
-    
 }
