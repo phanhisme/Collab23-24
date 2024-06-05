@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    //[SerializeField] private TestPlayerSk player;
-    //[SerializeField] private UI_SkillTree uiSkillTree;
+    [SerializeField] private DraftPM player;
+    [SerializeField] private UI_SkillTree uiSkillTree;
 
     // Start is called before the first frame update
     private void Start()
     {
-        //uiSkillTree.SetPlayerSkills(player.GetPlayerSkill());
+        uiSkillTree.SetPlayerSkills(player.GetPlayerSkill());
     }
 
     // Update is called once per frame
