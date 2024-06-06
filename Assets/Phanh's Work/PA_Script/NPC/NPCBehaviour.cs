@@ -48,12 +48,10 @@ public class NPCBehaviour : MonoBehaviour
     GameObject player;
     PlayerMovement movement;
     DashStamina playerStamina;
-    QuestManager qm;
 
     private void Start()
     {
-        qm = FindObjectOfType<QuestManager>();
-
+        //references
         player = GameObject.FindGameObjectWithTag("Player");
         movement = player.GetComponent<PlayerMovement>();
         playerStamina = player.GetComponent<DashStamina>();
@@ -74,7 +72,7 @@ public class NPCBehaviour : MonoBehaviour
             currentStatus = Status.IDLE;
             idleChat.SetActive(false);
 
-            float randomValue = Random.value;
+            float randomValue = Random.value;//rand chance to have quest
             if (randomValue <= 0.7)
             {
                 //chances to receive quest
@@ -143,7 +141,6 @@ public class NPCBehaviour : MonoBehaviour
                         dialogueBox.SetActive(false);
                         currentStatus = Status.IDLE;
                     }
-
 
                     else if (interacting)
                     {
@@ -430,6 +427,10 @@ public class NPCBehaviour : MonoBehaviour
     {
         hasAcceptedQuest = true;
 
+        GameObject qmObject = GameObject.Find("IG_QUEST");
+        qmObject.SetActive(true);
+
+        QuestManager qm = qmObject.GetComponent<QuestManager>();
         qm.addedQuest.Add(quest);
         qm.UpdateNewQuest();
 

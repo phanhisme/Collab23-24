@@ -11,6 +11,12 @@ public class QuestManager : MonoBehaviour
 
     int previousQuestQuantity = 0;
 
+    public void Start()
+    {
+        GameObject uiItems = this.transform.GetChild(0).gameObject;
+        uiItems.gameObject.SetActive(false);
+    }
+
     public void UpdateNewQuest()
     {
         if (previousQuestQuantity < addedQuest.Count)
