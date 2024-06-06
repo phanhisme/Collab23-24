@@ -163,8 +163,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8293625353371184430}
   m_Bounds:
-    m_Center: {x: -2.416366, y: -0.064225435, z: 0}
-    m_Extent: {x: 0.4213215, y: 0.6401322, z: 0}
+    m_Center: {x: -2.4720747, y: -0.10982323, z: 0}
+    m_Extent: {x: 0.35846448, y: 0.6803595, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -896,8 +896,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1155028450545039920}
   m_Bounds:
-    m_Center: {x: 0.09019598, y: 0.036543846, z: 0}
-    m_Extent: {x: 0.44737098, y: 0.5746087, z: 0}
+    m_Center: {x: 0.32284996, y: -0.06874752, z: 0}
+    m_Extent: {x: 0.28167492, y: 0.66012454, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1176,7 +1176,7 @@ Transform:
   - {fileID: 8954487102453190580}
   - {fileID: 8837795367552040045}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8639068919533281868
 Animator:
