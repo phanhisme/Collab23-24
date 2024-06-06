@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111301496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3, y: -5.28, z: -10}
+  m_LocalPosition: {x: 11.27, y: -20.46, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -531,6 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 595048776}
+  - component: {fileID: 595048777}
   m_Layer: 0
   m_Name: SpearHolder
   m_TagString: Untagged
@@ -545,15 +546,45 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595048775}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.52, y: -20.07, z: -0.6804524}
+  m_LocalRotation: {x: -0, y: -0, z: 0.36332214, w: 0.93166363}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 670630502}
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 2289509426768606029}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 42.609}
+--- !u!114 &595048777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595048775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb3dbd32b73cea4fb141e8a1890bcd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+  power: 2
+  affectedSpeed: 1
+  weight: 3
+  delay: 0.4
+  attackBlocked: 0
+  attackSpeedBoost: 0.2
+  canInstaKill: 0
+  numberOfAttacks: 3
+  animator: {fileID: 670630503}
+  characterRenderer: {fileID: 2289509426768606030}
+  weaponRenderer: {fileID: 670630504}
+  circle: {fileID: 1859656083}
+  animEvent: {fileID: 670630505}
+  attackAnimSpeed: {fileID: 670630503}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &670630501
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +596,7 @@ GameObject:
   - component: {fileID: 670630502}
   - component: {fileID: 670630504}
   - component: {fileID: 670630503}
+  - component: {fileID: 670630505}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Untagged
@@ -579,8 +611,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670630501}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.47804767, y: -0.49950567, z: -0.6804524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -660,6 +692,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &670630505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670630501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c8eddf1d6daf64bb1131f36abc7bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &696173135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6491490456295070503, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
@@ -856,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811152405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3, y: -5.28, z: -10}
+  m_LocalPosition: {x: 11.27, y: -20.46, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -903,6 +947,7 @@ MonoBehaviour:
   attackBlocked: 0
   attackSpeedBoost: 0
   canInstaKill: 0
+  numberOfAttacks: 0
   animator: {fileID: 0}
   characterRenderer: {fileID: 0}
   weaponRenderer: {fileID: 0}
@@ -1453,6 +1498,7 @@ MonoBehaviour:
   attackBlocked: 0
   attackSpeedBoost: 0.2
   canInstaKill: 0
+  numberOfAttacks: 0
   animator: {fileID: 1883218214}
   characterRenderer: {fileID: 2289509426768606030}
   weaponRenderer: {fileID: 1883218211}
@@ -1602,7 +1648,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859656082}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1913,11 +1959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3
+      value: 11.27
       objectReference: {fileID: 0}
     - target: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.28
+      value: -20.46
       objectReference: {fileID: 0}
     - target: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1959,6 +2005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 952145368120517853, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 952145368204048661, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1968,6 +2018,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       insertIndex: 0
       addedObject: {fileID: 958401027}
+    - targetCorrespondingSourceObject: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 595048776}
   m_SourcePrefab: {fileID: 100100000, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
 --- !u!114 &2289509426768606027 stripped
 MonoBehaviour:

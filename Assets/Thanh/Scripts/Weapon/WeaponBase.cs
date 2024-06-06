@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine;
+using UnityEditor;
+using System;
 
 public class WeaponBase : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class WeaponBase : MonoBehaviour
     //pattern
     //overlap
     //public WeaponDataSO weaponData;
+
+    //Stats and variables
     public float range;
     public float power;
     public float affectedSpeed;
@@ -19,8 +22,12 @@ public class WeaponBase : MonoBehaviour
     public float attackSpeedBoost;
     public bool isAttacking { get; private set; }
     public bool canInstaKill;
+    protected int currentAttackCounter;
+    public int numberOfAttacks;
+    protected int CurrentAttackCounter { get => currentAttackCounter; set => currentAttackCounter = value >= numberOfAttacks ? 0 : value; }
     //public float playerDamage;
 
+    //Components
     public Animator animator;
     public SpriteRenderer characterRenderer, weaponRenderer;
     public Vector2 PointerPosition { get; set; }
@@ -28,11 +35,15 @@ public class WeaponBase : MonoBehaviour
     public AnimationEvent animEvent;
     public Animator attackAnimSpeed;
     public LayerMask enemyMask;
+    
 
+
+    //Scripts
     //EnemyHealth enemyHealth;
     Invisibility invisibility;
     Frostbite frostbite;
     PlayerPointer player;
+    protected Timer attackCounterResetTimer;
     public virtual void Attack()
     {
         if (attackBlocked)
@@ -106,6 +117,7 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
+    #region StealthKill
     //StealthKill
     public void checkForInvis()
     {
@@ -125,7 +137,7 @@ public class WeaponBase : MonoBehaviour
         invisibility.activateDuration = 0;
         invisibility.ResetInvis();
     }
-
+    #endregion
     protected void PointAtCursor()
     {
         if (isAttacking)
@@ -155,9 +167,21 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    public void UpdateData()
+    public void Enter()
     {
+        animator.SetBool("active", true);
+        animator.SetInteger("counter", CurrentAttackCounter);
+        //attackCounterResetTimer.StopTimer();
+        //OnEnter?.Invoke();
+        //Exit();
+    }
 
+    public void Exit()
+    {
+        animator.SetBool("active", false);
+        CurrentAttackCounter++;
+        //attackCounterResetTimer.StartTimer();
+        //OnExit?.Invoke();
     }
 
     public void Start()
