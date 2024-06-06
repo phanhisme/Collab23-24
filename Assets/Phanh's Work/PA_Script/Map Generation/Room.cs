@@ -169,10 +169,11 @@ public class Room : MonoBehaviour
     //when the player enter a new room
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             //call room controller to call for the camera
             RoomController.instance.OnPlayerEnterRoom(this);
+            Debug.Log("entering new room");
         }
     }
 

@@ -6,23 +6,12 @@ using System.Linq;
 
 public class CollectItems : MonoBehaviour
 {
-    public List<Items> collectedItems = new List<Items>();
-    public List<Item> pickUpItems = new List<Item>();
-
-    [System.Serializable]
-    public struct Item
-    {
-        public string itemName;
-        public int itemCount;
-        public Items collectedItem;
-    }
-    
+    private ExtendedInventory inventory;
     public int travelSpd = 5;
-    //public TextMeshProUGUI coinText;
 
     public void Start()
     {
-        //coinText.text = coinsCount.ToString();
+        inventory = FindObjectOfType<ExtendedInventory>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,48 +20,22 @@ public class CollectItems : MonoBehaviour
 
         if (collectible != null)
         {
-            if (!collectedItems.Contains(collectible.Item)) //check if collected item has this item yet
+            if (!inventory.collectedItems.Contains(collectible.Item)) //check if collected item has this item yet
             {
-                int startInt = 0;
-                GetData(startInt,collectible.Item);
+                int startInt = 1;
+                inventory.GetData(collectible.Item, startInt);
             }
             else
             {
                 //Item existedItem
-                Item itemToFind = FindCorrectItem(pickUpItems,collectible);
-
-                itemToFind.itemCount = 1;
-
+                inventory.AddNumber(collectible.Item);
             }
 
             collectible.Collect();
         }
     }
 
-    public void GetData(int itemNumber, Items itemData)
-    {
-        //if not, create struct
-        Item newItem = new Item();
-
-        newItem.itemName = itemData.itemName;
-        newItem.itemCount = itemNumber;
-        newItem.collectedItem = itemData;
-
-        //add
-        collectedItems.Add(newItem.collectedItem);
-        pickUpItems.Add(newItem);
-    }
-
-    public Item FindCorrectItem(List<Item> itemList, IPickUps pickUp)
-    {
-        foreach (Item i in itemList)
-        {
-            if (i.collectedItem == pickUp.Item)
-                return i;
-        }
-
-        return new Item();
-    }
+    
 
     //private void OnEnable()
     //{

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: DropTest
   m_EditorClassIdentifier: 
   itemName: Drops
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 2eb9040eaa30b8540a069b0d5f6b927e, type: 3}
+  price: 2
   type: 0
