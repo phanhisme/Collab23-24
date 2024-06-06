@@ -41,8 +41,12 @@ public class GridController : MonoBehaviour
                 gameObject.transform.position = new Vector2(x - (grid.col - grid.horizontalOffset), y - (grid.row - grid.verticalOffset));
                 gameObject.name = "X: " + x + ", Y: " + y;
                 availablePoints.Add(gameObject.transform.position);
+
+                gameObject.SetActive(false);
             }
         }
+
+        GetComponentInParent<ObjectRoomSpawner>().InitialiseObjectSpawning();
     }
 
 }

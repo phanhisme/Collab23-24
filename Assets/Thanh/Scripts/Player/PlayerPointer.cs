@@ -9,7 +9,7 @@ public class PlayerPointer : MonoBehaviour
 {
     [SerializeField]
     private InputActionReference attack, pointer;
-    private PlayerWeaponHolder playerWeaponHolder;
+    WeaponBase weaponBase;
     private Vector2 pointerInput;
     GameObject shield;
     public Vector2 PointerInput => pointerInput;
@@ -22,19 +22,19 @@ public class PlayerPointer : MonoBehaviour
     public bool heartsteelActive;
     public bool skActive;
     public bool fbActive;
-    public bool cfActive;
+    public bool ldActive;
 
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;
         DeActivateShield();
-        playerWeaponHolder = GetComponentInChildren<PlayerWeaponHolder>();
+        weaponBase = GetComponentInChildren<WeaponBase>();
     }
     private void Update()
     {
         pointerInput = GetPointerInput();
         //Debug.Log(pointerInput);
-        playerWeaponHolder.PointerPosition = pointerInput;
+        weaponBase.PointerPosition = pointerInput;
     }
     private void OnEnable()
     {
@@ -42,7 +42,8 @@ public class PlayerPointer : MonoBehaviour
     }
     private void PerformAttack(InputAction.CallbackContext context)
     {
-        playerWeaponHolder.Attack();
+        //playerWeaponHolder.Attack(anim);
+        weaponBase.Attack(); 
     }
 
     private void OnDisable()
@@ -115,9 +116,9 @@ public class PlayerPointer : MonoBehaviour
         fbActive = true;
     }
 
-    public void ActiveCf()
+    public void ActiveLD()
     {
-        cfActive = true;
+        ldActive = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -161,9 +162,9 @@ public class PlayerPointer : MonoBehaviour
             {
                 ActiveFb();
             }
-            if(powerUp.activeCoinFarmAndRest)
+            if(powerUp.activeLuckyDrop)
             {
-                ActiveCf();
+                ActiveLD();
             }
             Destroy(powerUp.gameObject);
         }
