@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd23922ad67fd7e4584dcbe8c6e29ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 0}
+  room: {fileID: 1648845977}
   grid:
     col: 18
     row: 9
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   X: 0
   Y: 0
   leftDoor: {fileID: 0}
-  righttDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
   topDoor: {fileID: 0}
   bottomDoor: {fileID: 0}
   doors: []
