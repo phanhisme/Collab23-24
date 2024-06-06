@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitanGlove
       objectReference: {fileID: 0}
+    - target: {fileID: 1552290874201295396, guid: 54863588a767f664c8e54257303ae95e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3361863695969398327, guid: 54863588a767f664c8e54257303ae95e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1388,6 +1392,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7052518298395917574, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1011084334, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
       propertyPath: maxHealth
       value: 100
@@ -1552,7 +1560,8 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7052518298395917574, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 289da3343fc869e4fba5b077cab982a6, type: 3}
 --- !u!1 &1515290211 stripped
@@ -2106,6 +2115,10 @@ PrefabInstance:
       propertyPath: coinText
       value: 
       objectReference: {fileID: 305879530}
+    - target: {fileID: 8290043133266602024, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 305879530}
     m_RemovedComponents: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
@@ -2379,6 +2392,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6857827155966829931, guid: d8c30e597e8f60447947528ab81fc1ea, type: 3}
       propertyPath: m_Name
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857827155966829931, guid: d8c30e597e8f60447947528ab81fc1ea, type: 3}
+      propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6857827155966829934, guid: d8c30e597e8f60447947528ab81fc1ea, type: 3}

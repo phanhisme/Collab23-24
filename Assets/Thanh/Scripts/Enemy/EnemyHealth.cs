@@ -6,10 +6,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    public float currentHealth, maxHealth;
+    
     public float collideDamage;
    
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
@@ -20,51 +20,19 @@ public class EnemyHealth : MonoBehaviour
     PlayerPointer player;
     CursedBlade _cursedBladeScript;
 
-    
+    [SerializeField] public float maxHealth { get; set; } = 100f;
+    public float currentHealth { get; set; }
+
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         _cursedBladeScript = FindObjectOfType<CursedBlade>();
+
+
+        currentHealth = maxHealth;
     }
-    public void InitializeHealth(float healthValue)
-    {
-        currentHealth = healthValue;
-        maxHealth = healthValue;
-        isDead = false;
-        
-    }
-    public void TestHit(float damage, GameObject sender)
-    {
-        if (isDead)
-        {
-            return;
-        }
-        
-        if (currentHealth > 0)
-        {
-            currentHealth -= damage;
-           
-            StartCoroutine(IsHit());
-        }
-    }
-    public void Dead()
-    {
-        //When the cursed blade is active and the enemy's health is below 15%, kill.
-        if (_cursedBladeScript.isCursedBladeActive && currentHealth < _cursedBladeScript.HpThreshold)
-        {
-            Destroy(gameObject);
-        }
-        //If the cursed blade is not active then check this statement
-        else if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-    public void Update()
-    {
-        Dead();
-    }
+    
     public IEnumerator IsHit()
     {
         if(_cursedBladeScript.isCursedBladeActive)
@@ -90,5 +58,28 @@ public class EnemyHealth : MonoBehaviour
     void Bleed()
     {
         currentHealth -= _cursedBladeScript.extraBleedDMG;
+    }
+
+    public void Damage(float damage, GameObject sender)
+    {
+        currentHealth -= damage;
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        //When the cursed blade is active and the enemy's health is below 15%, kill.
+        if (_cursedBladeScript.isCursedBladeActive && currentHealth < _cursedBladeScript.HpThreshold)
+        {
+            Destroy(gameObject);
+        }
+        //If the cursed blade is not active then check this statement
+        else if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

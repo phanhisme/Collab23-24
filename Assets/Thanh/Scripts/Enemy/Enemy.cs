@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
-    private EnemyData enemyData;
+
+    /*private EnemyData enemyData;
     EnemyHealth enemyHealth;
     public GameObject gold;
     PlayerPointer playerPointer;
@@ -46,5 +45,5 @@ public class Enemy : MonoBehaviour
             GameObject go = Instantiate(gold, Vector3.zero, Quaternion.identity);
             go.GetComponent<ItemDrop>().SetData(enemyData.rewardType, enemyData.finalGoldDrop);
         }
-    }
-}
+    }*/
+
