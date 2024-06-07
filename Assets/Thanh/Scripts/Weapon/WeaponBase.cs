@@ -38,6 +38,7 @@ public class WeaponBase : MonoBehaviour
     
 
 
+
     //Scripts
     //EnemyHealth enemyHealth;
     Invisibility invisibility;
@@ -167,31 +168,14 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    public void Enter()
-    {
-        animator.SetBool("active", true);
-        animator.SetInteger("counter", CurrentAttackCounter);
-        //attackCounterResetTimer.StopTimer();
-        //OnEnter?.Invoke();
-        //Exit();
-    }
-
-    public void Exit()
-    {
-        animator.SetBool("active", false);
-        CurrentAttackCounter++;
-        //attackCounterResetTimer.StartTimer();
-        //OnExit?.Invoke();
-    }
-
     public void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         animEvent.OnEventTriggered += ResetAttack;
         animEvent.OnEventTriggered += DetectCol;
         invisibility = FindObjectOfType<Invisibility>();
-        //enemyHealth = FindObjectOfType<EnemyHealth>();
         frostbite = FindObjectOfType<Frostbite>();
+        //enemyHealth = FindObjectOfType<EnemyHealth>();
         //range = weaponData.range;
     }
 
