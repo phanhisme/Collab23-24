@@ -9,13 +9,18 @@ public class WeaponSpear : WeaponBase
     public override void Attack()
     {
         base.Attack();
-        animEvent.OnAttackPerformed += Enter;
+        Debug.Log("attack");
+        animator.SetBool("active", true);
+        animator.SetInteger("counter", CurrentAttackCounter);
+        //animEvent.OnAttackPerformed += Enter;
+        animEvent.OnEventTriggered += Exit;
     }
 
     public void Enter()
     {
-        animator.SetTrigger("attack");
-        animator.SetInteger("counter", CurrentAttackCounter);
+        //Debug.Log("attack");
+        animator.SetBool("active", true);
+        
         //attackCounterResetTimer.StopTimer();
         OnEnter?.Invoke();
     }
@@ -30,12 +35,12 @@ public class WeaponSpear : WeaponBase
 
     private void OnEnable()
     {
-        animEvent.OnEventTriggered += Exit;
-        animEvent.OnAttackPerformed -= Enter;
+        //animEvent.OnEventTriggered += Exit;
+        animEvent.OnAttackPerformed += Enter;
     }
 
     private void OnDisable()
     {
-        animEvent.OnEventTriggered -= Exit;
+        animEvent.OnEventTriggered += Exit;
     }
 }
