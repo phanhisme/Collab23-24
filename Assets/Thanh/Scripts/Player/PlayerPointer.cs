@@ -42,7 +42,6 @@ public class PlayerPointer : MonoBehaviour
     }
     private void PerformAttack(InputAction.CallbackContext context)
     {
-        //playerWeaponHolder.Attack(anim);
         weaponBase.Attack(); 
     }
 

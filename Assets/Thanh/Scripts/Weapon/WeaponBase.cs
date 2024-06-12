@@ -12,6 +12,8 @@ public class WeaponBase : MonoBehaviour
     //overlap
     //public WeaponDataSO weaponData;
 
+    public static WeaponBase instance;
+
     //Stats and variables
     public float range;
     public float power;
@@ -20,7 +22,7 @@ public class WeaponBase : MonoBehaviour
     public float delay;
     public bool attackBlocked;
     public float attackSpeedBoost;
-    public bool isAttacking { get; private set; }
+    public bool isAttacking { get; set; }
     public bool canInstaKill;
     protected int currentAttackCounter;
     public int numberOfAttacks;
@@ -170,6 +172,8 @@ public class WeaponBase : MonoBehaviour
 
     public void Start()
     {
+        instance = this;
+        animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerPointer>();
         animEvent.OnEventTriggered += ResetAttack;
         animEvent.OnEventTriggered += DetectCol;
