@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: FlowerTest
   m_EditorClassIdentifier: 
   itemName: Flower
+  itemIcon: {fileID: 21300000, guid: 2bb1c1092f308fd4ea0bfa7e34e0cefe, type: 3}
+  price: 3
   type: 1

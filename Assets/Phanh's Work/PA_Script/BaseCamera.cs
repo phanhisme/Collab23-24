@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class BaseCamera : MonoBehaviour
 {
     //singleton - only one working camera
-    public static CameraController instance;
+    public static BaseCamera instance;
     public Room currentRoom;
     public float moveSpeed; //speed when changing between rooms
 

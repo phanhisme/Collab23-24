@@ -153,7 +153,7 @@ public class RoomController : MonoBehaviour
 
             if (loadRooms.Count == 0) //if there is no room loaded
             {
-                CameraController.instance.currentRoom = room; //set current room to this room
+                BaseCamera.instance.currentRoom = room; //set current room to this room
             }
 
             loadRooms.Add(room);
@@ -219,7 +219,7 @@ public class RoomController : MonoBehaviour
     public void OnPlayerEnterRoom(Room room)
     {
         //get the current room -> set the camera to that room
-        CameraController.instance.currentRoom = room;
+        BaseCamera.instance.currentRoom = room;
         currRoom = room;
 
         //updatedRooms();

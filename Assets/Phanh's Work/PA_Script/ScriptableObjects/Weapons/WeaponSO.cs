@@ -4,5 +4,7 @@ using UnityEngine;
 public class WeaponSO : ScriptableObject
 {
     public string weaponName;
-    public Sprite weaponDescription;
+    public string weaponDescription;
+
+    public Sprite weaponIcon;
 }
