@@ -12,6 +12,7 @@ public class EnemyStateMachineBase
     }
     public void ChangeState(EnemyStates newState)
     {
+        currentState.ExitState();
         currentState = newState;
         currentState.EnterState();      //Enter a new state
     }

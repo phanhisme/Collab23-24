@@ -8,22 +8,21 @@ public class EnemyWeaponHolder : MonoBehaviour
     public Transform circle;
     public float radius;
     public Animator anim;
-    private bool noAttack;
+    [SerializeField] private bool noAttack;
     public float delayAttack = 0.5f;
     public float enemyDamage = 5;
     [SerializeField] private LayerMask playerMask;
-    [SerializeField] private AnimationEvent animEvent; 
+    [SerializeField] private AnimationEvent animEvent;
+    private Enemy enemy;
     public bool enemyAttacking { get; private set; }
     
     
-    public void ResetAttackForEnemy()
-    {
-        enemyAttacking = false;
-    }
+
     // Start is called before the first frame update
     void Start()
     {
         animEvent.OnEventTriggered += DetectCol;
+        enemy = GetComponentInParent<Enemy>();
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class EnemyWeaponHolder : MonoBehaviour
    
     public void AttackPlayer()
     {
-        if (noAttack)
+        if (noAttack && !enemy._isWithinStrikingDistance)
             return;
         anim.SetTrigger("EnemyAttack");
         noAttack = true;
@@ -60,9 +59,14 @@ public class EnemyWeaponHolder : MonoBehaviour
     {
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius, playerMask))
         {
-            col.GetComponent<PlayerHealth>().TestHit(enemyDamage, transform.parent.gameObject);
+            col.GetComponent<PlayerHealth>().TestHit(enemyDamage, transform.gameObject);
+            Debug.Log(transform.parent.gameObject);
             //Debug.Log(col.name);
 
         }
+    }
+    public void ResetAttackForEnemy()
+    {
+        enemyAttacking = false;
     }
 }
