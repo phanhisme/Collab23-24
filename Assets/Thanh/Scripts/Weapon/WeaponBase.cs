@@ -24,9 +24,6 @@ public class WeaponBase : MonoBehaviour
     public float attackSpeedBoost;
     public bool isAttacking { get; set; }
     public bool canInstaKill;
-    protected int currentAttackCounter;
-    public int numberOfAttacks;
-    protected int CurrentAttackCounter { get => currentAttackCounter; set => currentAttackCounter = value >= numberOfAttacks ? 0 : value; }
     //public float playerDamage;
 
     //Components
