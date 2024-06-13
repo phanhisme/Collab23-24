@@ -57,12 +57,12 @@ public class EnemyWeaponHolder : MonoBehaviour
     }
     public void DetectCol()
     {
+        
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius, playerMask))
         {
+           
             col.GetComponent<PlayerHealth>().TestHit(enemyDamage, transform.gameObject);
-            Debug.Log(transform.parent.gameObject);
-            //Debug.Log(col.name);
-
+            Debug.Log(col);
         }
     }
     public void ResetAttackForEnemy()
