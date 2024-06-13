@@ -12,13 +12,13 @@ public class Frostbite : MonoBehaviour
     public float slowDuration = 5;
     PlayerPointer playerPointer;
     EnemyHealth enemyHealth;
-    EnemyPatrol enemyPatrol;
+    Enemy enemy;
 
     private void Start()
     {
         playerPointer = FindObjectOfType<PlayerPointer>();
         enemyHealth = FindObjectOfType<EnemyHealth>();
-        enemyPatrol = FindObjectOfType<EnemyPatrol>();
+        enemy = FindObjectOfType<Enemy>();
     }
     public void checkForFrostChance()
     {
@@ -26,7 +26,7 @@ public class Frostbite : MonoBehaviour
         //Debug.Log(randomChance);
         if(randomChance <= frostChance && isSlowed == false && enemyHealth.isHit == true && playerPointer.fbActive == true)
         {
-            enemyPatrol.speed = enemyPatrol.speed * slowMultiplier;
+            //enemy.speed = enemyPatrol.speed * slowMultiplier;
             StartCoroutine(SlowDuration(slowDuration));
             //Debug.Log("Slowed");
         }

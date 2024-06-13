@@ -9,19 +9,19 @@ and will increase atk damage by 25%*/
 public class MonsterWithin : MonoBehaviour
 {
     [SerializeField] private PlayerHealth _playerHealth;
-    [SerializeField] private WeaponBase weaponbase; 
+    [SerializeField] private WeaponBase _weaponBase; 
     [SerializeField] bool hasBuffed = false;    //in this situation, when the player hits 1hp
     private void Start()
     {
         _playerHealth = GetComponent<PlayerHealth>();
-        weaponbase = GetComponent<WeaponBase>();
+        _weaponBase = GetComponent<WeaponBase>();
     }
     private void Update()
     {
         if (_playerHealth.currentHealth <= 1 && !hasBuffed)
         {
             //I don't really know math lul but this increase dmg by 25% when the player reaches 1hp
-            weaponbase.power += weaponbase.power * 0.25f;
+            _weaponBase.power += _weaponBase.power * 0.25f;
             hasBuffed = true;
             if(hasBuffed)
             return;

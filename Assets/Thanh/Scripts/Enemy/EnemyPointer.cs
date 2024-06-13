@@ -10,17 +10,20 @@ public class EnemyPointer : MonoBehaviour
     public EnemyWeaponHolder holder;
     [SerializeField] Transform player;
     Invisibility invisibility;
-    
+
+    private GameObject weapon;
     // Start is called before the first frame update
     void Start()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
         invisibility = FindObjectOfType<Invisibility>();
+        
     }
     // Update is called once per frame
     void Update()
     {
         DetectPlayer();
+        
     }
     private void OnDrawGizmosSelected()
     {
@@ -33,12 +36,11 @@ public class EnemyPointer : MonoBehaviour
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius))
         {
             //Debug.Log("a");
-            if (col.gameObject.tag == "Player" && invisibility.isActivated == false)
+            if (col.transform.CompareTag("Player") && invisibility.isActivated == false)
             {
                 Vector2 direction = player.position - transform.position;
                 transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
                 holder.AttackPlayer();
-                //Debug.Log(".");
             }
         }
     }

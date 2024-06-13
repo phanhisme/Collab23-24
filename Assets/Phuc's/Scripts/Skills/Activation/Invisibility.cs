@@ -11,7 +11,7 @@ public class Invisibility : MonoBehaviour
     private float colorDuration;
 
     StackSkills stackskillsScript;
-    EnemyPatrol enemyPatrolScript;
+    //EnemyPatrol enemyPatrolScript;
     WeaponBase weaponBase;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class Invisibility : MonoBehaviour
         srCharacter = GetComponent<SpriteRenderer>();
         activateDuration = 5;
         charColor = srCharacter.color;
-        enemyPatrolScript = FindObjectOfType<EnemyPatrol>();
+        //enemyPatrolScript = FindObjectOfType<EnemyPatrol>();
         stackskillsScript = FindObjectOfType<StackSkills>();
         weaponBase = FindObjectOfType<WeaponBase>();
     }
@@ -61,7 +61,7 @@ public class Invisibility : MonoBehaviour
         srCharacter.color = new Color(0f, 1f, 0f);
         yield return new WaitForSeconds(colorDuration);
         srCharacter.color = charColor;
-        enemyPatrolScript.detectionDistance = 0f;
+       // enemyPatrolScript.detectionDistance = 0f;
         
     }
 
@@ -72,7 +72,7 @@ public class Invisibility : MonoBehaviour
         if (activateDuration <= 0)
         {
             srCharacter.color = new Color(255f, 255f, 255f);      //white color
-            enemyPatrolScript.detectionDistance = 6f;
+           // enemyPatrolScript.detectionDistance = 6f;
             canButtonPressed = true;
             isActivated = false;
             stackskillsScript.InvisButtonPress = false;

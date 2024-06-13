@@ -6,7 +6,7 @@ using UnityEngine;
 public class RejectDeath : MonoBehaviour
 {
     private PlayerHealth _playerHealth;
-    private EnemyPatrol _enemyPatrol;
+   // private EnemyPatrol _enemyPatrol;
     
     public bool isRejectDeathEquipped = false;
 
@@ -17,7 +17,7 @@ public class RejectDeath : MonoBehaviour
     private void Start()
     {
         _playerHealth = FindObjectOfType<PlayerHealth>();
-        _enemyPatrol = FindObjectOfType<EnemyPatrol>();
+        //_enemyPatrol = FindObjectOfType<EnemyPatrol>();
         playerPos = GameObject.FindWithTag("Player");
     }
     private void Update()
