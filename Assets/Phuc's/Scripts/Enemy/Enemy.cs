@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour, IEnemyMovable, ITriggerCheckable
     
     #endregion
 
+    public GameObject questionMark, exclamationMark;
+    
     private void Awake()
     {
         //TODO: Creating new instances of the scripts
@@ -45,7 +47,7 @@ public class Enemy : MonoBehaviour, IEnemyMovable, ITriggerCheckable
         
         //Start with the idle state
         _stateMachineBase.StateInit(_enemyIdleState);
-        
+
     }
 
     public void CheckForLeftOrRightFacing(Vector2 velocity)
@@ -80,6 +82,24 @@ public class Enemy : MonoBehaviour, IEnemyMovable, ITriggerCheckable
         _stateMachineBase.currentState.FrameUpdate();
         
         Debug.Log(_stateMachineBase.currentState);
+        
+        #region Indicator Checks
+        if (_stateMachineBase.currentState == _enemyIdleState)
+        {
+            questionMark.SetActive(true);
+            exclamationMark.SetActive(false);
+        }
+        else if (_stateMachineBase.currentState == _enemyChaseState)
+        {
+            exclamationMark.SetActive(true);
+            questionMark.SetActive(false);
+        }
+        else
+        {
+            questionMark.SetActive(false);
+            exclamationMark.SetActive(false);
+        }
+        #endregion
     }
 
     private void FixedUpdate()
