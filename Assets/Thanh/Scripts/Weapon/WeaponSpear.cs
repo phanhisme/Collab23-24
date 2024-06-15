@@ -4,12 +4,9 @@ using UnityEngine;
 using System;
 public class WeaponSpear : WeaponBase
 {
-    public event Action OnEnter, OnExit;
-
     public override void Attack()
     {
         base.Attack();
-        //Debug.Log("attack");
         //animator.SetTrigger("attack");
     }
 }

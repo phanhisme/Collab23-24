@@ -185,7 +185,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1028432213, guid: f6ec27d38d091f14e8c133a94b64b965, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.71875, y: 0.71875}
@@ -202,10 +202,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73753137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.712, y: 0, z: 0}
+  m_LocalPosition: {x: 0.64, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 145918167}
   m_Father: {fileID: 661873855}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -219,7 +220,7 @@ Animator:
   m_GameObject: {fileID: 73753137}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b82e7bd14b8126848babf830cd0a3715, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -360,6 +361,37 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &145918166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 145918167}
+  m_Layer: 0
+  m_Name: Child
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &145918167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145918166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18, y: 0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 73753139}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &229633708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -607,7 +639,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 1954917739, guid: f6ec27d38d091f14e8c133a94b64b965, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 0.84375}
@@ -624,7 +656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508138111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.882, y: -0.128, z: 0}
+  m_LocalPosition: {x: 0.563, y: -0.306, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -775,7 +807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &595048776
 Transform:
   m_ObjectHideFlags: 0
@@ -804,11 +836,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb3dbd32b73cea4fb141e8a1890bcd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1
+  range: 1.5
   power: 2
   affectedSpeed: 1
   weight: 3
-  delay: 0.4
+  delay: 0.2
   attackBlocked: 0
   attackSpeedBoost: 0.2
   canInstaKill: 0
@@ -821,6 +853,10 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
+  isCharging: 0
+  specialAttackCD: 0
+  isSpecialAttacking: 0
+  specialAttackBlock: 0
 --- !u!1 &661873854
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &661873855
 Transform:
   m_ObjectHideFlags: 0
@@ -866,6 +902,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2da9472c33f11f4faef99e91d458ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 0.56
+  power: 3
+  affectedSpeed: -1
+  weight: 1
+  delay: 0.1
+  attackBlocked: 0
+  attackSpeedBoost: 0.2
+  canInstaKill: 0
+  animator: {fileID: 73753140}
+  characterRenderer: {fileID: 2289509426768606030}
+  weaponRenderer: {fileID: 73753138}
+  circle: {fileID: 145918167}
+  animEvent: {fileID: 73753141}
+  attackAnimSpeed: {fileID: 73753140}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  isCharging: 0
+  specialAttackCD: 3
+  isSpecialAttacking: 0
+  specialAttackBlock: 0
 --- !u!1 &670630501
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,7 +951,7 @@ Transform:
   m_GameObject: {fileID: 670630501}
   m_LocalRotation: {x: -0, y: -0, z: -0.41723746, w: 0.9087975}
   m_LocalPosition: {x: 0.52, y: -0.41, z: -0.6804524}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.586391, y: 1.586391, z: 1.586391}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1859656083}
@@ -1642,6 +1699,10 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
+  isCharging: 0
+  specialAttackCD: 0
+  isSpecialAttacking: 0
+  specialAttackBlock: 0
 --- !u!4 &1625975870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 952145366670910812, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
@@ -1676,7 +1737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809242132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 0.027, z: 0}
+  m_LocalPosition: {x: 0.345, y: 0.279, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1729,14 +1790,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0.63
-  power: 0
-  affectedSpeed: 0
-  weight: 0
-  delay: 0
+  power: 5
+  affectedSpeed: 3
+  weight: 5
+  delay: 1
   attackBlocked: 0
-  attackSpeedBoost: 0
+  attackSpeedBoost: 0.2
   canInstaKill: 0
-  animator: {fileID: 0}
+  animator: {fileID: 508138114}
   characterRenderer: {fileID: 2289509426768606030}
   weaponRenderer: {fileID: 508138112}
   circle: {fileID: 1809242133}
@@ -1745,6 +1806,10 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
+  isCharging: 0
+  specialAttackCD: 0
+  isSpecialAttacking: 0
+  specialAttackBlock: 0
 --- !u!1001 &1845945963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2180,6 +2245,14 @@ PrefabInstance:
       propertyPath: OnHitWithReference.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 952145366647941040, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: chargeAttack
+      value: 
+      objectReference: {fileID: 1818550822062358993, guid: 2c5d069ebcc68c74d8de9ecfb060f7f1, type: 3}
+    - target: {fileID: 952145366647941040, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: specialAttack
+      value: 
+      objectReference: {fileID: -3100755213624133729, guid: 2c5d069ebcc68c74d8de9ecfb060f7f1, type: 3}
     - target: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_RootOrder
       value: 1

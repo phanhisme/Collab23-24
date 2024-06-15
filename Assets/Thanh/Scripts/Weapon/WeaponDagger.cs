@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponDagger : MonoBehaviour
+public class WeaponDagger : WeaponBase
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public override void Attack()
     {
-        
+        base.Attack();
+        animator.SetTrigger("attack");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void SpecialAttack()
     {
-        
+        base.SpecialAttack();
+        animator.SetTrigger("special");
     }
 }

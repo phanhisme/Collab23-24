@@ -34,8 +34,19 @@ public class WeaponBase : MonoBehaviour
     public AnimationEvent animEvent;
     public Animator attackAnimSpeed;
     public LayerMask enemyMask;
-    
 
+    //Hammer
+    float currentChargeTime = 0f;
+    float maxChargeTime = 3f;
+    float minChargeTime = 1f;
+    float maxAttackPower = 10f;
+    public bool isCharging;
+    //bool canAttack;
+
+    //Dagger
+    public float specialAttackCD;
+    public bool isSpecialAttacking;
+    public bool specialAttackBlock;
 
 
     //Scripts
@@ -50,21 +61,98 @@ public class WeaponBase : MonoBehaviour
         {
             return;
         }
+        if (specialAttackBlock)
+            return;
+        specialAttackBlock = true;
         attackBlocked = true;
         isAttacking = true;
 
         StartCoroutine(DelayAttack());
-        //Debug.Log("attack");
 
         if (player.boostAttackSpeed == true)
         {
             StartCoroutine(BoostingAttack());
-            //Debug.Log("start boosting");
         }
         else
         {
             player.DeActivateTitanGlove();
         }
+    }
+
+    public virtual void ChargeAttack()
+    {
+        if (Input.GetMouseButtonDown(1) && isAttacking)
+        {
+            StartCharging();
+            
+        }
+        if (Input.GetMouseButtonUp(1) && isCharging)
+        {
+            ReleaseCharge();
+            
+        }
+    }
+
+    public void StartCharging()
+    {
+        currentChargeTime = 0;
+        isCharging = true;
+        Charge();
+    }
+
+    public void Charge()
+    {
+        Debug.Log("a");
+        currentChargeTime += Time.deltaTime;
+        if(currentChargeTime > maxChargeTime)
+        {
+            currentChargeTime = maxChargeTime;
+        }
+    }
+
+    public virtual void ReleaseCharge()
+    {
+        isCharging = false;
+        if(currentChargeTime == maxChargeTime)
+        {
+            power += maxAttackPower;
+            Attack();
+            Debug.Log(power);
+        }
+        if(currentChargeTime >= minChargeTime)
+        {
+            Attack();
+            Debug.Log(power);
+        }
+        else  
+        {
+            Debug.Log("not enough charge time");
+            //animator.SetTrigger("idle");
+        }
+        currentChargeTime = 0f;
+    }
+
+    public virtual void SpecialAttack()
+    {
+        if (attackBlocked)
+            return;
+        if (specialAttackBlock)
+            return;
+
+        specialAttackBlock = true;
+        attackBlocked = true;
+        isSpecialAttacking = true;
+        isAttacking = true;
+        StartCoroutine(DelaySpecialAttack());
+    }
+
+    public IEnumerator DelaySpecialAttack()
+    {
+        //Debug.Log(specialAttackCD);
+        yield return new WaitForSeconds(specialAttackCD);
+        attackBlocked = false;
+        specialAttackBlock = false;
+        isSpecialAttacking = false;
     }
 
     protected void ResetAttack()
@@ -77,7 +165,7 @@ public class WeaponBase : MonoBehaviour
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, range, enemyMask))
         {
             col.GetComponent<EnemyHealth>().TestHit(power, transform.parent.gameObject);
-            Debug.Log(col.name);
+            //Debug.Log(col.name);
             frostbite.checkForFrostChance();
             if (canInstaKill == true && invisibility.activateDuration > 0)
             {
@@ -87,10 +175,11 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    protected IEnumerator DelayAttack()
+    public IEnumerator DelayAttack()
     {
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
+        specialAttackBlock = false;
     }
 
     protected void OnDrawGizmosSelected()
@@ -184,5 +273,6 @@ public class WeaponBase : MonoBehaviour
     {
         checkForInvis();
         PointAtCursor();
+        Debug.Log(currentChargeTime);
     }
 }

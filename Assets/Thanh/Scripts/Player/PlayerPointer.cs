@@ -8,8 +8,9 @@ using UnityEngine.InputSystem;
 public class PlayerPointer : MonoBehaviour
 {
     [SerializeField]
-    private InputActionReference attack, pointer;
+    private InputActionReference attack, pointer, specialAttack, chargeAttack;
     WeaponBase weaponBase;
+    WeaponDagger weaponDagger;
     private Vector2 pointerInput;
     GameObject shield;
     public Vector2 PointerInput => pointerInput;
@@ -39,15 +40,36 @@ public class PlayerPointer : MonoBehaviour
     private void OnEnable()
     {
         attack.action.performed += PerformAttack;
+        specialAttack.action.performed += PerformSpecialAttack;
+        specialAttack.action.started += PerformChargeAttack;
+        specialAttack.action.canceled += PerformReleaseAttack;
     }
     private void PerformAttack(InputAction.CallbackContext context)
     {
         weaponBase.Attack(); 
     }
 
+    private void PerformSpecialAttack(InputAction.CallbackContext context)
+    {
+        weaponBase.SpecialAttack();
+    }
+
+    private void PerformChargeAttack(InputAction.CallbackContext context)
+    {
+        weaponBase.ChargeAttack();
+    }
+
+    private void PerformReleaseAttack(InputAction.CallbackContext context)
+    {
+        weaponBase.ReleaseCharge();
+    }
+
     private void OnDisable()
     {
         attack.action.performed -= PerformAttack;
+        specialAttack.action.performed -= PerformSpecialAttack;
+        specialAttack.action.started -= PerformChargeAttack;
+        specialAttack.action.canceled -= PerformReleaseAttack;
     }
     private Vector2 GetPointerInput()
     {
