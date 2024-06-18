@@ -10,18 +10,18 @@ public class RemakeNeedleStrike : MonoBehaviour
     public float numberOfNeedle;
     public float degree = 360f;
     public float direction = 1;
-    public float needleDamage = 5;
+    
 
     //public float nextSpawnTime;
     //private float spawnTimer;
     PlayerHealth playerHealth;
     PlayerPointer playerPointer;
-    EnemyHealth enemyHealth;
+    
     private void Start()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
         playerPointer = FindObjectOfType<PlayerPointer>();
-        enemyHealth = FindObjectOfType<EnemyHealth> ();
+        
 
         //BoxCollider2D bc;
         //bc = gameObject.AddComponent<BoxCollider2D>() as BoxCollider2D;
@@ -55,12 +55,5 @@ public class RemakeNeedleStrike : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.layer == 7)
-    //    {
-    //        enemyHealth.currentHealth -= needleDamage;
-    //        Destroy(collision.gameObject);
-    //    }
-    //}
+    
 }
