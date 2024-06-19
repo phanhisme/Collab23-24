@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon_Hammer : WeaponBase
 {
+    /*
     //SLAM AOE VARIABLES
     public float maxChargeTime = 3f; 
     public float minAOERadius = 1f; 
@@ -33,7 +34,7 @@ public class Weapon_Hammer : WeaponBase
         animator = GetComponent<Animator>();
     }
   
-    /*//TODO: HAMMER SLAM ATTACK 
+    //TODO: HAMMER SLAM ATTACK 
     void Update()
         {
             if (Input.GetMouseButton(0) && Hammer_CanAttack) 
@@ -120,7 +121,8 @@ public class Weapon_Hammer : WeaponBase
         }
 
         isSwinging = false; // Reset swinging flag
-    }*/
+    }
+    */
 
    
 }

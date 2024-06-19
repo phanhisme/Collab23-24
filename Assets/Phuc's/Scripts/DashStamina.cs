@@ -15,7 +15,7 @@ public class DashStamina : MonoBehaviour
         pmScript = FindObjectOfType<PlayerMovement>();
         ifOutOfStamina = false;
         startSubtractingStamina = false;
-        pmScript.hasFinishedDashing = false;
+        
     }
 
     // Update is called once per frame
@@ -30,16 +30,11 @@ public class DashStamina : MonoBehaviour
         if(startSubtractingStamina)
         {
             maxDashStamina -= StaminaSubtraction;
-            pmScript.hasFinishedDashing = false;
             startSubtractingStamina = false;
-            //If the stamina = -20, the boolean will be set to true
-            //Set the min stamina to -20 because if set it to 0, the player can not dash when the stamina at 20.
             if (maxDashStamina <= -20)
             {
                 ifOutOfStamina = true;
-                pmScript.isReleasedDash = false;
                 pmScript.canDash = false;
-
             }
         }
         DashStaminaCooldownCounter();
