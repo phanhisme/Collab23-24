@@ -34,7 +34,7 @@ public class PlayerPointer : MonoBehaviour
     {
         pointerInput = GetPointerInput();
         //Debug.Log(pointerInput);
-        //weaponBase.PointerPosition = pointerInput;
+        weaponBase.PointerPosition = pointerInput;
     }
     private void OnEnable()
     {

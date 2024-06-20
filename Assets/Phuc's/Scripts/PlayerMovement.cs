@@ -21,11 +21,12 @@ public class PlayerMovement : MonoBehaviour
     public float dashPower = 6f;    //min dash power is 6 and max is 10
  
     
-    [SerializeField] private float dashBoostSpeedDuration, dashBoostSpeedDurationSubtract;
+    [SerializeField] private float dashBoostSpeedDurationSubtract;
     [Space]
     public float _currentBoostSpeedDuration, _currentMoveSpeed;
     public bool canDash, canAddSpeed, hasDashButtonPressed, isFacingRight;
 
+    private bool canStartingCooldown;
     private SpriteRenderer sr;
     private void Start()
     {
@@ -37,18 +38,18 @@ public class PlayerMovement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         //canSprint = true;
         anim = GetComponent<Animator>();
+        _currentMoveSpeed = moveSpeed;
 
     }
     // Update is called once per frame
     void Update()
     {
-        DashingInput();
-        Debug.Log(movement);
+        
+
     }
     void FixedUpdate()
     {
         GetInput();
-         
         rb.velocity = movement * _currentMoveSpeed;
     }
 
@@ -84,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isRunning", false);
         }
+        DashingInput();
     }
     
     #region Dashing Related
@@ -96,7 +98,8 @@ public class PlayerMovement : MonoBehaviour
             dashStaminaScript.startSubtractingStamina = true;
             rb.MovePosition(transform.position + movement * dashPower);
             BoostSpeedAfterDashing();
-            StartDashBoostCooldown();
+            _currentBoostSpeedDuration -= dashBoostSpeedDurationSubtract;
+
         }
         else if (hasDashButtonPressed)
         {
@@ -116,23 +119,19 @@ public class PlayerMovement : MonoBehaviour
             canAddSpeed = false;
         }
     }
-    
-    void StartDashBoostCooldown()
+    void StartSpeedBoostCooldown()
     {
-        if (_currentMoveSpeed > moveSpeed)
+        _currentBoostSpeedDuration -= dashBoostSpeedDurationSubtract;
+        if (_currentBoostSpeedDuration <= 0)
         {
-            _currentBoostSpeedDuration -= dashBoostSpeedDurationSubtract;
-            Debug.Log(moveSpeed);
-        }
-        else if (_currentBoostSpeedDuration <= 0)
-        {
-            _currentBoostSpeedDuration = 0f;
+            
+            _currentBoostSpeedDuration = 3f;
             canAddSpeed = true;
-            dashBoostSpeedDuration = 1.5f;
+
             _currentMoveSpeed = moveSpeed;
         }
     }
-    
+   
     #endregion
 }
 
