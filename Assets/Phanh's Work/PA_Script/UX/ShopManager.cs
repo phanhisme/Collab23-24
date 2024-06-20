@@ -6,8 +6,6 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
-    public int sceneIndex; //1-base, 2-instage
-
     //inventory
     public GameObject invenItems;
     public Transform _itemHolder;
@@ -20,24 +18,65 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI shopkeeperName;
     public TextMeshProUGUI welcomeMessage;
 
-    void Start()
+    public Sprite goldIcon;
+    public Sprite coinIcon;
+
+    public Image currencyIcon;
+    public TextMeshProUGUI currencyText;
+
+    public GameObject currencyRemain;
+
+    //keep track of whether player is in stage or scene to adjust the set up accordingly
+    public ShopLocation currentLocation;
+    public ShopStatus currentShopStatus;
+
+    public enum ShopLocation { BASE, STAGE };
+    public enum ShopStatus { OPENED, CLOSED };
+
+    public void Update()
     {
-        switch (sceneIndex)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerMovement movement = player.GetComponent<PlayerMovement>();
+        DashStamina playerStamina = player.GetComponent<DashStamina>();
+
+        if (currentShopStatus == ShopStatus.OPENED)
         {
-            case 1:
+            movement.enabled = false;
+            playerStamina.enabled = false;
+        }
+        else if (currentShopStatus == ShopStatus.CLOSED)
+        {
+            movement.enabled = true;
+            playerStamina.enabled = true;
+        }
+    }
+
+    public void SetUp()
+    {
+        //lock player move
+
+        switch (currentLocation)
+        {
+            case ShopLocation.BASE:
                 iconObject.GetComponent<Image>().sprite = hippoImage;
                 shopkeeperName.text = "Hippo";
                 welcomeMessage.text = GetHippoString();
 
                 GetInventory();
+
+                currencyIcon.sprite = goldIcon;
+                currencyText.text = GetCurrencies().ToString();
                 break;
 
-            case 2:
+            case ShopLocation.STAGE:
                 iconObject.GetComponent<Image>().sprite = crocImage;
                 shopkeeperName.text = "Crocodile";
                 welcomeMessage.text = GetCrocodileString();
 
                 GetInventory();
+
+                currencyIcon.sprite = goldIcon;
+                currencyText.text = GetCurrencies().ToString();
                 break;
         }
     }
@@ -64,6 +103,22 @@ public class ShopManager : MonoBehaviour
                 Image sprite = newObj.GetComponent<Image>();
                 sprite.sprite = item.item.itemIcon;
             }
+        }
+    }
+
+    public int GetCurrencies()
+    {
+        ExtendedInventory inventory = FindObjectOfType<ExtendedInventory>();
+        switch (currentLocation)
+        {
+            case ShopLocation.BASE:
+                return inventory.Gold;
+
+            case ShopLocation.STAGE:
+                return inventory.stageCoin;
+
+            default:
+                return 0;
         }
     }
 

@@ -273,6 +273,6 @@ public class WeaponBase : MonoBehaviour
     {
         checkForInvis();
         PointAtCursor();
-        Debug.Log(currentChargeTime);
+        //Debug.Log(currentChargeTime);
     }
 }

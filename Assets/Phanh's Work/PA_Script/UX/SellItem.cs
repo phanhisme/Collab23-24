@@ -12,7 +12,7 @@ public class SellItem : MonoBehaviour
         ExtendedInventory inventory = FindObjectOfType<ExtendedInventory>();
         ShopManager shop = FindObjectOfType<ShopManager>();
 
-        if (shop.sceneIndex == 1) //can sell in shop at base but not in stage
+        if (shop.currentLocation==ShopManager.ShopLocation.BASE) //can sell in shop at base but not in stage
         {
             inventory.AddGoldCurrency(thisItem.item.price);
             inventory.MinusNumber(thisItem.item);
