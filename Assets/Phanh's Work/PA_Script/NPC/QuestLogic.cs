@@ -6,7 +6,7 @@ using TMPro;
 
 public class QuestLogic : MonoBehaviour
 {
-    public int amountNeeded;
+    public int amountCounter;
 
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDetails;
@@ -17,29 +17,32 @@ public class QuestLogic : MonoBehaviour
     public TextMeshProUGUI progression;
 
     public List<Sprite> statusSprite = new List<Sprite>();
-
-    public enum Status { ONGOING, STANDBY, CLAIMABLE, CLAIMED }
-    public Status currentStatus;
-
     
+    public QuestManager.Status currentStatus;
 
-    public void QuestStatus(Status questStatus)
+    private QuestManager qm;
+
+    private void Start()
     {
-        //newly accepted quest will automatically become on going upon acception
-        switch (questStatus)
+        qm = FindObjectOfType<QuestManager>();
+    }
+
+    public void Activating()
+    {
+        amountCounter = 0;
+    }
+
+    public void CheckingQuest(int amount)
+    {
+        if (amountCounter == amount)
         {
-            case Status.ONGOING:
-
-                break;
-
-            case Status.STANDBY:
-                break;
-
-            case Status.CLAIMABLE:
-                break;
-
-            case Status.CLAIMED:
-                break;
+            //quest complete
+            currentStatus = QuestManager.Status.CLAIMABLE;
+            qm.QuestStatus(currentStatus);
+        }
+        else
+        {
+            Debug.Log("collected, the amount counted is " + amountCounter);
         }
     }
 }
