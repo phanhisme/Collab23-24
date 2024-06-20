@@ -17,28 +17,14 @@ public class QuestLogic : MonoBehaviour
     public TextMeshProUGUI progression;
 
     public List<Sprite> statusSprite = new List<Sprite>();
+    
+    public QuestManager.Status currentStatus;
 
-    public enum Status { ONGOING, STANDBY, CLAIMABLE, CLAIMED }
-    public Status currentStatus;
+    private QuestManager qm;
 
-    public void QuestStatus(Status questStatus)
+    private void Start()
     {
-        //newly accepted quest will automatically become on going upon acception
-        switch (questStatus)
-        {
-            case Status.ONGOING:
-
-                break;
-
-            case Status.STANDBY:
-                break;
-
-            case Status.CLAIMABLE:
-                break;
-
-            case Status.CLAIMED:
-                break;
-        }
+        qm = FindObjectOfType<QuestManager>();
     }
 
     public void Activating()
@@ -51,8 +37,8 @@ public class QuestLogic : MonoBehaviour
         if (amountCounter == amount)
         {
             //quest complete
-            currentStatus = Status.CLAIMABLE;
-            QuestStatus(currentStatus);
+            currentStatus = QuestManager.Status.CLAIMABLE;
+            qm.QuestStatus(currentStatus);
         }
         else
         {
