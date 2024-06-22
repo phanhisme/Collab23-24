@@ -10,7 +10,6 @@ public class PlayerPointer : MonoBehaviour
     [SerializeField]
     private InputActionReference attack, pointer, specialAttack, chargeAttack;
     WeaponBase weaponBase;
-    WeaponDagger weaponDagger;
     private Vector2 pointerInput;
     GameObject shield;
     public Vector2 PointerInput => pointerInput;
@@ -35,7 +34,7 @@ public class PlayerPointer : MonoBehaviour
     {
         pointerInput = GetPointerInput();
         //Debug.Log(pointerInput);
-        //weaponBase.PointerPosition = pointerInput;
+        weaponBase.PointerPosition = pointerInput;
     }
     private void OnEnable()
     {

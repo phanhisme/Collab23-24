@@ -10,12 +10,17 @@ public class Power : MonoBehaviour
         weaponBase = FindObjectOfType<WeaponBase>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+            
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    public void ActivatePower()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            weaponBase.power += weaponBase.power * 0.2f;
-            Destroy(gameObject);
-        }
+        weaponBase.power += weaponBase.power * 0.2f;
     }
 }
