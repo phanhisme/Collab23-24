@@ -34,12 +34,13 @@ public class WeaponBase : MonoBehaviour
     public AnimationEvent animEvent;
     public Animator attackAnimSpeed;
     public LayerMask enemyMask;
+    WeaponActivation weaponActivation;
 
     //Hammer
     float currentChargeTime = 0f;
     float maxChargeTime = 3f;
     float minChargeTime = 1f;
-    float maxAttackPower = 10f;
+    public float maxAttackPower = 10f;
     public bool isCharging;
     //bool canAttack;
 
@@ -57,18 +58,6 @@ public class WeaponBase : MonoBehaviour
     protected Timer attackCounterResetTimer;
     public virtual void Attack()
     {
-        if (attackBlocked)
-        {
-            return;
-        }
-        if (specialAttackBlock)
-            return;
-        specialAttackBlock = true;
-        attackBlocked = true;
-        isAttacking = true;
-
-        StartCoroutine(DelayAttack());
-
         if (player.boostAttackSpeed == true)
         {
             StartCoroutine(BoostingAttack());
@@ -84,12 +73,12 @@ public class WeaponBase : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && isAttacking)
         {
             StartCharging();
-            
+
         }
         if (Input.GetMouseButtonUp(1) && isCharging)
         {
             ReleaseCharge();
-            
+
         }
     }
 
@@ -102,9 +91,9 @@ public class WeaponBase : MonoBehaviour
 
     public void Charge()
     {
-        Debug.Log("a");
+        //Debug.Log("a");
         currentChargeTime += Time.deltaTime;
-        if(currentChargeTime > maxChargeTime)
+        if (currentChargeTime > maxChargeTime)
         {
             currentChargeTime = maxChargeTime;
         }
@@ -113,18 +102,18 @@ public class WeaponBase : MonoBehaviour
     public virtual void ReleaseCharge()
     {
         isCharging = false;
-        if(currentChargeTime == maxChargeTime)
+        if (currentChargeTime == maxChargeTime)
         {
-            power += maxAttackPower;
+
             Attack();
             Debug.Log(power);
         }
-        if(currentChargeTime >= minChargeTime)
+        if (currentChargeTime >= minChargeTime)
         {
             Attack();
             Debug.Log(power);
         }
-        else  
+        else
         {
             Debug.Log("not enough charge time");
             //animator.SetTrigger("idle");
@@ -134,25 +123,7 @@ public class WeaponBase : MonoBehaviour
 
     public virtual void SpecialAttack()
     {
-        if (attackBlocked)
-            return;
-        if (specialAttackBlock)
-            return;
-
-        specialAttackBlock = true;
-        attackBlocked = true;
-        isSpecialAttacking = true;
-        isAttacking = true;
-        StartCoroutine(DelaySpecialAttack());
-    }
-
-    public IEnumerator DelaySpecialAttack()
-    {
-        //Debug.Log(specialAttackCD);
-        yield return new WaitForSeconds(specialAttackCD);
-        attackBlocked = false;
-        specialAttackBlock = false;
-        isSpecialAttacking = false;
+        range += 0.02f;
     }
 
     protected void ResetAttack()
@@ -175,12 +146,13 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    public IEnumerator DelayAttack()
-    {
-        yield return new WaitForSeconds(delay);
-        attackBlocked = false;
-        specialAttackBlock = false;
-    }
+    
+
+    //public IEnumerator DelayDelay()
+    //{
+    //    yield return new WaitForSeconds(delay);
+    //    Debug.Log("running delay");
+    //}
 
     protected void OnDrawGizmosSelected()
     {
@@ -267,12 +239,29 @@ public class WeaponBase : MonoBehaviour
         frostbite = FindObjectOfType<Frostbite>();
         //enemyHealth = FindObjectOfType<EnemyHealth>();
         //range = weaponData.range;
+        //StartCoroutine(MyCoroutine());
     }
 
     public void Update()
     {
         checkForInvis();
         PointAtCursor();
-        Debug.Log(currentChargeTime);
+        //Debug.Log(currentChargeTime);
+    }
+
+    IEnumerator MyCoroutine()
+    {
+        Debug.Log("Coroutine started");
+
+        // Wait for 2 seconds
+        yield return new WaitForSeconds(delay);
+        attackBlocked = false;
+        specialAttackBlock = false;
+        Debug.Log( delay + "have passed");
+
+        // Additional code to execute after the wait
+        // Ensure this code is being reached
+        Debug.Log("Coroutine ended");
     }
 }
+

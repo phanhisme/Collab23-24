@@ -1509,6 +1509,30 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 595048775, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595048777, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: maxAttackPower
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 661873854, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 661873856, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: range
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 661873856, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: maxAttackPower
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 661873856, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: specialAttackCD
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1165525720, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1517,10 +1541,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1515290213, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: maxAttackPower
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1543786492, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 111301498}
+    - target: {fileID: 1838986669, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838986671, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: delay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838986671, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: specialAttackCD
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1565,9 +1605,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 952145368120517853, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 952145368204048661, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783532638415994811, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: isSpear
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783532638415994811, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: isSword
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783532638415994811, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: isDagger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783532638415994811, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
+      propertyPath: isHammer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
