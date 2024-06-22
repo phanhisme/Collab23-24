@@ -164,7 +164,7 @@ public class WeaponBase : MonoBehaviour
     {
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, range, enemyMask))
         {
-            col.GetComponent<EnemyHealth>().TestHit(power, transform.parent.gameObject);
+            col.GetComponent<EnemyHealth>().Damage(power, transform.parent.gameObject);
             //Debug.Log(col.name);
             frostbite.checkForFrostChance();
             if (canInstaKill == true && invisibility.activateDuration > 0)

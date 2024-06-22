@@ -12,6 +12,7 @@ public class PlayerPointer : MonoBehaviour
     WeaponBase weaponBase;
     private Vector2 pointerInput;
     GameObject shield;
+    Power power;
     public Vector2 PointerInput => pointerInput;
     public bool shielded;
     public bool boostAttackSpeed = false;
@@ -139,6 +140,10 @@ public class PlayerPointer : MonoBehaviour
     public void ActiveLD()
     {
         ldActive = true;
+    }
+    public void ActivePower()
+    {
+        power.GetComponent<Power>().ActivatePower();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
