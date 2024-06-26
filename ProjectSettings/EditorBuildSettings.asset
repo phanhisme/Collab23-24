@@ -6,6 +6,45 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestAnim.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Phanh's Work/PA_Scene/BaseStart.unity
+    guid: d7d0c620596d92e44b133060c8c641d5
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseEnd.unity
+    guid: a71359fd22c666c4b808077d0867f5af
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/Base.unity
+    guid: 73cc4f202f7085c4ebe61bcabbcff587
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseTreasure.unity
+    guid: 4069da0aec1fb5e4e9ecacc228d9bad5
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseBasic.unity
+    guid: d0fbea5d1040c0444bed2e5126b4b6fa
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseVillagerQuest.unity
+    guid: 6d32e1c64527680488559a7c228b57b9
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseBasic1.unity
+    guid: 80ce80bf83408954796d3b2cf2fd3ffb
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseBlacksmith.unity
+    guid: 589b54031de88ce4d9f70a35f1b9c98b
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseElite.unity
+    guid: f26f9d81743021a418da02a5e6ea11e8
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseElite1.unity
+    guid: 6f88bb089b8ac9c4f98f31ebb67b7a2c
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseRestStop.unity
+    guid: 97b8400444f7301418b81dad0adc118a
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseShop.unity
+    guid: ac0e4abc1b09e894a82437618816b255
+  - enabled: 1
+    path: Assets/Phanh's Work/PA_Scene/BaseBase.unity
+    guid: 22942eb8e802f1d4188b50fa32cb270d
+  - enabled: 1
+    path: Assets/_BuildScene/MainMenu.unity
+    guid: 66657e7d223ae4e46826888a202b0f68
   m_configObjects: {}
