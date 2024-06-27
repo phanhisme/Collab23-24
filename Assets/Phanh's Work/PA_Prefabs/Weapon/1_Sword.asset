@@ -16,4 +16,4 @@ MonoBehaviour:
   weaponName: Sword
   weaponDescription: Simple design yet brutal strikes. This sword favors equilibrium
     amongst all statistics, offering reliability.
-  weaponIcon: {fileID: -322966401, guid: 64b461db88a2d0d4eb307ee3749aa39d, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 4bd557d007ec8d741b5fcf8abc5e54fa, type: 3}

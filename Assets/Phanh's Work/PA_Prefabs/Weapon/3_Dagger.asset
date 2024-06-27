@@ -16,4 +16,4 @@ MonoBehaviour:
   weaponName: Dagger
   weaponDescription: Though humble in range, Dagger possesses lightning-fast strikes,
     providing a fast-paced game and high mobility for the player.
-  weaponIcon: {fileID: -946857764, guid: f6ec27d38d091f14e8c133a94b64b965, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 79051bc68a6ef3f4b8535402a96c630d, type: 3}
