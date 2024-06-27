@@ -177,7 +177,7 @@ MonoBehaviour:
   attackSpeedBoost: 0.2
   canInstaKill: 0
   animator: {fileID: 1179271104}
-  characterRenderer: {fileID: 0}
+  characterRenderer: {fileID: 1691323627}
   weaponRenderer: {fileID: 1179271105}
   circle: {fileID: 1011127522}
   animEvent: {fileID: 1179271103}

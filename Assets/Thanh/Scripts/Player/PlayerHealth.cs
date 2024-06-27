@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.U2D.Animation;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer sr;
 
+ 
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
@@ -37,9 +39,9 @@ public class PlayerHealth : MonoBehaviour
 
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        
-        //TODO: Set the current value inside the anim to the current health of the player
-        anim.SetFloat("isOutofHealth", currentHealth);
+      
+       
+      
     }
     public void InitializeHealth(float healthValue)
     {
@@ -151,8 +153,7 @@ public class PlayerHealth : MonoBehaviour
             anim.SetTrigger("isDamaged");
             AudioManagerScript.Instance.PlaySoundEffect("Hit_SFX");
             
-            //When the player is damaged, set the sprite renderer color to red
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+           
         }
         
         
