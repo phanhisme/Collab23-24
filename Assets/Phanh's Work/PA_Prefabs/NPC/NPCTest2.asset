@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5598790cc88668648a817eccc8cf42c8, type: 3}
   m_Name: NPCTest2
   m_EditorClassIdentifier: 
-  NPCName: Fraser
+  NPCName: Frazier
   QuestID: 02

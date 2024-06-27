@@ -425,17 +425,21 @@ public class NPCBehaviour : MonoBehaviour
 
     public void AcceptQuest()
     {
-        hasAcceptedQuest = true;
-
         GameObject qmObject = GameObject.Find("IG_QUEST");
-        qmObject.SetActive(true);
-
         QuestManager qm = qmObject.GetComponent<QuestManager>();
-        qm.addedQuest.Add(quest);
-        qm.UpdateNewQuest();
 
-        questUI.SetActive(false);
-        currentStatus = Status.IDLE;
+        if (qm.addedQuest.Count < qm.maxQuest)
+        {
+            hasAcceptedQuest = true;
+            qmObject.SetActive(true);
+            qm.addedQuest.Add(quest);
+            qm.UpdateNewQuest();
+
+            questUI.SetActive(false);
+            currentStatus = Status.IDLE;
+        }
+        else
+            Debug.Log("Cannot accept more quests");
     }
 
     public void DeclineQuest()

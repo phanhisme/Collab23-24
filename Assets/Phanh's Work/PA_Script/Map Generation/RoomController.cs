@@ -192,15 +192,14 @@ public class RoomController : MonoBehaviour
         string[] eliteRooms = new string[]
         {
             "Elite",
-            "Elite1"
         };
 
         string[] specialRooms = new string[]
         {
             "Treasure",
             "Shop",
-            "RestStop",
-            "Blacksmith"
+            //"RestStop",
+            //"Blacksmith"
         };
 
         if (spawnChance < 0.2)
