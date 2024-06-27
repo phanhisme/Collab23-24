@@ -32,9 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Phanh's Work/PA_Scene/BaseElite.unity
     guid: f26f9d81743021a418da02a5e6ea11e8
-  - enabled: 1
-    path: Assets/Phanh's Work/PA_Scene/BaseElite1.unity
-    guid: 6f88bb089b8ac9c4f98f31ebb67b7a2c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Phanh's Work/PA_Scene/BaseRestStop.unity
     guid: 97b8400444f7301418b81dad0adc118a
