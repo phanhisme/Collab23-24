@@ -5,13 +5,16 @@ using TMPro;
 
 public class CollectCoin : MonoBehaviour
 {
-    private int coinsCount = 0;
+    private ExtendedInventory inventory;
     public int travelSpd = 5;
-    public TextMeshProUGUI coinText;
+
+    //private int coinsCount = 0;
+    //public TextMeshProUGUI coinText;
 
     public void Start()
     {
-        coinText.text = coinsCount.ToString();
+        inventory = FindObjectOfType<ExtendedInventory>();
+        //coinText.text = coinsCount.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,6 +23,19 @@ public class CollectCoin : MonoBehaviour
         if (collectible != null)
         {
             collectible.Collect();
+
+            QuestManager qm = FindObjectOfType<QuestManager>();
+            if (qm.questTrack.Contains(qm.correctQuest("C01"))) //COLLECT FLOWER FOR QUEST
+            {
+                foreach (QuestTrack quest in qm.questTrack)
+                {
+                    if (quest.GetItems() == CreateQuest.QuestItem.PickUps)
+                    {
+                        quest.progressionNumber += 1;
+                        qm.CheckNumber(quest, "C01");
+                    }
+                }
+            }
         }
     }
 
@@ -35,8 +51,10 @@ public class CollectCoin : MonoBehaviour
 
     public void CoinManager()
     {
-        coinsCount++;
-        coinText.text = coinsCount.ToString();
-        Debug.Log("collected " + coinsCount + " coins");
+        //coinsCount++;
+        inventory.AddCoinCurrency(1);
+
+        //coinText.text = coinsCount.ToString();
+        //Debug.Log("collected " + coinsCount + " coins");
     }
 }

@@ -1031,7 +1031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2874154216677340166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1713,6 +1713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e4f540e78fbbe4ca41d9bbf3db90dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quest: {fileID: 0}
   amountCounter: 0
   questName: {fileID: 5985797419204592856}
   questDetails: {fileID: 1284060457171766060}
@@ -2417,14 +2418,8 @@ MonoBehaviour:
   isAvailableForQuest: 0
   allQuest:
   - {fileID: 11400000, guid: 41b9aedd874e38145b22639efefe60a5, type: 2}
-  - {fileID: 11400000, guid: 4ba4f2888e2dfcd448c3f4aa8dd87eec, type: 2}
-  - {fileID: 11400000, guid: 0797126c4f69e8b4cb808925bbdf54ad, type: 2}
-  - {fileID: 11400000, guid: eb3067d6ffe7f6c48b25d6469bd5beba, type: 2}
   - {fileID: 11400000, guid: 89728b1886cab6641a2a4a7de8f54da6, type: 2}
   - {fileID: 11400000, guid: 68c30905922c04840a81567c8bbe5251, type: 2}
-  - {fileID: 11400000, guid: 000c7890c945213449479d5b2179802a, type: 2}
-  - {fileID: 11400000, guid: 8e14d0bba50a5d54d879e1e666284eb2, type: 2}
-  - {fileID: 11400000, guid: 9bdf6f02336d89d408c65ed80c08388e, type: 2}
   quest: {fileID: 0}
   idleChat: {fileID: 6209490251652019421}
   chatText: {fileID: 6209490251652019423}

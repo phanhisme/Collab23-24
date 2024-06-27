@@ -32,6 +32,19 @@ public class CollectItems : MonoBehaviour
             }
 
             collectible.Collect();
+
+            QuestManager qm = FindObjectOfType<QuestManager>();
+            if (qm.questTrack.Contains(qm.correctQuest("P01"))) //COLLECT FLOWER FOR QUEST
+            {
+                foreach (QuestTrack quest in qm.questTrack)
+                {
+                    if (quest.GetItems() == CreateQuest.QuestItem.PickUps)
+                    {
+                        quest.progressionNumber += 1;
+                        qm.CheckNumber(quest, "P01");
+                    }
+                }
+            }
         }
     }
 

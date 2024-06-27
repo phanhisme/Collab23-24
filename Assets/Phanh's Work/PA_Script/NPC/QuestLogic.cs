@@ -20,29 +20,20 @@ public class QuestLogic : MonoBehaviour
     
     public QuestManager.Status currentStatus;
 
-    private QuestManager qm;
 
-    private void Start()
-    {
-        qm = FindObjectOfType<QuestManager>();
-    }
+   
 
-    public void Activating()
-    {
-        amountCounter = 0;
-    }
-
-    public void CheckingQuest(int amount)
-    {
-        if (amountCounter == amount)
-        {
-            //quest complete
-            currentStatus = QuestManager.Status.CLAIMABLE;
-            qm.QuestStatus(currentStatus);
-        }
-        else
-        {
-            Debug.Log("collected, the amount counted is " + amountCounter);
-        }
-    }
+    //public void CheckingQuest(int amount)
+    //{
+    //    if (amountCounter == amount)
+    //    {
+    //        //quest complete
+    //        currentStatus = QuestManager.Status.CLAIMABLE;
+    //        qm.QuestStatus(currentStatus);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("collected, the amount counted is " + amountCounter);
+    //    }
+    //}
 }

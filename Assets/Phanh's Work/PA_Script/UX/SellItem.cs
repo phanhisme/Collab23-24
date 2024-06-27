@@ -14,7 +14,7 @@ public class SellItem : MonoBehaviour
 
         if (shop.currentLocation==ShopManager.ShopLocation.BASE) //can sell in shop at base but not in stage
         {
-            inventory.AddGoldCurrency(thisItem.item.price);
+            inventory.AddCoinCurrency(thisItem.item.price);
             inventory.MinusNumber(thisItem.item);
 
             if (thisItem.GetInventoryNumber() >= 1)

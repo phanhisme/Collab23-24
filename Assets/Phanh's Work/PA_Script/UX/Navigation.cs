@@ -21,7 +21,26 @@ public class Navigation : MonoBehaviour
 
     public void OpenQuest()
     {
-        questPanel.SetActive(true);
+        if (questPanel != null)
+        {
+            questPanel.SetActive(true);
+        }
+        else
+        {
+            GameObject questManagerItem = FindObjectOfType<QuestManager>().gameObject;
+            questPanel = questManagerItem.transform.GetChild(0).gameObject;
+            questPanel.SetActive(true);
+        }
+
+        QuestManager qm = FindObjectOfType<QuestManager>();
+        if (qm.questObject.Count != 0)
+        {
+            foreach (GameObject go in qm.questObject)
+            {
+                QuestUI ui = go.GetComponent<QuestUI>();
+                ui.UpdateUI();
+            }
+        }
     }
 
     public void OpenInventory()
@@ -35,7 +54,16 @@ public class Navigation : MonoBehaviour
     }
     public void CloseQuest()
     {
-        questPanel.SetActive(false);
+        if (questPanel != null)
+        {
+            questPanel.SetActive(false);
+        }
+        else
+        {
+            GameObject questManagerItem = FindObjectOfType<QuestManager>().gameObject;
+            questPanel = questManagerItem.transform.GetChild(0).gameObject;
+            questPanel.SetActive(false);
+        }
     }
 
     public void CloseInventory()

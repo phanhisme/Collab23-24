@@ -432,8 +432,10 @@ public class NPCBehaviour : MonoBehaviour
         {
             hasAcceptedQuest = true;
             qmObject.SetActive(true);
+
             qm.addedQuest.Add(quest);
             qm.UpdateNewQuest();
+            qm.questTrack.Add(new QuestTrack(quest, quest.questItem, 0)); //create track
 
             questUI.SetActive(false);
             currentStatus = Status.IDLE;

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1569251387359708357}
   - component: {fileID: 1569251387359708356}
-  - component: {fileID: 1569251387359708358}
   - component: {fileID: -3443761461538805206}
   - component: {fileID: -5872152158559740171}
+  - component: {fileID: -1664871063827879757}
   m_Layer: 0
   m_Name: DropTest
   m_TagString: Untagged
@@ -87,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1569251387359708358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569251387359708363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e13f30898b238784997203d31c765c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisItem: {fileID: 11400000, guid: a90619815a9a4b04ea27051bc690ece5, type: 2}
 --- !u!50 &-3443761461538805206
 Rigidbody2D:
   serializedVersion: 4
@@ -147,3 +134,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12}
   m_EdgeRadius: 0
+--- !u!114 &-1664871063827879757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569251387359708363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842540853db6c634696c81a187dd4ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

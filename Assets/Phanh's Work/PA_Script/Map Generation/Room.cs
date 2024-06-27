@@ -184,7 +184,13 @@ public class Room : MonoBehaviour
         rightCol.enabled = false;
 
         //change color
+        
+        //sprite.color = Color.blue;
+
         SpriteRenderer sprite = thisDoor.gameObject.GetComponent<SpriteRenderer>();
-        sprite.color = Color.blue;
+        Color color = thisDoor.gameObject.GetComponent<SpriteRenderer>().color;
+        color.a = 0f;
+
+        sprite.color = color;
     }
 }

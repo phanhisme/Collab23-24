@@ -7,6 +7,7 @@ public class QuestManager : MonoBehaviour
 {
     public List<CreateQuest> addedQuest = new List<CreateQuest>();
     public List<GameObject> questObject = new List<GameObject>();
+    public List<QuestTrack> questTrack = new List<QuestTrack>();
 
     public GameObject questPrefab;
     public Transform contenTransform;
@@ -52,25 +53,49 @@ public class QuestManager : MonoBehaviour
     public void InstantiateQuest(CreateQuest thisQuest)
     {
         GameObject showQuest = Instantiate(questPrefab, contenTransform);
+        questObject.Add(showQuest);
 
         QuestUI ui = showQuest.GetComponent<QuestUI>();
-        ui.UpdateUI(thisQuest);
+        ui.quest = thisQuest;
+        ui.UpdateUI();
     }
 
-    public void OnGoingQuest(QuestLogic chosenQuest)
+    public void CheckNumber(QuestTrack quest, string ID)
     {
-        if (chosenQuest != null)
+        int number = quest.GetProgressionNumber();
+        foreach (GameObject questObject in questObject)
         {
-            chosenQuest = this.gameObject.GetComponent<QuestLogic>();
-            chosenQuest.currentStatus = Status.ONGOING;
+            QuestUI ui = questObject.GetComponent<QuestUI>();
+            if (ui.quest.questID == ID)
+            {
+                if(number < quest.GetQuest().questAmount)
+                {
+                    ui.UpdateUI();
+                    ui.progression.text = quest.GetProgressionNumber() + "/" + quest.createQuest.questAmount;
+                }
+
+                else if (number >= quest.GetQuest().questAmount)
+                {
+                    //QUEST FINISHED
+                    ui.progression.text = "Claim";
+
+                    //ENABLE CLAIM
+                    ui.currentStatus = QuestUI.Status.Claimable;
+                }
+            }
         }
-        else
-        {
-            //find existing quest in the 
-            chosenQuest.currentStatus = Status.ONGOING;
-        } 
     }
 
-    //public
+    public QuestTrack correctQuest(string questID)
+    {
+        foreach(QuestTrack questTrackItem in questTrack)
+        {
+            if (questTrackItem.GetQuest().questID == questID)
+            {
+                return questTrackItem;
+            }
+        }
+        return null;
+    }
 }
  

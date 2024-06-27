@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: P01
   questTitle: Fruity Harvest
-  questDescription: Pick up <random> items. These items can be dropped from enemies
-    or from the environment.
-  rewardIcon: {fileID: 21300000, guid: 2eb9040eaa30b8540a069b0d5f6b927e, type: 3}
+  questDescription: Pick up 15 Flowers. These items can be dropped from enemies or
+    from the environment.
+  rewardIcon: {fileID: 1648294395, guid: fee16dfdd6c613547936bcab10271b8d, type: 3}
   rewardAmount: 5
+  questAmount: 15
   questTime: 0
   questItem: 1

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3fb0d8e4ea76ff41a0a18687b6d3ed0, type: 3}
-  m_Name: 01_HermesBoots
+  m_Script: {fileID: 11500000, guid: ed1e9b25ccaeda54dad7e3d3c1b58e4d, type: 3}
+  m_Name: 05_HealthyHabit
   m_EditorClassIdentifier: 
-  itemDescription: 'Permanently increase speed '
-  cardShowCase: {fileID: 21300000, guid: 26904bf87ea863f45a5cb9d014d1320e, type: 3}
-  itemCost: 10
-  type: 0
+  activationID: 5
+  activationName: Healthy Habit
+  activationDescription: Increase player Max Health by 1
+  activationIcon: {fileID: 0}
