@@ -15,7 +15,7 @@ public class PlayerHealthBarUI : MonoBehaviour
     void Start()
     {
         //playerHealth = GetComponent<PlayerHealth>();
-        //camera = FindObjectOfType<Camera>();
+        camera = FindObjectOfType<Camera>();
     }
     public void UpdateHealthBar() //to get the value from any object, not restricting from only the player or enemy
     {
@@ -29,7 +29,6 @@ public class PlayerHealthBarUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camera = FindObjectOfType<Camera>();
         transform.position = camera.transform.position; //so that the healthbar wont rotate around the enemy
         transform.position = target.position + offset;
         transform.rotation = camera.transform.rotation;
