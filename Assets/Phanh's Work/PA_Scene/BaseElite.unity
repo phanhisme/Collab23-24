@@ -1144,7 +1144,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1648845978}
     m_Modifications:
     - target: {fileID: 2146099491638205315, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
       propertyPath: m_Name
@@ -1152,7 +1152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2146099491638205341, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2146099491638205341, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1172,15 +1172,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2146099491638205341, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2146099491638205341, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2146099491638205341, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2146099491638205341, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1197,6 +1197,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
+--- !u!4 &928754370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2146099491638205341, guid: 940c9f40904c3b0499241a60cea007c3, type: 3}
+  m_PrefabInstance: {fileID: 928754369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1023376722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1854,7 @@ Transform:
   - {fileID: 869346520}
   - {fileID: 2095845855}
   - {fileID: 1028034081}
+  - {fileID: 928754370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

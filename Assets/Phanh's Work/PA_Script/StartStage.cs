@@ -16,6 +16,8 @@ public class StartStage : MonoBehaviour
         {
             wantToStart = false;
             SceneManager.LoadScene("Base");
+            GameObject player = FindObjectOfType<PlayerPointer>().gameObject;
+            player.transform.position = new Vector2(0, 0);
             //ask the player if they want to start
         }
     }
