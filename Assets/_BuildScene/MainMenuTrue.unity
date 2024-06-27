@@ -503,61 +503,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 1960461377}
     m_Modifications:
     - target: {fileID: 4902520398921837937, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520398921837937, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520398921837937, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6702147147807098705}
-    - target: {fileID: 4902520398921837937, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520398921837937, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TrueExit
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520398921837937, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PanelManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520398921837937, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520399873674203, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520399873674203, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520399873674203, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6702147147807098705}
     - target: {fileID: 4902520399873674203, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520399873674203, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Cancel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520399873674203, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PanelManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520399873674203, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6702147147807098705}
     - target: {fileID: 4902520400018428352, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
       propertyPath: m_Name
       value: QuitGameAsk_
@@ -649,24 +601,6 @@ PrefabInstance:
     - target: {fileID: 4902520400018428353, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520400018428354, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520400018428354, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520400018428354, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4902520400898474247, guid: 4a1f960ae0eac774fbeb1aa34fa45238, type: 3}
-      propertyPath: m_text
-      value: ' Quit
-
-'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
