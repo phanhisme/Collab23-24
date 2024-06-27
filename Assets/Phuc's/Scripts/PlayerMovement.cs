@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canStartingCooldown;
     private SpriteRenderer sr;
+
+    
     private void Start()
     {
         hermesBootsScript = FindObjectOfType<HermesBoots>();
@@ -46,6 +48,17 @@ public class PlayerMovement : MonoBehaviour
     {
         DashingInput();
 
+
+        if (_currentMoveSpeed > moveSpeed)
+        {
+            _currentBoostSpeedDuration -= dashBoostSpeedDurationSubtract;
+        }
+        if (_currentBoostSpeedDuration == 0)
+        {
+            _currentMoveSpeed = moveSpeed;
+            _currentBoostSpeedDuration = 1500f;
+        }
+
     }
     void FixedUpdate()
     {
@@ -55,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //HANDLING FUNCTIONS
-    void GetInput()
+    public void GetInput()
     {
         //Player movement inputs
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -94,11 +107,13 @@ public class PlayerMovement : MonoBehaviour
         //When the Space key is held down and the current dash power is smaller than the dash power
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
+            AudioManagerScript.Instance.PlaySoundEffect("Dash_SFX");
+            
             hasDashButtonPressed = true;
             dashStaminaScript.startSubtractingStamina = true;
             rb.MovePosition(transform.position + movement * dashPower);
             BoostSpeedAfterDashing();
-            StartCoroutine(StartSpeedBoostCooldown());
+          
 
         }
         else if (hasDashButtonPressed)
@@ -120,22 +135,10 @@ public class PlayerMovement : MonoBehaviour
             canAddSpeed = false;
         }
     }
-    IEnumerator StartSpeedBoostCooldown()
-    {
-        
-        if (_currentBoostSpeedDuration <= 0)
-        {
-            
-            _currentBoostSpeedDuration = 3f;
-            canAddSpeed = true;
-
-            _currentMoveSpeed = moveSpeed;
-        }
-
-        yield return new WaitForSeconds(_currentBoostSpeedDuration);
-    }
+  
    
     #endregion
 }
+    
 
     

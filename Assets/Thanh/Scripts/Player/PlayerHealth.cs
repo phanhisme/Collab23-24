@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -23,12 +24,22 @@ public class PlayerHealth : MonoBehaviour
     public bool haveShield;
     Heartsteel heartsteel;
 
+    private Animator anim;
+
+    private SpriteRenderer sr;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         weaponBase = FindObjectOfType<WeaponBase>();
         heartsteel = FindObjectOfType<Heartsteel>();
         enemyWeaponHolder = FindObjectOfType<EnemyWeaponHolder>();
+
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        
+        //TODO: Set the current value inside the anim to the current health of the player
+        anim.SetFloat("isOutofHealth", currentHealth);
     }
     public void InitializeHealth(float healthValue)
     {
@@ -62,8 +73,10 @@ public class PlayerHealth : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            
             isDead = true;
             OnDeathWithReference?.Invoke(gameObject);
+           
         }
     }
     public void ColDamage()
@@ -80,14 +93,12 @@ public class PlayerHealth : MonoBehaviour
     }
     public void Dead()
     {
-        if(isDead == true)
-        {
-            Destroy(gameObject);
-        }
+        StartCoroutine(TriggerDeadAnim());
     }
     public void Update()
     {
         Dead();
+        anim.SetFloat("isOutofHealth", currentHealth);
         checkHasShield();
     }
     IEnumerator HealShield()
@@ -135,9 +146,20 @@ public class PlayerHealth : MonoBehaviour
     public IEnumerator IsPlayerHurt()
     {
         isHurt = true;
+        if (isHurt)
+        {
+            anim.SetTrigger("isDamaged");
+            AudioManagerScript.Instance.PlaySoundEffect("Hit_SFX");
+            
+            //When the player is damaged, set the sprite renderer color to red
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+        }
+        
+        
         float playerIsHurtingTime = 0;
         yield return new WaitForSeconds(playerIsHurtingTime);
         isHurt = false;
+        sr.color = new Color(255, 255, 255);    //return back to the original sprite renderer color
     }
 
     //GuardianBlessing
@@ -161,4 +183,18 @@ public class PlayerHealth : MonoBehaviour
         }
         boostAtkSpeed();
     }
+
+    IEnumerator TriggerDeadAnim()
+    {
+        if (currentHealth <= 0)
+        {
+            anim.SetFloat("isOutOfHealth", currentHealth);
+            yield return new WaitForSeconds(.5f);
+            Destroy(gameObject);
+
+        }
+
+    }
+   
+    
 }

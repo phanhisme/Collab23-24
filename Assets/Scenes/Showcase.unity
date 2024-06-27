@@ -177,7 +177,7 @@ MonoBehaviour:
   attackSpeedBoost: 0.2
   canInstaKill: 0
   animator: {fileID: 1179271104}
-  characterRenderer: {fileID: 1691323627}
+  characterRenderer: {fileID: 0}
   weaponRenderer: {fileID: 1179271105}
   circle: {fileID: 1011127522}
   animEvent: {fileID: 1179271103}
@@ -194,6 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 40372328}
+  - component: {fileID: 40372329}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -216,6 +217,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &40372329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40372327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54874923c3b656e4c9f4ca7dfe8f0b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 0}
+  soundEffects:
+  - {fileID: 8300000, guid: 4f4eddbc7d1ff3a4bb1d1381891c7e20, type: 3}
+  - {fileID: 8300000, guid: b391ff0b6f64b134f872c6dd38305a0c, type: 3}
 --- !u!1 &111301496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,7 +2180,7 @@ MonoBehaviour:
   rb: {fileID: 1691323623}
   dashPower: 6
   dashBoostSpeedDurationSubtract: 1
-  _currentBoostSpeedDuration: 3
+  _currentBoostSpeedDuration: 1500
   _currentMoveSpeed: 0
   canDash: 0
   canAddSpeed: 0
@@ -2863,7 +2880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441445317800866325, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6441445317951820294, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: camera
@@ -2871,11 +2888,11 @@ PrefabInstance:
       objectReference: {fileID: 111301498}
     - target: {fileID: 6441445318188633685, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6441445318188633685, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6657511426417310460, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: player
