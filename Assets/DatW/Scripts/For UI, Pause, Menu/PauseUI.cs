@@ -38,7 +38,7 @@ public class PauseUI : MonoBehaviour
     public void Home()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenuTrue");
     }
 }
 

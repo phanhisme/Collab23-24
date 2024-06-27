@@ -15,6 +15,7 @@ public class PanelManager : MonoBehaviour
     //}
     public GameObject saveSlotsPanel; // The panel with three image slots
     public GameObject overlayPanel; // The transparent overlay panel
+    public GameObject QuitASk;
 
     void Start()
     {
@@ -44,10 +45,22 @@ public class PanelManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(12);
+        SceneManager.LoadScene("BaseBase");
     }
 
     public void Exit()
+    {
+        
+        QuitASk.SetActive(true);
+        //Application.Quit();
+    }
+
+    public void Cancel()
+    {
+        QuitASk.SetActive(false);
+    }
+
+    public void TrueExit()
     {
         Debug.Log("quitting");
         Application.Quit();

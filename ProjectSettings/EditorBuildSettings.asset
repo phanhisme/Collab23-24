@@ -45,6 +45,6 @@ EditorBuildSettings:
     path: Assets/Phanh's Work/PA_Scene/BaseBase.unity
     guid: 22942eb8e802f1d4188b50fa32cb270d
   - enabled: 1
-    path: Assets/_BuildScene/MainMenu.unity
+    path: Assets/_BuildScene/MainMenuTrue.unity
     guid: 66657e7d223ae4e46826888a202b0f68
   m_configObjects: {}

@@ -1713,7 +1713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e4f540e78fbbe4ca41d9bbf3db90dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 0}
   amountCounter: 0
   questName: {fileID: 5985797419204592856}
   questDetails: {fileID: 1284060457171766060}
@@ -2051,7 +2050,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 5707977056003207545, guid: febf84df26152984a81a41333058ca5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2095,8 +2094,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PopUpChat
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: febf84df26152984a81a41333058ca5c, type: 2}
+  m_sharedMaterial: {fileID: 5707977056003207545, guid: febf84df26152984a81a41333058ca5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2223,7 +2222,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 5707977056003207545, guid: febf84df26152984a81a41333058ca5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2267,8 +2266,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: febf84df26152984a81a41333058ca5c, type: 2}
+  m_sharedMaterial: {fileID: 5707977056003207545, guid: febf84df26152984a81a41333058ca5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
