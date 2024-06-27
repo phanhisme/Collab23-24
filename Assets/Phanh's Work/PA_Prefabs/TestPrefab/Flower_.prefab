@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -715881694233404316}
   - component: {fileID: -5186322225064433432}
   m_Layer: 0
-  m_Name: Flower2
+  m_Name: Flower_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -185501934, guid: 900d3282ba7195f46b80e6f4daa85112, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bb1c1092f308fd4ea0bfa7e34e0cefe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -578,7 +578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &719071816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2031,7 +2031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1749422703
 Transform:
   m_ObjectHideFlags: 0
@@ -2280,11 +2280,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1165525720, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1165525720, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 952145366647941052, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_RootOrder
@@ -2333,10 +2333,6 @@ PrefabInstance:
     - target: {fileID: 952145368204048661, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: m_Name
       value: Player (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 952145368204048661, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8290043133266602024, guid: 56410447425adcf4e8617558b74ecf98, type: 3}
       propertyPath: coinText
