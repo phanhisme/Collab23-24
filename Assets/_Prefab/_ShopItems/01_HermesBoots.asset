@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab0b16b1c6a3c994aab75ca13fed2745, type: 3}
-  m_Name: FlowerTest
+  m_Script: {fileID: 11500000, guid: d3fb0d8e4ea76ff41a0a18687b6d3ed0, type: 3}
+  m_Name: 01_HermesBoots
   m_EditorClassIdentifier: 
-  itemName: Flower
-  itemIcon: {fileID: 28867671, guid: 900d3282ba7195f46b80e6f4daa85112, type: 3}
-  price: 3
-  type: 1
+  itemDescription: 'Permanently increase speed '
+  cardShowCase: {fileID: 21300000, guid: 26904bf87ea863f45a5cb9d014d1320e, type: 3}
+  itemCost: 5
+  type: 0

@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab0b16b1c6a3c994aab75ca13fed2745, type: 3}
-  m_Name: FlowerTest
+  m_Script: {fileID: 11500000, guid: 610086caeab93de4a9ba60ab38ac1ec0, type: 3}
+  m_Name: Flower1
   m_EditorClassIdentifier: 
-  itemName: Flower
-  itemIcon: {fileID: 28867671, guid: 900d3282ba7195f46b80e6f4daa85112, type: 3}
-  price: 3
-  type: 1
+  itemToSpawn: {fileID: 5336800720435535777, guid: 45b5dd616fc8f25488f48aeea8bc4201, type: 3}
+  minSpawn: 1
+  maxSpawn: 3
