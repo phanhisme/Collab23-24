@@ -2131,7 +2131,6 @@ MonoBehaviour:
   dashBoostSpeed: 8
   rb: {fileID: 1691323623}
   dashPower: 6
-  dashBoostSpeedDuration: 3
   dashBoostSpeedDurationSubtract: 1
   _currentBoostSpeedDuration: 3
   _currentMoveSpeed: 0
@@ -2822,17 +2821,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6441445317800866325, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6441445317951820294, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 111301498}
     - target: {fileID: 6441445318188633685, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6441445318188633685, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6657511426417310460, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: player
@@ -2844,11 +2847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657511426417310462, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.74
+      value: 4.87
       objectReference: {fileID: 0}
     - target: {fileID: 6657511426417310462, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.71
+      value: -23.87
       objectReference: {fileID: 0}
     - target: {fileID: 6657511426417310462, guid: 1ce7517a8241d8b4f962cb5820e45ac5, type: 3}
       propertyPath: m_LocalPosition.z

@@ -15,6 +15,7 @@ public class EnemyHealthbarUI : MonoBehaviour
     void Start()
     {
         //health = GetComponent<Health>();
+     
     }
     public void UpdateHealthBar() //to get the value from any object, not restricting from only the player or enemy
     {

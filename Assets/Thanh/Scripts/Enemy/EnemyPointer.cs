@@ -17,7 +17,7 @@ public class EnemyPointer : MonoBehaviour
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
         invisibility = FindObjectOfType<Invisibility>();
-        
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
     // Update is called once per frame
     void Update()

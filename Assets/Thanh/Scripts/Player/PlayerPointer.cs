@@ -24,6 +24,18 @@ public class PlayerPointer : MonoBehaviour
     public bool fbActive;
     public bool ldActive;
 
+
+    public bool cursedbladeActive;
+    public bool healthyHabitActive;
+    public bool invisActive;
+    public bool monsterWithinActive;
+    public bool buddhaJumpActive;
+    public bool earthyMealActive;
+    public bool rejectDeathActive;
+    public bool energyDrinkActive;
+    public bool hermesBootsActive;
+    
+    
     private void Start()
     {
         shield = transform.Find("Shield").gameObject;
@@ -56,6 +68,7 @@ public class PlayerPointer : MonoBehaviour
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
+    #region THANH'S SKILLS
     public void ActivateShield()
     {
         shield.SetActive(true);
@@ -120,12 +133,18 @@ public class PlayerPointer : MonoBehaviour
     {
         ldActive = true;
     }
+#endregion
 
+public void CursedBlade()
+{
+    
+}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PowerUpScript powerUp = collision.GetComponent<PowerUpScript>();
         if(powerUp)
         {
+            #region THANH'S SKILLS
             if(powerUp.activeShield)
             {
                 ActivateShield();
@@ -166,6 +185,7 @@ public class PlayerPointer : MonoBehaviour
             {
                 ActiveLD();
             }
+            #endregion
             Destroy(powerUp.gameObject);
         }
     }

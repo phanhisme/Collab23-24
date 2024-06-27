@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DashingInput();
 
     }
     void FixedUpdate()
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isRunning", false);
         }
-        DashingInput();
+       
     }
     
     #region Dashing Related
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             dashStaminaScript.startSubtractingStamina = true;
             rb.MovePosition(transform.position + movement * dashPower);
             BoostSpeedAfterDashing();
-            _currentBoostSpeedDuration -= dashBoostSpeedDurationSubtract;
+            StartCoroutine(StartSpeedBoostCooldown());
 
         }
         else if (hasDashButtonPressed)
@@ -113,15 +113,16 @@ public class PlayerMovement : MonoBehaviour
         if (canAddSpeed)
         {
             _currentMoveSpeed = moveSpeed + dashBoostSpeed;
+            
         }
         if (moveSpeed > 20)
         {
             canAddSpeed = false;
         }
     }
-    void StartSpeedBoostCooldown()
+    IEnumerator StartSpeedBoostCooldown()
     {
-        _currentBoostSpeedDuration -= dashBoostSpeedDurationSubtract;
+        
         if (_currentBoostSpeedDuration <= 0)
         {
             
@@ -130,6 +131,8 @@ public class PlayerMovement : MonoBehaviour
 
             _currentMoveSpeed = moveSpeed;
         }
+
+        yield return new WaitForSeconds(_currentBoostSpeedDuration);
     }
    
     #endregion
