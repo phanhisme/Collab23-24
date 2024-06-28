@@ -39,7 +39,7 @@ public class EnemyPointer : MonoBehaviour
             if (col.transform.CompareTag("Player") && invisibility.isActivated == false)
             {
                 Vector2 direction = player.position - transform.position;
-                transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+                transform.rotation = Quaternion.identity;
                 holder.AttackPlayer();
             }
         }
