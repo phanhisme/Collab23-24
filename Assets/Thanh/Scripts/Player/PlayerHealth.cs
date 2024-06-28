@@ -23,13 +23,17 @@ public class PlayerHealth : MonoBehaviour
     public bool haveShield;
     Heartsteel heartsteel;
 
+    private SpriteRenderer sr;
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
         weaponBase = FindObjectOfType<WeaponBase>();
         heartsteel = FindObjectOfType<Heartsteel>();
         enemyWeaponHolder = FindObjectOfType<EnemyWeaponHolder>();
+
+        sr = GetComponent<SpriteRenderer>();
     }
+    
     public void InitializeHealth(float healthValue)
     {
         currentHealth = healthValue;
@@ -135,9 +139,11 @@ public class PlayerHealth : MonoBehaviour
     public IEnumerator IsPlayerHurt()
     {
         isHurt = true;
-        float playerIsHurtingTime = 0;
+        float playerIsHurtingTime = .5f;
+        sr.color = Color.red;
         yield return new WaitForSeconds(playerIsHurtingTime);
         isHurt = false;
+        sr.color = Color.white;
     }
 
     //GuardianBlessing

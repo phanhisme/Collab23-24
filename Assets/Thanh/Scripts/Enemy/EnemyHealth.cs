@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
    
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     [SerializeField] private bool isDead = false;
-    [SerializeField] PlayerHealth playerHealth;
+    //[SerializeField] PlayerHealth playerHealth;
     public bool isHit;
 
     PlayerPointer player;
@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private void Start()
     {
         player = FindObjectOfType<PlayerPointer>();
-        playerHealth = FindObjectOfType<PlayerHealth>();
+        //playerHealth = FindObjectOfType<PlayerHealth>();
         _cursedBladeScript = FindObjectOfType<CursedBlade>();
 
 

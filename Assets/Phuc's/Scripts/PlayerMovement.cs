@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float _currentBoostSpeedDuration, _currentMoveSpeed;
     public bool canDash, canAddSpeed;
 
+    private Animator anim;
     private void Start()
     {
         hermesBootsScript = FindObjectOfType<HermesBoots>();
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
         canAddSpeed = true;
 
+        anim = GetComponent<Animator>();
         //canSprint = true;
 
     }
@@ -65,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        anim.SetBool("isRunning", true);
+            
+       
+        
         //Prevent the player move faster when going diagonally
         DiagonalMove = new Vector3(movement.x, movement.y).normalized;
 

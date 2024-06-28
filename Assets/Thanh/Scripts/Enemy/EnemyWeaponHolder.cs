@@ -9,8 +9,8 @@ public class EnemyWeaponHolder : MonoBehaviour
     public float radius;
     public Animator anim;
     [SerializeField] private bool noAttack;
-    public float delayAttack = 0.5f;
-    public float enemyDamage = 5;
+    public float delayAttack;
+    public float enemyDamage;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private AnimationEvent animEvent;
     private Enemy enemy;
@@ -57,11 +57,9 @@ public class EnemyWeaponHolder : MonoBehaviour
     }
     public void DetectCol()
     {
-        
         foreach (Collider2D col in Physics2D.OverlapCircleAll(circle.position, radius, playerMask))
         {
-           
-            col.GetComponent<PlayerHealth>().TestHit(enemyDamage, transform.gameObject);
+            col.GetComponent<PlayerHealth>().TestHit(enemyDamage, transform.parent.gameObject);
             Debug.Log(col);
         }
     }
